@@ -1,5 +1,5 @@
 ##### APIキーの設定 #####
-api_key = "AIzaSyBDd3EZXRcOPqObkWLj3TFGUocvX4brLcc"
+api_key = "YOUR API KEY"
 
 ##### 準備 #####
 from gpiozero import LED, Button
