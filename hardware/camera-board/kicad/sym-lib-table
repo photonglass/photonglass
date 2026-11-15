@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 0)
+  (lib (name "OG19_PC-3_camera-eagle-import")(type "KiCad")(uri "${KIPRJMOD}/OG19_PC-3_camera-eagle-import.kicad_sym")(options "")(descr ""))
+)

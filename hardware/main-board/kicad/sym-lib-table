@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 0)
+  (lib (name "OG19AWv2_main-eagle-import")(type "KiCad")(uri "${KIPRJMOD}/OG19AWv2_main-eagle-import.kicad_sym")(options "")(descr ""))
+)
