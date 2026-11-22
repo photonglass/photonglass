@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # Copyright (C) 2019-2026 OTON GLASS open hardware contributors
 """
-OTON GLASS 本体プログラム（逐次版）
+PHOTON GLASS 本体プログラム（逐次版）
 ===================================
 
 カメラボタンを押すと、メガネのカメラで写真を撮り、写っている文字を読み上げます。
@@ -29,7 +29,7 @@ LED の色の意味
 
 必要なもの
 ----------
-- Raspberry Pi Zero 2 W ＋ OTON GLASS メイン基板・カメラ基板
+- Raspberry Pi Zero 2 W ＋ PHOTON GLASS メイン基板・カメラ基板
 - Python のライブラリ：gpiozero, picamera2, requests
   （例：sudo apt install python3-gpiozero python3-picamera2 python3-requests）
 - 音声を再生するコマンド aplay（Raspberry Pi OS に最初から入っています）
@@ -38,7 +38,8 @@ LED の色の意味
 動かし方
 --------
 このファイルと sound フォルダがある場所に移動してから実行します。
-    cd ~/photonglass
+    cd software          # リポジトリの場合
+    cd ~/photonglass     # docs/SETUP_RASPBERRY_PI.md の手順で Raspberry Pi にコピーした場合
     python3 main_seq.py
 （音声ファイルの場所を「今いるフォルダから数えて」指定しているため、別の場所から実行すると音が出ません）
 """

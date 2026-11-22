@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # Copyright (C) 2019-2026 OTON GLASS open hardware contributors
-"""USB-A plug cover for the OTON GLASS power cable (CadQuery).
+"""USB-A plug cover for the PHOTON GLASS power cable (CadQuery).
 
 Covers a board-mount right-angle USB-A plug (Chang Enn USB-4AM103AS, Akizuki 102236) whose pins are
 hand-soldered to two AWG24 wires, and clamps the wires for strain relief.

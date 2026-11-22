@@ -58,14 +58,14 @@
 ### 実装しない（手はんだで付ける）部品
 メイン基板の次の部品は、操作感や外形に関わるので BOM から外してあります。別途買って、届いた基板に自分ではんだ付けしてください。
 
-| 部品 | 型番 | LCSC |
+| 部品 | 型番 | 購入先 |
 |---|---|---|
-| VR1 ボリューム | Alps RK10J12E002L | C231765 |
-| SW_SUB / SW_UP / SW_DOWN | Alps SKHHLQA010 | C125034 |
-| SW_MAIN | Diptronics DTS-63K-V | C141874 |
-| SPK / 5V コネクタ（縦型） | JST B2B-XH-A(LF)(SN) | C158012 |
+| VR1 ボリューム | R1001G16T2B-B10K | aitendo |
+| SW_SUB / SW_UP / SW_DOWN | SKHHLPA010 | 秋月電子（107193） |
+| SW_MAIN | P-03646（Cosland TS-0606-F-N-RED） | 秋月電子 |
+| SPK / 5V コネクタ（縦型） | JST B2B-XH-A(LF)(SN) | LCSC（C158012） |
 
-これらは同じ注文の中で「部品だけ」買うこともできます（JLCPCB の Parts → Order Parts、または LCSC.com）。
+型番と購入先は、発注リスト（2026-10-20 版）に合わせています。LCSC の部品は、同じ注文の中で「部品だけ」買うこともできます（JLCPCB の Parts → Order Parts、または LCSC.com）。
 
 ## 4. 部品の向きの確認（プレビュー画面）
 「NEXT」で部品が基板に載ったプレビューが出ます。**ここがいちばん大事です**。部品の向きや位置がずれていたら、部品をクリックして回転・移動で直します。
@@ -94,7 +94,7 @@ ICは1番ピンの印（○や切り欠き）が、基板のシルクの1番ピ�
 
 ## 届いたら
 1. 手はんだの部品（上の表）を付ける。
-2. Raspberry Pi Zero 2 W に載せ、[`software/test/hw_test.py`](../software/test/hw_test.py) で動作を確認する。
+2. Raspberry Pi Zero 2 W に載せ、[`software/test/hw_test.py`](../software/test/hw_test.py) で動作を確認する（Raspberry Pi の準備は [`docs/SETUP_RASPBERRY_PI.md`](../docs/SETUP_RASPBERRY_PI.md)、全体の流れは [`docs/BUILD_GUIDE.md`](../docs/BUILD_GUIDE.md)）。
 3. スピーカーのコネクタの向きは [`main-board/images/speaker_connector_orientation.png`](main-board/images/speaker_connector_orientation.png) を見る。
 
 ## ガーバーについて

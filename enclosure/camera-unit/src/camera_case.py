@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: GPL-3.0-only
 # Copyright (C) 2019-2026 OTON GLASS open hardware contributors
-"""OTON GLASS camera unit enclosure (v6) - FDM 3D-printable, parametric (CadQuery).
+"""PHOTON GLASS camera unit enclosure (v6) - FDM 3D-printable, parametric (CadQuery).
 Coordinates: mm, same frame as the camera board placed component-side down (board z 3.4..5.0).
 Parts: body (tube with shutter flexure), nose (camera lid), tail (end cap, snap ring), tail_loose, sled (board/camera carrier)
 usage: python camera_case.py OUTPUT_DIR
