@@ -28,6 +28,11 @@ PHOTON GLASS は、OTON GLASS ver5 を元にしながら、自作の容易さや
 - **Raspberry Pi を準備する**：[`docs/SETUP_RASPBERRY_PI.md`](docs/SETUP_RASPBERRY_PI.md) に、OS の書き込みから動作テスト、自動起動までの手順があります。
 - **設計を変える**：基板は KiCad か Fusion で、筐体は `src/` の Python スクリプトの数値を変えるか、STEP を CAD に読み込んで編集します。
 
+## 質問・不具合の報告
+
+質問や不具合の報告は、GitHub の Issues で受け付けています。
+https://github.com/photonglass/photonglass/issues
+
 ## 憲法
 PHOTON GLASS の理念と利用、名称、特許については、[憲法（`CHARTER.md`）](CHARTER.md)に定めています。
 
@@ -110,3 +115,4 @@ The documentation is written in Japanese.
   - Documentation (`docs/`, `CHARTER.md`, READMEs, `hardware/JLCPCB_ORDERING.md`), photos and images, and sounds (`software/sound/`): **CC BY-SA 4.0** (https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)
   - For uses outside these licences, such as embedding in a closed product, a commercial licence is available: https://note.com/keisukeshimakage/n/nef3c9957ae25
 - Charter (in Japanese): `CHARTER.md` – principles and use, the PHOTON GLASS name, and patents
+- Questions and bug reports: GitHub Issues (https://github.com/photonglass/photonglass/issues)
