@@ -2,6 +2,7 @@
 
 一人称のカメラで捉えるイメージから，音などのフィードバックでユーザーにインタラクションする，メガネ型のデバイス〈PHOTON GLASS〉のハードウェアデータです。
 PHOTON GLASS は、OTON GLASS ver5 を元にしながら、自作の容易さや改変性を高め、ツールキットとして新しく開発したものです。
+ここで公開しているプログラムは、PHOTON GLASS のサンプル実装のひとつです。一人称カメラで捉えた文字を読み上げる（画像から文字を認識し、音声で読み上げる）機能を実行します。
 基板2枚（メイン基板・カメラ基板）の設計データ、3Dプリンターで造形できるカメラユニットの筐体と電源ケーブルのカバー、本体のプログラム、組み立てとセットアップの手順を公開しています。
 
 *[English summary](#english-summary) below.*
@@ -104,6 +105,7 @@ CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
 ## English summary
 Hardware for **PHOTON GLASS**, a glasses-type device that interacts with users via feedback such as sound, based on images captured by a first-person camera.
 PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, with improved ease of self-building and modifiability.
+The program published here is one sample implementation of PHOTON GLASS. It reads aloud text captured by the first-person camera (it recognises the text in the image and speaks it).
 The documentation is written in Japanese.
 - `hardware/` – main board and camera board (KiCad 9 and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
 - `enclosure/camera-unit/` – FDM-printable camera enclosure: STEP, print-ready STL/3MF, parametric CadQuery source, print settings
