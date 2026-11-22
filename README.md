@@ -39,11 +39,11 @@ Copyright (C) 株式会社オトングラス
 | 対象 | 含まれるもの | ライセンス | 全文 |
 |---|---|---|---|
 | ソフトウェア | `software/` のプログラム（`main_async.py`・`main_seq.py`・`test/` など） | GNU General Public License v3.0（GPL-3.0-only） | [`LICENSE`](LICENSE) |
-| ハードウェア | `hardware/`（基板の KiCad・Eagle データ、BOM・CPL、`JLCPCB_ORDERING.md`）、`enclosure/`（筐体の CadQuery スクリプト）と、それらの生成物（ガーバー、STL・STEP・3MF） | CERN Open Hardware Licence Version 2 - Strongly Reciprocal（CERN-OHL-S v2） | [`LICENSE-HARDWARE`](LICENSE-HARDWARE) |
-| ドキュメント・写真・画像 | `docs/`、各フォルダの `README.md`、写真・画像（各フォルダの `images/` など） | クリエイティブ・コモンズ 表示-継承 4.0 国際（CC BY-SA 4.0） | 公式テキスト：[日本語](https://creativecommons.org/licenses/by-sa/4.0/legalcode.ja)・[English](https://creativecommons.org/licenses/by-sa/4.0/legalcode.en) |
+| ハードウェア | `hardware/`（基板の KiCad・Eagle データ、BOM・CPL）、`enclosure/`（筐体の CadQuery スクリプト）と、それらの生成物（ガーバー、STL・STEP・3MF）。**例外**：README・写真・画像と `hardware/JLCPCB_ORDERING.md` は除く（ドキュメント・写真・画像として CC BY-SA 4.0） | CERN Open Hardware Licence Version 2 - Strongly Reciprocal（CERN-OHL-S v2） | [`LICENSE-HARDWARE`](LICENSE-HARDWARE) |
+| ドキュメント・写真・画像 | `docs/`、`CHARTER.md`、各フォルダの `README.md`、`hardware/JLCPCB_ORDERING.md`、写真・画像（各フォルダの `images/` など） | クリエイティブ・コモンズ 表示-継承 4.0 国際（CC BY-SA 4.0） | 公式テキスト：[日本語](https://creativecommons.org/licenses/by-sa/4.0/legalcode.ja)・[English](https://creativecommons.org/licenses/by-sa/4.0/legalcode.en) |
 | サウンド | `software/sound/` の効果音 | CC BY-SA 4.0 | 同上 |
 
-- 各 README と写真・画像は、`hardware/`・`enclosure/`・`software/` の中にあっても CC BY-SA 4.0 です。`software/sound/` も、`software/` の中にありますが CC BY-SA 4.0 です。
+- 各 README、写真・画像、`hardware/JLCPCB_ORDERING.md` は、`hardware/`・`enclosure/`・`software/` の中にあっても CC BY-SA 4.0 です。`software/sound/` も、`software/` の中にありますが CC BY-SA 4.0 です。
 
 ### CC BY-SA 4.0 のクレジット表記
 ドキュメント・写真・画像・サウンドは、株式会社オトングラスが CC BY-SA 4.0 で提供しています。全文のファイルはこのリポジトリに入れていないので、公式テキスト（[日本語](https://creativecommons.org/licenses/by-sa/4.0/legalcode.ja)・[English](https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)）を見てください。
@@ -102,7 +102,7 @@ PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, with imp
 - `enclosure/camera-unit/` – FDM-printable camera enclosure: STEP, print-ready STL/3MF, parametric CadQuery source, print settings
 - Licences (Copyright (C) OTON GLASS Inc.):
   - Software (`software/`): **GPL-3.0-only** (see `LICENSE`)
-  - Hardware (`hardware/`, `enclosure/`: board data, CadQuery scripts and their outputs such as Gerbers and STL/STEP/3MF): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
-  - Documentation (`docs/`, READMEs), photos and images, and sounds (`software/sound/`): **CC BY-SA 4.0** (https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)
+  - Hardware (`hardware/`, `enclosure/`: board data, CadQuery scripts and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
+  - Documentation (`docs/`, `CHARTER.md`, READMEs, `hardware/JLCPCB_ORDERING.md`), photos and images, and sounds (`software/sound/`): **CC BY-SA 4.0** (https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)
   - For uses outside these licences, such as embedding in a closed product, a commercial licence is available: https://note.com/keisukeshimakage/n/nef3c9957ae25
 - Charter (in Japanese): `CHARTER.md` – principles and use, the PHOTON GLASS name, and patents
