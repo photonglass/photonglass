@@ -1,6 +1,7 @@
-# OTON GLASS – open hardware
+# PHOTON GLASS – open hardware
 
-文字を読むのが難しい人（ディスレクシアなど）のために、メガネに付けたカメラで文字を撮影し、読み上げる装置 **OTON GLASS** のハードウェアデータです。
+一人称のカメラで捉えるイメージから，音などのフィードバックでユーザーにインタラクションする，メガネ型のデバイス〈PHOTON GLASS〉のハードウェアデータです。
+PHOTON GLASS は、OTON GLASS ver5 を元にしながら、自作の容易さや改変性を高め、ツールキットとして新しく開発したものです。
 基板2枚（メイン基板・カメラ基板）と、3Dプリンターで造形できるカメラユニットの筐体を公開しています。
 
 *English summary below.*
@@ -46,13 +47,14 @@ Copyright (C) 2019-2026 OTON GLASS open hardware contributors
 - Google Cloud の API キー（各自で用意して、プログラムの `api_key` に書く）。
 
 ## クレジット
-- 原設計：OTON GLASS（2019年版 OG19 の基板・筐体）
-- 2026年版の改訂：JLCPCB部品への置き換え、基板の修正、3Dプリンター向けの筐体の新規設計
+- 原設計：OTON GLASS ver5（2019年発表。基板・筐体の型番は OG19）
+- PHOTON GLASS（2026年）：JLCPCB部品への置き換え、基板の修正、3Dプリンター向けの筐体の新規設計
 
 ---
 
 ## English summary
-Hardware for **OTON GLASS**, a glasses-mounted camera that reads printed text aloud for people with dyslexia.
+Hardware for **PHOTON GLASS**, a glasses-type device that interacts with users via feedback such as sound, based on images captured by a first-person camera.
+PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, with improved ease of self-building and modifiability.
 - `hardware/` – main board and camera board (KiCad 9 and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
 - `enclosure/camera-unit/` – FDM-printable camera enclosure: STEP, print-ready STL/3MF, parametric CadQuery source, print settings
 - Licence: everything in this repository is **GPL-3.0-only** (see `LICENSE`)

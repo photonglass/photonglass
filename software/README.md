@@ -1,6 +1,6 @@
 # ソフトウェア
 
-OTON GLASS の Raspberry Pi で動かすプログラムです。
+PHOTON GLASS の Raspberry Pi で動かすプログラムです。
 カメラボタンを押すと写真を撮り、写っている文字を Google Cloud で読み取って、スピーカーから読み上げます。
 
 ## ファイル

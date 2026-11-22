@@ -18,7 +18,7 @@
 
 スピーカー用コネクタの向きは [`main-board/images/speaker_connector_orientation.png`](main-board/images/speaker_connector_orientation.png) を見てください。
 
-## 元設計（2019年版）からの変更
+## 元設計（OTON GLASS ver5）からの変更
 - 在庫のない部品を JLCPCB で買える部品に置き換え（イヤホンジャック、RGB LED、ピンソケット、抵抗値の近似など）。詳しくは [`docs/parts_list.md`](../docs/parts_list.md)。
 - メイン基板：上辺の段差をなくした、左右の角を対称な面取りにした、HDMI とイヤホンジャックの前面をそろえた、ボタンを基板の端まで出した、不足していたビアを追加した、など。
 - **RGB LED の色と GPIO の対応が変わっています**：GPIO9 = 赤、GPIO11 = 緑、GPIO10 = 青。
