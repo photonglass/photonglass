@@ -16,7 +16,7 @@ Variants (cable exit):
   straight : the cable leaves straight back (files usb_cover_base / usb_cover_lid)
   left     : L-shape, the cable leaves sideways to the LEFT  (files usb_cover_L_left_*)
   right    : L-shape, the cable leaves sideways to the RIGHT (files usb_cover_L_right_*)
-  Left/right = seen from the lid side (screw heads up) with the plug tip pointing away from you (left = +y).
+  Left/right = seen from the lid side (lid up) with the plug tip pointing away from you (left = +y).
   The L-shape is short (about 12 mm): the bent-back pins are cut to 1.5 mm, the wires turn 90 deg right
   behind the plug and the cable is clamped sideways between ridges on the slot floor and the flat underside of
   the lid (the slot is as deep as the cable). There is no room for the rear screws, so the L lid is held by the

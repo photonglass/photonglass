@@ -2,9 +2,9 @@
 
 一人称のカメラで捉えるイメージから，音などのフィードバックでユーザーにインタラクションする，メガネ型のデバイス〈PHOTON GLASS〉のハードウェアデータです。
 PHOTON GLASS は、OTON GLASS ver5 を元にしながら、自作の容易さや改変性を高め、ツールキットとして新しく開発したものです。
-基板2枚（メイン基板・カメラ基板）と、3Dプリンターで造形できるカメラユニットの筐体を公開しています。
+基板2枚（メイン基板・カメラ基板）の設計データ、3Dプリンターで造形できるカメラユニットの筐体と電源ケーブルのカバー、本体のプログラム、組み立てとセットアップの手順を公開しています。
 
-*English summary below.*
+*[English summary](#english-summary) below.*
 
 ![カメラユニット](enclosure/camera-unit/images/overview.png)
 
@@ -13,8 +13,8 @@ PHOTON GLASS は、OTON GLASS ver5 を元にしながら、自作の容易さや
 | フォルダ | 内容 | 開けるソフト |
 |---|---|---|
 | [`hardware/`](hardware/README.md) | 基板2枚の概要、ファイルの開き方、元設計からの変更 | — |
-| [`hardware/main-board/`](hardware/main-board) | メイン基板（Raspberry Pi Zero 2 W に載る音声・ボタン基板） | KiCad 9 / Fusion（Eagle形式） |
-| [`hardware/camera-board/`](hardware/camera-board) | カメラ基板（HDMIケーブルでメイン基板とつながる） | KiCad 9 / Fusion（Eagle形式） |
+| [`hardware/main-board/`](hardware/main-board) | メイン基板（Raspberry Pi Zero 2 W に載る音声・ボタン基板） | KiCad 9 以降 / Fusion（Eagle形式） |
+| [`hardware/camera-board/`](hardware/camera-board) | カメラ基板（HDMIケーブルでメイン基板とつながる） | KiCad 9 以降 / Fusion（Eagle形式） |
 | [`enclosure/camera-unit/`](enclosure/camera-unit) | カメラユニットの筐体・メガネ用アタッチメント | STEP（Fusion・FreeCAD など）/ STL・3MF（スライサー）/ Python（CadQuery） |
 | [`enclosure/usb-power-cable/`](enclosure/usb-power-cable) | モバイルバッテリーからメイン基板へ給電するケーブルの作り方（配線・部品）と、USB プラグのカバー | STEP / STL / Python（CadQuery） |
 | [`software/`](software) | 本体プログラムと効果音。普段使うのは `main_async.py`、仕組みを学ぶなら流れの読みやすい `main_seq.py`（違いは [`software/README.md`](software/README.md)） | Python 3（Raspberry Pi） |
@@ -27,6 +27,11 @@ PHOTON GLASS は、OTON GLASS ver5 を元にしながら、自作の容易さや
 - **筐体を印刷する**：[`enclosure/camera-unit/README.md`](enclosure/camera-unit/README.md) に、印刷設定（Bambu Lab A1 / PETG）と組み立て手順があります。
 - **Raspberry Pi を準備する**：[`docs/SETUP_RASPBERRY_PI.md`](docs/SETUP_RASPBERRY_PI.md) に、OS の書き込みから動作テスト、自動起動までの手順があります。
 - **設計を変える**：基板は KiCad か Fusion で、筐体は `src/` の Python スクリプトの数値を変えるか、STEP を CAD に読み込んで編集します。
+
+## 質問・不具合の報告
+
+質問や不具合の報告は、GitHub の Issues で受け付けています。
+https://github.com/photonglass/photonglass/issues
 
 ## 憲法
 PHOTON GLASS の理念と利用、名称、特許については、[憲法（`CHARTER.md`）](CHARTER.md)に定めています。
@@ -98,11 +103,16 @@ CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
 ## English summary
 Hardware for **PHOTON GLASS**, a glasses-type device that interacts with users via feedback such as sound, based on images captured by a first-person camera.
 PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, with improved ease of self-building and modifiability.
+The documentation is written in Japanese.
 - `hardware/` – main board and camera board (KiCad 9 and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
 - `enclosure/camera-unit/` – FDM-printable camera enclosure: STEP, print-ready STL/3MF, parametric CadQuery source, print settings
+- `enclosure/usb-power-cable/` – power cable from a mobile battery to the main board: wiring, parts and a 3D-printable cover for the USB plug
+- `software/` – Python programs for the Raspberry Pi Zero 2 W (press the camera button to take a photo, recognise its text with Google Cloud Vision and read it aloud with Google Cloud Text-to-Speech), sound effects and a hardware test script
+- `docs/` – build guide, Raspberry Pi setup guide and parts list
 - Licences (Copyright (C) OTON GLASS Inc.):
   - Software (`software/`): **GPL-3.0-only** (see `LICENSE`)
   - Hardware (`hardware/`, `enclosure/`: board data, CadQuery scripts and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
   - Documentation (`docs/`, `CHARTER.md`, READMEs, `hardware/JLCPCB_ORDERING.md`), photos and images, and sounds (`software/sound/`): **CC BY-SA 4.0** (https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)
   - For uses outside these licences, such as embedding in a closed product, a commercial licence is available: https://note.com/keisukeshimakage/n/nef3c9957ae25
 - Charter (in Japanese): `CHARTER.md` – principles and use, the PHOTON GLASS name, and patents
+- Questions and bug reports: GitHub Issues (https://github.com/photonglass/photonglass/issues)

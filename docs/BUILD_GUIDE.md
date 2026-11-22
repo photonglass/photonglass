@@ -38,8 +38,8 @@ PHOTON GLASS を一から作るときの、作業の順番をまとめたペー�
 | メガネ | — | カメラユニットを取り付ける |
 
 Raspberry Pi の初期設定では、次のものも使います。
-- モニター（Raspberry Pi の mini HDMI 端子につなぐ）
-- キーボードとマウス（Raspberry Pi の周辺機器用に、microUSB L字ケーブル AFSSLCBL と、USB-A メスのコネクタ USB-4AF203AS を使っています）
+- モニターと、mini HDMI → HDMI の変換ケーブル（またはアダプター）。Raspberry Pi Zero 2 W の映像出力は mini HDMI 端子です。
+- キーボードとマウスと、micro USB（オス）→ USB-A（メス）の変換ケーブル（OTG ケーブル）。Raspberry Pi Zero 2 W のデータ用の USB 端子は micro USB が1つだけなので、キーボードとマウスを両方つなぐときは、USB ハブを使うか、1つのレシーバーで使えるワイヤレスのキーボードとマウスを使います。開発では、microUSB L字ケーブル AFSSLCBL と、USB-A メスのコネクタ USB-4AF203AS を使っています。
 
 ## 1. 基板を発注する
 メイン基板とカメラ基板を、JLCPCB に「基板製造＋部品実装」で発注します。

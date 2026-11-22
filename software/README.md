@@ -54,11 +54,11 @@ Raspberry Pi の準備（OS の書き込みから自動起動まで）は [`docs
    - プログラムは、自分のファイルと同じフォルダにある `api_key.txt` を読みます。ファイルがない・空のときは、赤く光って通信エラーの音を鳴らし、理由を表示して終了します。
    - **`api_key.txt` は、GitHub などで公開しないでください。** 他人に使われて料金が請求されることがあります（このリポジトリでは `.gitignore` で git の管理から外しています）。
 3. 必要なライブラリを入れる。
-   ```
+   ```bash
    sudo apt install -y python3-gpiozero python3-picamera2 python3-httpx python3-requests
    ```
 4. この `software` フォルダに移動してから実行する（効果音の場所を、今いるフォルダから数えているため）。
-   ```
+   ```bash
    cd software
    python3 main_async.py
    ```
@@ -72,3 +72,8 @@ Raspberry Pi の準備（OS の書き込みから自動起動まで）は [`docs
 | 赤 | エラー（効果音でどのエラーかを知らせる：カメラ／通信／文字が見つからない） |
 
 2026年版の基板では RGB LED の部品を替えたため、GPIO9 = 赤、GPIO11 = 緑、GPIO10 = 青 です（元の基板とは違います）。
+
+## 送るデータと、残るファイル
+- カメラボタンを押すと、撮った写真が Google Cloud Vision API に、読み取った文字が Google Cloud Text-to-Speech API に、インターネット経由で送られます。人が写る場所で使うときは、[憲法（`CHARTER.md`）の「1. 理念と利用について」](../CHARTER.md#1-理念と利用について)を読んでください。
+- 最後に撮った写真（`image.jpg`）と読み上げ音声（`speech.wav`）は、プログラムを実行したフォルダ（Raspberry Pi では `~/photonglass`）に残ります。次に撮ると上書きされます。`main_async.py` は、起動したときにも、カメラの確認のために1枚撮ります。
+- API の利用料金は、使った量によって決まります。くわしくは Google Cloud の各 API の料金のページを見てください。
