@@ -87,7 +87,7 @@ CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
 - プログラミング：石塚日向（Hinata Ishizuka）
 - アドバイジング：須田拓也（Hiroya Suda）、高橋卓久真（Takuma Takahashi）、陳冠宇（Chen Kuan-Yu）
 
-**原設計：OTON GLASS ver5（2019年発表。基板・筐体の型番は OG19）**
+**OTON GLASS ver5（2019年）― PHOTON GLASSの元となったモデル**
 - エンジニアリング：宮下恵太（Keita Miyashita）
 - サーバーサイドエンジニアリング：鶴岡秀樹（Hideki Tsuruoka）
 - プロダクトデザイン：佐野友優（Tomomasa Sano）
