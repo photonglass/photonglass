@@ -63,7 +63,6 @@ import subprocess                 # 別のプログラム（aplay）を動かす
 import base64                     # 画像や音声を、通信で送れる文字列に変換するため
 import time                       # 待ち時間を作るため
 import asyncio                    # このプログラムでは使っていない（非同期版の名残）
-import httpx                      # このプログラムでは使っていない（非同期版の名残）
 import os                         # ファイルの場所を調べるため（api_key.txt を探す）
 import sys                        # エラーのときにプログラムを終了するため
 
