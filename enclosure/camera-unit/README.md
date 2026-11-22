@@ -62,7 +62,8 @@ Bambu Lab A1・Bambu Studio での設定です。ほかのプリンターでも�
 |---|---|
 | カメラ基板（[`hardware/camera-board`](../../hardware/camera-board)） | 1 |
 | カメラ Zero Spy Camera for Raspberry Pi Zero（8.6 × 8.6 × 5.2 mm、裏に両面テープ付き） | 1 |
-| ネジ ウィルコ FXB-1430EB（M1.4 × 3.0 低頭Bタイト） | 6 |
+| ネジ ウィルコ FXB-1430EB（M1.4 × 3.0 低頭Bタイト）：カメラの蓋用 | 3 |
+| ネジ ウィルコ FBP-0208EB：本体用 | 7 |
 | 結束バンド（幅 2.5 mm × 厚さ 1.0 mm、長さ 100 mm 程度） | 2 |
 
 ## 組み立て

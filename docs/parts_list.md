@@ -8,7 +8,7 @@ PHOTON GLASS · OG19 · JLCPCB 発注用
 - データシート
 - 回路図記号のピン（ピン名 → パッド）が、データシートのピン配置と一致しているか
 
-部品番号はすべて JLCPCB の部品ライブラリで在庫を確認済みです（2026-10-15 時点）。
+部品番号はすべて JLCPCB の部品ライブラリで在庫を確認済みです（2026-10-15 時点）。ただし、手はんだの VR1・SW_MAIN・SW_SUB / UP / DOWN は、発注リスト（2026-10-20 版）に合わせて、秋月電子・aitendo で買う部品に変更したため、在庫とデータシートとの照合はしていません。
 
 - JLCPCB 実装 **13** 行（メイン） / **6** 行（カメラ）
 - 手はんだ **7** 個（メイン基板）
@@ -27,9 +27,9 @@ PHOTON GLASS · OG19 · JLCPCB 発注用
 | CN3<br>HDMI Type-A | Amphenol 10029449 系<br>同シリーズ | `10029449-111RLF`<br>Amphenol ICC · `C427307` · 在庫 1,556 | JLCPCB 実装 | 一致<br>1〜19番が HDMI 規格の割当と一致（18 +5V、19 HPD）。シェル脚4本は GND | [データシート](https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Amphenol-ICC-10029449-111RLF_C427307.pdf) [LCSC](https://www.lcsc.com/product-detail/hdmi-connectors_amphenol-icc-10029449-111rlf_C427307.html) |
 | U\$1<br>Raspberry Pi 40ピン接続（表面に実装） | Samtec SSW-120-02-G-D（在庫5・約\$10）<br>代替 | `2.54-2*20P`<br>BOOMELE(Boom Precision Elec) · `C5124634` · 在庫 8,734 | JLCPCB 実装 | 一致<br>同形状の汎用ソケット（高さ8.5mm）。1 3.3V / 2 5V … 40 GPIO21 が標準ピン配置と一致。Eagle では Pi を裏返して重ねるためのピン配置の鏡像として反転配置、実物は表面に実装（CPL も Top） | [データシート](https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2401111126_BOOMELE-Boom-Precision-Elec-2-54-2-20P_C5124634.pdf) [LCSC](https://www.lcsc.com/product-detail/female-headers_boomele-boom-precision-elec-2-54-2-20p_C5124634.html) [元: Samtec](https://www.samtec.com/products/ssw) |
 | U\$3<br>状態表示 RGB LED | Kingbright KPF-3236SURKMGKPBC（JLC未登録）<br>代替 | `S6-3528RGBTA`<br>TUOZHAN · `C2843672` · 在庫 7,379 | JLCPCB 実装 | 一致・注意あり<br>ピン配置はデータシートどおり。色の並びが変わり、ソフト側の変更が必要。注意点 3 | [データシート](https://www.lcsc.com/datasheet/lcsc_datasheet_2109061230_TUOZHAN-S6-3528RGBTA_C2843672.pdf) [LCSC](https://www.lcsc.com/product-detail/rgb-leds_tuozhan-s6-3528rgbta_C2843672.html) |
-| VR1<br>音量ボリューム（2連） | ALPS RK10J（型番指定なし）<br>同シリーズ | `RK10J12E002L`<br>ALPSALPINE · `C231765` · 在庫 1,278 | 手はんだ | 一致・注意あり<br>端子の並び（共通・ワイパー・端）が一致。抵抗カーブは B（直線型）。注意点 2 | [データシート](https://www.lcsc.com/datasheet/lcsc_datasheet_1810170234_ALPSALPINE-RK10J12E002L_C231765.pdf) [LCSC](https://www.lcsc.com/product-detail/potentiometers-variable-resistors_alpsalpine-rk10j12e002l_C231765.html) |
-| SW_SUB, SW_UP, SW_DOWN<br>サイドプッシュスイッチ | ALPS SKHH サイドプッシュ（型番指定なし）<br>同シリーズ | `SKHHLQA010`<br>ALPSALPINE · `C125034` · 在庫 2,449 | 手はんだ | 一致・注意あり<br>端子2本＋取付脚2本が一致。ボタン長さ 8.35mm は今回の選定。注意点 4 | [データシート](https://www.lcsc.com/datasheet/lcsc_datasheet_2410121957_ALPSALPINE-SKHHLQA010_C125034.pdf) [LCSC](https://www.lcsc.com/product-detail/tactile-switches_alpsalpine-skhhlqa010_C125034.html) |
-| SW_MAIN<br>メインスイッチ（裏面） | 秋月 P-03647 = Cosland DTS-63-N-V（6.2mm角・高さ7mm）<br>同シリーズ | `DTS-63K-V`<br>Diptronics · `C141874` · 在庫 794 | 手はんだ | 一致<br>同シリーズ・同寸法。4端子の導通ペア（P2-P3 = GND、P1-P4 = SW_BODY）が一致 | [データシート](https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Diptronics-DTS-63K-V_C141874.pdf) [LCSC](https://www.lcsc.com/product-detail/tactile-switches_diptronics-dts-63k-v_C141874.html) [元: 秋月](https://akizukidenshi.com/goodsaffix/ts-0606_20200714.pdf) |
+| VR1<br>音量ボリューム（2連） | ALPS RK10J（型番指定なし）<br>未確認 | `R1001G16T2B-B10K`<br>aitendo（発注リストの部品） | 手はんだ | 未照合<br>発注リストの部品に変更。データシートとの照合はしていない。注意点 2 | [aitendo](https://www.aitendo.com/product/20676) |
+| SW_SUB, SW_UP, SW_DOWN<br>サイドプッシュスイッチ | ALPS SKHH サイドプッシュ（型番指定なし）<br>同シリーズ | `SKHHLPA010`<br>秋月電子 · `107193`（発注リストの部品） | 手はんだ | 未照合<br>発注リストの部品に変更。データシートとの照合はしていない。注意点 4 | [秋月電子](https://akizukidenshi.com/catalog/g/g107193/) |
+| SW_MAIN<br>メインスイッチ（裏面） | 秋月 P-03647 = Cosland DTS-63-N-V（6.2mm角・高さ7mm）<br>未確認 | `P-03646`<br>秋月電子 · タクトスイッチ（赤）（発注リストの部品） | 手はんだ | 未照合<br>発注リストの部品に変更。データシートとの照合はしていない | [秋月電子](https://akizukidenshi.com/catalog/g/g103646/) [元: 秋月](https://akizukidenshi.com/goodsaffix/ts-0606_20200714.pdf) |
 | SPK, 5V<br>2ピンコネクタ（縦型） | JST S2B-XH-A（横型）<br>代替 | `B2B-XH-A(LF)(SN)`<br>JST · `C158012` · 在庫 241,489 | 手はんだ | 一致<br>縦型（上から挿す）に変更。パッドは同じ。ピン1 = 四角パッド（5V / SPK+）。本体が基板内に収まるよう 0.5mm 下げて配置 | [データシート](https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_JST-B2B-XH-A-LF-SN_C158012.pdf) [LCSC](https://lcsc.com/product-detail/wire-to-board-connector_jst-b2b-xh-a-lf-sn_C158012.html) |
 | C2〜C4, C7〜C11<br>パスコン 0.1µF | 0603 0.1µF<br>同一 | `CC0603KRX7R9BB104`<br>YAGEO · `C14663` · 在庫 51,101,481 | JLCPCB 実装 | 一致<br>値・サイズ同じ（50V X7R） | [データシート](https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf) [LCSC](https://www.lcsc.com/product-detail/multilayer-ceramic-capacitors-mlcc-smd-smt_yageo-cc0603krx7r9bb104_C14663.html) |
 | C1<br>2.2µF | 0603 2.2µF<br>同一 | `CL10A225KO8NNNC`<br>Samsung Electro-Mechanics · `C23630` · 在庫 3,546,419 | JLCPCB 実装 | 一致<br>値・サイズ同じ（16V X5R） | [データシート](https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A225KO8NNNC_C23630.pdf) [LCSC](https://www.lcsc.com/product-detail/multilayer-ceramic-capacitors-mlcc-smd-smt_samsung-electro-mechanics-cl10a225ko8nnnc_C23630.html) |
@@ -53,11 +53,11 @@ PHOTON GLASS · OG19 · JLCPCB 発注用
 
 ## 手はんだで付ける部品（別途購入）
 
-この7個は JLCPCB の BOM・CPL から外してあり、基板にはパッドと穴だけが用意されます。同じ型番を LCSC などで購入してください。
+この7個は JLCPCB の BOM・CPL から外してあり、基板にはパッドと穴だけが用意されます。同じ型番を、下の購入先などで購入してください。
 
-- `RK10J12E002L` × 1<br>VR1 — 音量ボリューム（2連） · [C231765](https://www.lcsc.com/product-detail/potentiometers-variable-resistors_alpsalpine-rk10j12e002l_C231765.html)
-- `SKHHLQA010` × 3<br>SW_SUB, SW_UP, SW_DOWN — サイドプッシュスイッチ · [C125034](https://www.lcsc.com/product-detail/tactile-switches_alpsalpine-skhhlqa010_C125034.html)
-- `DTS-63K-V` × 1<br>SW_MAIN — メインスイッチ（裏面） · [C141874](https://www.lcsc.com/product-detail/tactile-switches_diptronics-dts-63k-v_C141874.html)
+- `R1001G16T2B-B10K` × 1<br>VR1 — 音量ボリューム（2連） · [aitendo](https://www.aitendo.com/product/20676)
+- `SKHHLPA010` × 3<br>SW_SUB, SW_UP, SW_DOWN — サイドプッシュスイッチ · [秋月電子 107193](https://akizukidenshi.com/catalog/g/g107193/)
+- `P-03646` × 1<br>SW_MAIN — メインスイッチ（裏面）、タクトスイッチ（赤） · [秋月電子 103646](https://akizukidenshi.com/catalog/g/g103646/)
 - `B2B-XH-A(LF)(SN)` × 2<br>SPK, 5V — 2ピンコネクタ（縦型） · [C158012](https://lcsc.com/product-detail/wire-to-board-connector_jst-b2b-xh-a-lf-sn_C158012.html)
 
 ## 注意点
@@ -80,6 +80,7 @@ PHOTON GLASS · OG19 · JLCPCB 発注用
 
 2. **VR1 ボリューム**：
 
+   - 発注リストでは `R1001G16T2B-B10K`（aitendo）を使います。この部品とデータシートとの照合はしていません。次の2つは、はじめに選んだ `RK10J12E002L` を照合した結果です。
    - 端子の並びは一致しています。データシートの並びは左から「1 共通 / ② R1ワイパー / 2 R2ワイパー / 3 R2端 / ③ R1端」で、Eagle の `1AB / 2B / 2A / 3A / 3B` にあたります。
    - 抵抗カーブは「3B」（B = 直線型）です。音量調整には一般に A カーブ（対数型）を使います。元の部品が A カーブだった場合は、音量の変わり方が変わります。
 
@@ -89,7 +90,7 @@ PHOTON GLASS · OG19 · JLCPCB 発注用
    - 21番（GPIO9）→ **赤**
    - 23番（GPIO11）→ **緑**
 
-4. **SW_SUB / UP / DOWN**：元の型番が分からないため、ボタン長さ 8.35mm の SKHHLQA010 を選びました。フットプリントは共通なので、手はんだの際に SKHHLMA010（3.85mm）や SKHHLUA010（5.85mm）に変えても構いません。
+4. **SW_SUB / UP / DOWN**：元の型番が分からないため、はじめはボタン長さ 8.35mm の SKHHLQA010 を選びました。発注リストでは SKHHLPA010 を使います（データシートとの照合はしていません）。フットプリントは共通なので、手はんだの際に SKHHLMA010（3.85mm）や SKHHLUA010（5.85mm）に変えても構いません。
 
 5. **カメラ基板 CN2**：Eagle のパッド番号は、実部品のピン番号と逆順になっています（パッド「1」の位置に実部品の22番ピンが来る）。これは元の設計（ファイル名の「reverse」）からのもので、今回は変更していません。部品はパッドの形どおりに載るので、元の基板と同じ実装になります。
 
