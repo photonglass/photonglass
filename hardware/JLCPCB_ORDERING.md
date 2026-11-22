@@ -62,7 +62,7 @@
 |---|---|---|
 | VR1 ボリューム | R1001G16T2B-B10K | aitendo |
 | SW_SUB / SW_UP / SW_DOWN | SKHHLPA010 | 秋月電子（107193） |
-| SW_MAIN | P-03646（タクトスイッチ 赤） | 秋月電子 |
+| SW_MAIN | P-03646（Cosland TS-0606-F-N-RED） | 秋月電子 |
 | SPK / 5V コネクタ（縦型） | JST B2B-XH-A(LF)(SN) | LCSC（C158012） |
 
 型番と購入先は、発注リスト（2026-10-20 版）に合わせています。LCSC の部品は、同じ注文の中で「部品だけ」買うこともできます（JLCPCB の Parts → Order Parts、または LCSC.com）。
