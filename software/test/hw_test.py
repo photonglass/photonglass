@@ -62,7 +62,8 @@ def test_sound():
         print(out)
         return
     print('  ✓ 音声ボードを認識しています')
-    wav = os.path.expanduser('~/sound/start.wav')
+    # software/sound/start.wav を使う（どのフォルダから実行しても見つかるように、このファイルの場所から数える）
+    wav = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'sound', 'start.wav'))
     print('  ボリューム（VR1）を少し上げて、ヘッドホンは抜いておいてください')
     if os.path.exists(wav):
         print(f'  {wav} を再生します')
