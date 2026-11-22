@@ -1,6 +1,7 @@
 # ソフトウェア
 
 PHOTON GLASS の Raspberry Pi で動かすプログラムです。
+このプログラムは、PHOTON GLASS のサンプル実装のひとつで、一人称カメラで捉えた文字を読み上げる（画像から文字を認識し、音声で読み上げる）機能を実行します。
 カメラボタンを押すと写真を撮り、写っている文字を Google Cloud で読み取って、スピーカーから読み上げます。
 Raspberry Pi の準備（OS の書き込みから自動起動まで）は [`docs/SETUP_RASPBERRY_PI.md`](../docs/SETUP_RASPBERRY_PI.md) を見てください。
 
