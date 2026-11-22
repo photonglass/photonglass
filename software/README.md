@@ -10,6 +10,7 @@ OTON GLASS の Raspberry Pi で動かすプログラムです。
 | `main_seq.py` | 本体プログラム（**逐次版**）。仕組みを学ぶための、流れの読みやすい版 |
 | `sound/` | 効果音（起動・シャッター・通信中・読み上げ前後・エラー） |
 | `test/hw_test.py` | 組み立て後の動作テスト（LED → ボタン → スピーカー → カメラ） |
+| `api_key.txt.example` | API キーを書くファイル `api_key.txt` の見本（`api_key.txt` は自分で作る。公開しない） |
 
 ## どちらを使えばいい？
 **普段使うのは `main_async.py`、仕組みを知りたいときに読むのは `main_seq.py`** です。
@@ -47,8 +48,10 @@ OTON GLASS の Raspberry Pi で動かすプログラムです。
 ## 動かし方
 1. Google Cloud で API キーを作り、**Cloud Vision API** と **Cloud Text-to-Speech API** を有効にする。
    - キーには「使える API の制限」（この2つだけ）を付けておくと安全です。
-2. 使うプログラム（`main_async.py` か `main_seq.py`）を開き、先頭の `api_key = "YOUR API KEY"` を自分のキーに書き換える。
-   - **キーを書き込んだファイルは、GitHub などで公開しないでください。** 他人に使われて料金が請求されることがあります。
+2. キーはプログラムには書かず、`api_key.txt` というファイルに1行で書く。
+   - このフォルダの `api_key.txt.example` をコピーして `api_key.txt` という名前にし、中身を自分のキーに書き換えます。
+   - プログラムは、自分のファイルと同じフォルダにある `api_key.txt` を読みます。ファイルがない・空のときは、赤く光って通信エラーの音を鳴らし、理由を表示して終了します。
+   - **`api_key.txt` は、GitHub などで公開しないでください。** 他人に使われて料金が請求されることがあります（このリポジトリでは `.gitignore` で git の管理から外しています）。
 3. 必要なライブラリを入れる。
    ```
    sudo apt install -y python3-gpiozero python3-picamera2 python3-httpx python3-requests

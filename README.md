@@ -43,7 +43,7 @@ Copyright (C) 2019-2026 OTON GLASS open hardware contributors
 
 **含まれていないもの**
 - 部品メーカーや EasyEDA/LCSC が配布している部品の3Dモデル（再配布の条件がはっきりしないため）。基板の3D形状は KiCad や Fusion の3Dビューで確認してください。
-- Google Cloud の API キー（各自で用意して、プログラムの `api_key` に書く）。
+- Google Cloud の API キー（各自で用意して、プログラムと同じフォルダの `api_key.txt` に書く。書き方は [`software/README.md`](software/README.md#動かし方)）。
 
 ## クレジット
 - 原設計：OTON GLASS（2019年版 OG19 の基板・筐体）

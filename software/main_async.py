@@ -34,7 +34,7 @@ LED の色の意味
 - Python のライブラリ：gpiozero, picamera2, httpx
   （例：sudo apt install python3-gpiozero python3-picamera2 python3-httpx）
 - 音声を再生するコマンド aplay（Raspberry Pi OS に最初から入っています）
-- Google Cloud の API キー（Vision API と Text-to-Speech API を有効にしたもの）
+- Google Cloud の API キー（Vision API と Text-to-Speech API を有効にしたもの）を、このファイルと同じフォルダの api_key.txt に1行で書いたもの
 
 動かし方
 --------
@@ -45,10 +45,13 @@ LED の色の意味
 """
 
 ##### APIキーの設定 #####
-# Google Cloud で作った API キーをここに書きます。
-# 注意：キーを書き込んだファイルを GitHub などで公開しないでください。
+# Google Cloud で作った API キーは、プログラムには書きません。
+# このファイルと同じフォルダにある api_key.txt に、キーを1行で書きます（見本：api_key.txt.example）。
+# 起動したときに読み込み、ファイルがない・空のときは、エラーを知らせて終了します。
+# 注意：api_key.txt を GitHub などで公開しないでください。
 #       他人に使われて、利用料金が請求されることがあります。
-api_key = "YOUR API KEY"
+API_KEY_FILE = "api_key.txt"  # API キーを書くファイルの名前
+api_key = None                # 起動したときに API_KEY_FILE から読み込んだキーを入れる
 
 
 ##### 準備 #####
@@ -59,6 +62,8 @@ import base64                     # 画像や音声を、通信で送れる文�
 import time                       # 経過時間を測るため
 import asyncio                    # 複数の処理を同時に進めるため（非同期処理）
 import httpx                      # インターネット経由で API と通信するため（非同期に対応）
+import os                         # ファイルの場所を調べるため（api_key.txt を探す）
+import sys                        # エラーのときにプログラムを終了するため
 
 # 音声ファイルの場所（このプログラムを実行したフォルダから数えた場所）
 START_SOUND = "sound/start.wav"                  # 起動したとき
@@ -148,6 +153,35 @@ async def play_wav(path):
         stderr=subprocess.DEVNULL
     )
     return proc
+
+
+##### APIキーの読み込み #####
+
+def load_api_key():
+    """api_key.txt から API キーを読み込んで返す。
+
+    api_key.txt は、このプログラムのファイルと同じフォルダから探します
+    （どのフォルダから実行しても、同じ api_key.txt を読むようにするため）。
+    ファイルの中の空白・改行は取り除きます。
+    読み込めなかったとき（ファイルがない・中身が空）は、理由を表示して None を返します。
+    """
+    folder = os.path.dirname(os.path.abspath(__file__))  # このプログラムのファイルがあるフォルダ
+    path = os.path.join(folder, API_KEY_FILE)
+
+    if not os.path.isfile(path):
+        print(f"エラー：API キーのファイルが見つかりません（{path}）")
+        print("このプログラムと同じフォルダに api_key.txt を作り、Google Cloud の API キーを1行で書いてください（見本：api_key.txt.example）。")
+        return None
+
+    with open(path, encoding="utf-8-sig") as key_file:  # utf-8-sig：先頭に BOM があっても読める
+        key = "".join(key_file.read().split())         # 空白・改行をすべて取り除く
+
+    if key == "":
+        print(f"エラー：API キーのファイルが空です（{path}）")
+        print("api_key.txt に、Google Cloud の API キーを1行で書いてください。")
+        return None
+
+    return key
 
 
 ##### API #####
@@ -359,7 +393,16 @@ async def API_and_speech(image):
 ##### メインループ #####
 
 async def main():
+    global api_key  # 関数の外の api_key に、読み込んだキーを入れるため
     print("起動！")
+
+    # API キーを読み込む。読み込めないとき（ファイルがない・空）は、エラーを知らせて終了する
+    api_key = load_api_key()
+    if api_key is None:
+        error_LED()
+        proc = await play_wav(NETWORK_ERROR_SOUND)  # 通信のエラーの音（API キーが無効なときと同じ）
+        await proc.wait()
+        sys.exit(1)
 
     # OS が落ち着くまで少し待った方がよいかもしれない
 
