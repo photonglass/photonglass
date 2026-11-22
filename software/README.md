@@ -75,5 +75,5 @@ Raspberry Pi の準備（OS の書き込みから自動起動まで）は [`docs
 
 ## 送るデータと、残るファイル
 - カメラボタンを押すと、撮った写真が Google Cloud Vision API に、読み取った文字が Google Cloud Text-to-Speech API に、インターネット経由で送られます。人が写る場所で使うときは、[憲法（`CHARTER.md`）の「1. 理念と利用について」](../CHARTER.md#1-理念と利用について)を読んでください。
-- 最後に撮った写真（`image.jpg`）と読み上げ音声（`speech.wav`）は、プログラムを実行したフォルダ（Raspberry Pi では `~/photonglass`）に残ります。次に撮ると上書きされます。`main_async.py` は、起動したときにも、カメラの確認のために1枚撮ります。
+- 最後に撮った写真（`image.jpg`）と読み上げ音声（`speech.wav`）は、プログラムを実行したフォルダ（Raspberry Pi では `~/photonglass`）に残ります。次に撮ると上書きされます。`main_async.py` は、起動したときにも、カメラの確認のために1枚撮ります。この2つのファイルは、このリポジトリでは `.gitignore` で git の管理から外しています。
 - API の利用料金は、使った量によって決まります。くわしくは Google Cloud の各 API の料金のページを見てください。
