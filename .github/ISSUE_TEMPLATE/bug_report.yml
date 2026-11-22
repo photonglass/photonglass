@@ -1,0 +1,48 @@
+name: 不具合の報告
+description: 動作しない、エラーが出るなどの報告
+title: "[不具合] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: target
+    attributes:
+      label: 対象
+      options:
+        - ソフトウェア
+        - ハードウェア（基板・筐体）
+        - ドキュメント
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: 基板・データの版
+      description: 基板のリビジョンや、使ったリリースのタグ（例：v1.0.0）が分かれば書いてください
+      placeholder: 例：v1.0.0
+  - type: input
+    id: os
+    attributes:
+      label: Raspberry Pi OS のバージョン
+      description: ソフトウェアの不具合の場合に書いてください
+  - type: textarea
+    id: hw_test
+    attributes:
+      label: hw_test.py の結果
+      description: hw_test.py を実行した結果を貼ってください（未実施なら「未実施」と書いてください）
+  - type: textarea
+    id: symptom
+    attributes:
+      label: 症状
+      description: 何が起きたかを書いてください
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 再現の手順
+      description: もう一度起こすための手順を、順番に書いてください
+  - type: textarea
+    id: expected
+    attributes:
+      label: 本来の動作
+      description: 本来どう動くはずだったかを書いてください
