@@ -1,5 +1,5 @@
-# SPDX-License-Identifier: GPL-3.0-only
-# Copyright (C) 2019-2026 OTON GLASS open hardware contributors
+# SPDX-License-Identifier: CERN-OHL-S-2.0
+# Copyright (C) OTON GLASS Inc.
 """Assembly model: USB-A plug (USB-4AM103AS, pins bent straight back) + wires + cable inside the cover.
 
 Reads the cover parts from ../step/ (made by usb_plug_cover.py) and writes, for each variant,
