@@ -1,6 +1,10 @@
 # Google Cloud の API キー（公開しない）
 api_key.txt
 
+# プログラムが作るファイル（撮った写真と読み上げ音声。公開しない）
+image.jpg
+speech.wav
+
 # Python のキャッシュ
 __pycache__/
 

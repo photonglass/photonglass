@@ -84,6 +84,7 @@ CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
 ### 含まれていないもの
 - 部品メーカーや EasyEDA/LCSC が配布している部品の3Dモデル（再配布の条件がはっきりしないため）。基板の3D形状は KiCad や Fusion の3Dビューで確認してください。
 - Google Cloud の API キー（各自で用意して、プログラムと同じフォルダの `api_key.txt` に書く。書き方は [`software/README.md`](software/README.md#動かし方)）。
+- 本体の筐体（カメラユニットとは別の筐体）の3Dモデルデータ。追加を準備中です。
 
 ### クレジット
 **PHOTON GLASS（2026年）**
