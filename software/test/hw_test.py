@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: GPL-3.0-only
-# Copyright (C) 2019-2026 OTON GLASS open hardware contributors
+# Copyright (C) OTON GLASS Inc.
 """OG19 基板の動作テスト（LED → ボタン → スピーカー → カメラ の順に1つずつ確認）
 
 使い方（Raspberry Pi 上で）:

@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: GPL-3.0-only
-# Copyright (C) 2019-2026 OTON GLASS open hardware contributors
+# Copyright (C) OTON GLASS Inc.
 """
 PHOTON GLASS 本体プログラム（非同期版）
 =====================================
