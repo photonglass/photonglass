@@ -1,0 +1,326 @@
+<title>OG19 部品リスト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap">
+<style>
+/* Layout: one reading column; per-board tables scroll sideways on their own; notes after the tables */
+:root {
+  --bg: #f6f5f2; --surface: #ffffff; --fg: #23262b; --muted: #636a73; --line: #dedbd4;
+  --copper: #a8592b; --copper-soft: #f6e8de;
+  --ok: #2d6a4f; --ok-soft: #e1efe7; --warn: #8a5a00; --warn-soft: #f8edd4; --alt: #7a3e9d; --alt-soft: #efe4f5;
+  --font-body: "IBM Plex Sans JP", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #17191c; --surface: #1f2226; --fg: #e7e5e0; --muted: #9aa1a9; --line: #33373d;
+  --copper: #e09a68; --copper-soft: #3a2a20;
+  --ok: #7fcfa3; --ok-soft: #1e3329; --warn: #e8bf6a; --warn-soft: #3a3020; --alt: #cfa2ea; --alt-soft: #33263b; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #17191c; --surface: #1f2226; --fg: #e7e5e0; --muted: #9aa1a9; --line: #33373d;
+  --copper: #e09a68; --copper-soft: #3a2a20;
+  --ok: #7fcfa3; --ok-soft: #1e3329; --warn: #e8bf6a; --warn-soft: #3a3020; --alt: #cfa2ea; --alt-soft: #33263b; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--font-body); font-size: 15px; line-height: 1.65; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: grid; gap: 40px; }
+header { display: grid; gap: 10px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--copper); }
+h1 { font-size: clamp(26px, 4vw, 34px); line-height: 1.25; margin: 0; text-wrap: balance; font-weight: 700; }
+h2 { font-size: 20px; margin: 0; text-wrap: balance; }
+p { margin: 0; max-width: 68ch; }
+.lead { color: var(--muted); }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 14px; color: var(--muted); }
+.facts b { color: var(--fg); font-family: var(--font-mono); font-weight: 500; font-variant-numeric: tabular-nums; }
+section { display: grid; gap: 14px; min-width: 0; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.sec-head span { color: var(--muted); font-size: 13px; }
+.scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 980px; font-size: 13.5px; }
+table.map { min-width: 640px; }
+th { text-align: left; font-weight: 500; font-size: 12px; letter-spacing: .04em; color: var(--muted); padding: 10px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+td { padding: 12px; border-top: 1px solid var(--line); vertical-align: top; }
+tbody tr:first-child td { border-top: 0; }
+tr.m-hand td { background: var(--copper-soft); }
+td > span { display: block; }
+.ref { font-family: var(--font-mono); font-weight: 500; width: 150px; }
+.fn { font-family: var(--font-body); font-weight: 400; color: var(--muted); font-size: 12.5px; }
+.orig { color: var(--fg); }
+.mpn { font-family: var(--font-mono); font-weight: 500; }
+.brand { color: var(--muted); font-size: 12.5px; font-variant-numeric: tabular-nums; }
+.code { font-family: var(--font-mono); }
+.note { color: var(--muted); font-size: 12.5px; margin-top: 4px; }
+.badge, .chk { display: inline-block !important; font-size: 11.5px; line-height: 1.5; padding: 1px 8px; border-radius: 999px; white-space: nowrap; margin-top: 4px; }
+.s-same { background: var(--ok-soft); color: var(--ok); }
+.s-series { background: var(--ok-soft); color: var(--ok); }
+.s-alt { background: var(--alt-soft); color: var(--alt); }
+.m-jlc.badge { border: 1px solid var(--line); color: var(--muted); }
+.m-hand.badge { background: var(--copper); color: var(--surface); }
+.c-ok { background: var(--ok-soft); color: var(--ok); }
+.c-warn { background: var(--warn-soft); color: var(--warn); }
+.links { white-space: nowrap; }
+.links a { display: inline-block; margin-right: 10px; }
+a { color: var(--copper); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--copper); outline-offset: 2px; border-radius: 2px; }
+.hand { border: 1px solid var(--copper); border-radius: 6px; padding: 18px 20px; display: grid; gap: 10px; background: var(--surface); }
+.hand ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; }
+.hand .brand { display: block; }
+ol.notes { margin: 0; padding-left: 22px; display: grid; gap: 14px; max-width: 78ch; }
+ol.notes b { font-weight: 700; }
+.pin { font-family: var(--font-mono); font-size: 13px; }
+footer { color: var(--muted); font-size: 13px; }
+@media (max-width: 600px) { .wrap { padding-inline: 16px; padding-block: 28px 48px; gap: 32px; } }
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">OTON GLASS · OG19 · JLCPCB 発注用</div>
+  <h1>OG19 部品リスト</h1>
+  <p class="lead">メイン基板（OG19AWv2）とカメラ基板（OG19_PC-3）で使う全部品の一覧です。部品ごとに次の内容をまとめています。</p>
+  <ul class="lead">
+    <li>元の部品と同じものか</li>
+    <li>データシート</li>
+    <li>回路図記号のピン（ピン名 → パッド）が、データシートのピン配置と一致しているか</li>
+  </ul>
+  <p class="lead">部品番号はすべて JLCPCB の部品ライブラリで在庫を確認済みです（2026-10-15 時点）。</p>
+  <div class="facts">
+    <span>JLCPCB 実装 <b>13</b> 行（メイン） / <b>6</b> 行（カメラ）</span>
+    <span>手はんだ <b>7</b> 個（メイン基板）</span>
+    <span>回路記号の不一致 <b>0</b></span>
+  </div>
+</header>
+
+<section>
+  <div class="sec-head"><h2>メイン基板 OG19AWv2</h2><span>色付きの行は手はんだ（BOM / CPL には含めていません）</span></div>
+  <div class="scroll"><table><thead><tr><th>Ref</th><th>元の部品</th><th>今回の部品</th><th>実装</th><th>回路記号の照合</th><th>資料</th></tr></thead><tbody><tr class="jlc">
+<td class="ref">PCM5102A<span class="fn">オーディオDAC</span></td>
+<td><span class="orig">TI PCM5102A（TSSOP-20）</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">PCM5102APWR</span><span class="brand">Texas Instruments · <span class="code">C107671</span> · 在庫 5,831</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">1 CPVDD〜20 DVDD の全20ピンが TI データシート・JLCPCB の記号と一致</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2409291903_Texas-Instruments-PCM5102APWR_C107671.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/adcs-dacs-special-purpose_texas-instruments-pcm5102apwr_C107671.html" target="_blank" rel="noopener">LCSC</a> <a href="https://www.ti.com/lit/ds/symlink/pcm5102a.pdf" target="_blank" rel="noopener">TI</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">PAM8304<span class="fn">スピーカーアンプ</span></td>
+<td><span class="orig">Diodes PAM8304（MSOP-8）</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">PAM8304ASR</span><span class="brand">Diodes Incorporated · <span class="code">C581342</span> · 在庫 2,684</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">1 OUT+ / 2 PVDD / 3 VDD / 4 IN− / 5 IN+ / 6 SD / 7 GND / 8 OUT− が一致</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2006092117_Diodes-Incorporated-PAM8304ASR_C581342.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/audio-amplifiers_diodes-incorporated-pam8304asr_C581342.html" target="_blank" rel="noopener">LCSC</a> <a href="https://www.diodes.com/assets/Datasheets/PAM8304.pdf" target="_blank" rel="noopener">Diodes</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">CN1<span class="fn">3.5mm ヘッドホンジャック</span></td>
+<td><span class="orig">Switchcraft 35RASMT4BHNTRX（在庫0）</span><span class="badge s-alt">代替</span></td>
+<td><span class="mpn">SJ-43516-SMT-TR</span><span class="brand">CUI · <span class="code">C4992780</span> · 在庫 136</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-warn">一致・注意あり</span><span class="note">4極（TRRS）品。Ring2 をスリーブ（AGND）に接続し、ステレオプラグで元と同じ動作。注意点 1</span></td>
+<td class="links"><a href="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2401261118_CUI-SJ-43516-SMT-TR_C4992780.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/audio-connectors-headphones_cui-sj-43516-smt-tr_C4992780.html" target="_blank" rel="noopener">LCSC</a> <a href="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2401261118_Switchcraft-35RASMT4BHNTRX_C4992744.pdf" target="_blank" rel="noopener">元: Switchcraft</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">CN2<span class="fn">カメラ用 FFC 22P</span></td>
+<td><span class="orig">Hirose FH12-22S-0.5SH</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">FH12-22S-0.5SH(55)</span><span class="brand">HRS(Hirose) · <span class="code">C597981</span> · 在庫 684</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">部品・記号とも元設計のまま。パッド1〜22の並びが JLCPCB の部品データと一致</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_HRS-Hirose-FH12-22S-0-5SH-55_C597981.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/ffc-fpc-flat-flexible-connector-assemblies_hrs-hirose-fh12-22s-0-5sh-55_C597981.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">CN3<span class="fn">HDMI Type-A</span></td>
+<td><span class="orig">Amphenol 10029449 系</span><span class="badge s-series">同シリーズ</span></td>
+<td><span class="mpn">10029449-111RLF</span><span class="brand">Amphenol ICC · <span class="code">C427307</span> · 在庫 1,556</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">1〜19番が HDMI 規格の割当と一致（18 +5V、19 HPD）。シェル脚4本は GND</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Amphenol-ICC-10029449-111RLF_C427307.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/hdmi-connectors_amphenol-icc-10029449-111rlf_C427307.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">U$1<span class="fn">Raspberry Pi 40ピン接続（表面に実装）</span></td>
+<td><span class="orig">Samtec SSW-120-02-G-D（在庫5・約$10）</span><span class="badge s-alt">代替</span></td>
+<td><span class="mpn">2.54-2*20P</span><span class="brand">BOOMELE(Boom Precision Elec) · <span class="code">C5124634</span> · 在庫 8,734</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">同形状の汎用ソケット（高さ8.5mm）。1 3.3V / 2 5V … 40 GPIO21 が標準ピン配置と一致。Eagle では Pi を裏返して重ねるためのピン配置の鏡像として反転配置、実物は表面に実装（CPL も Top）</span></td>
+<td class="links"><a href="https://wmsc.lcsc.com/wmsc/upload/file/pdf/v2/lcsc/2401111126_BOOMELE-Boom-Precision-Elec-2-54-2-20P_C5124634.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/female-headers_boomele-boom-precision-elec-2-54-2-20p_C5124634.html" target="_blank" rel="noopener">LCSC</a> <a href="https://www.samtec.com/products/ssw" target="_blank" rel="noopener">元: Samtec</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">U$3<span class="fn">状態表示 RGB LED</span></td>
+<td><span class="orig">Kingbright KPF-3236SURKMGKPBC（JLC未登録）</span><span class="badge s-alt">代替</span></td>
+<td><span class="mpn">S6-3528RGBTA</span><span class="brand">TUOZHAN · <span class="code">C2843672</span> · 在庫 7,379</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-warn">一致・注意あり</span><span class="note">ピン配置はデータシートどおり。色の並びが変わり、ソフト側の変更が必要。注意点 3</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2109061230_TUOZHAN-S6-3528RGBTA_C2843672.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/rgb-leds_tuozhan-s6-3528rgbta_C2843672.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="hand">
+<td class="ref">VR1<span class="fn">音量ボリューム（2連）</span></td>
+<td><span class="orig">ALPS RK10J（型番指定なし）</span><span class="badge s-series">同シリーズ</span></td>
+<td><span class="mpn">RK10J12E002L</span><span class="brand">ALPSALPINE · <span class="code">C231765</span> · 在庫 1,278</span></td>
+<td><span class="badge m-hand">手はんだ</span></td>
+<td><span class="chk c-warn">一致・注意あり</span><span class="note">端子の並び（共通・ワイパー・端）が一致。抵抗カーブは B（直線型）。注意点 2</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_1810170234_ALPSALPINE-RK10J12E002L_C231765.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/potentiometers-variable-resistors_alpsalpine-rk10j12e002l_C231765.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="hand">
+<td class="ref">SW_SUB, SW_UP, SW_DOWN<span class="fn">サイドプッシュスイッチ</span></td>
+<td><span class="orig">ALPS SKHH サイドプッシュ（型番指定なし）</span><span class="badge s-series">同シリーズ</span></td>
+<td><span class="mpn">SKHHLQA010</span><span class="brand">ALPSALPINE · <span class="code">C125034</span> · 在庫 2,449</span></td>
+<td><span class="badge m-hand">手はんだ</span></td>
+<td><span class="chk c-warn">一致・注意あり</span><span class="note">端子2本＋取付脚2本が一致。ボタン長さ 8.35mm は今回の選定。注意点 4</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2410121957_ALPSALPINE-SKHHLQA010_C125034.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/tactile-switches_alpsalpine-skhhlqa010_C125034.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="hand">
+<td class="ref">SW_MAIN<span class="fn">メインスイッチ（裏面）</span></td>
+<td><span class="orig">秋月 P-03647 = Cosland DTS-63-N-V（6.2mm角・高さ7mm）</span><span class="badge s-series">同シリーズ</span></td>
+<td><span class="mpn">DTS-63K-V</span><span class="brand">Diptronics · <span class="code">C141874</span> · 在庫 794</span></td>
+<td><span class="badge m-hand">手はんだ</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">同シリーズ・同寸法。4端子の導通ペア（P2-P3 = GND、P1-P4 = SW_BODY）が一致</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Diptronics-DTS-63K-V_C141874.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/tactile-switches_diptronics-dts-63k-v_C141874.html" target="_blank" rel="noopener">LCSC</a> <a href="https://akizukidenshi.com/goodsaffix/ts-0606_20200714.pdf" target="_blank" rel="noopener">元: 秋月</a></td>
+</tr>
+<tr class="hand">
+<td class="ref">SPK, 5V<span class="fn">2ピンコネクタ（縦型）</span></td>
+<td><span class="orig">JST S2B-XH-A（横型）</span><span class="badge s-alt">代替</span></td>
+<td><span class="mpn">B2B-XH-A(LF)(SN)</span><span class="brand">JST · <span class="code">C158012</span> · 在庫 241,489</span></td>
+<td><span class="badge m-hand">手はんだ</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">縦型（上から挿す）に変更。パッドは同じ。ピン1 = 四角パッド（5V / SPK+）。本体が基板内に収まるよう 0.5mm 下げて配置</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_JST-B2B-XH-A-LF-SN_C158012.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://lcsc.com/product-detail/wire-to-board-connector_jst-b2b-xh-a-lf-sn_C158012.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">C2〜C4, C7〜C11<span class="fn">パスコン 0.1µF</span></td>
+<td><span class="orig">0603 0.1µF</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">CC0603KRX7R9BB104</span><span class="brand">YAGEO · <span class="code">C14663</span> · 在庫 51,101,481</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">値・サイズ同じ（50V X7R）</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2211101700_YAGEO-CC0603KRX7R9BB104_C14663.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/multilayer-ceramic-capacitors-mlcc-smd-smt_yageo-cc0603krx7r9bb104_C14663.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">C1<span class="fn">2.2µF</span></td>
+<td><span class="orig">0603 2.2µF</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">CL10A225KO8NNNC</span><span class="brand">Samsung Electro-Mechanics · <span class="code">C23630</span> · 在庫 3,546,419</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">値・サイズ同じ（16V X5R）</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Samsung-Electro-Mechanics-CL10A225KO8NNNC_C23630.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/multilayer-ceramic-capacitors-mlcc-smd-smt_samsung-electro-mechanics-cl10a225ko8nnnc_C23630.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">C5, C6<span class="fn">DAC 出力フィルタ 2200pF</span></td>
+<td><span class="orig">0603 2200pF</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">0603B222K500NT</span><span class="brand">FH (Guangdong Fenghua Advanced Tech) · <span class="code">C1604</span> · 在庫 991,140</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">値・サイズ同じ（X7R）。音質優先なら C0G の C33353 も可</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_FH--Guangdong-Fenghua-Advanced-Tech-0603B222K500NT_C1604.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/multilayer-ceramic-capacitors-mlcc-smd-smt_fh-guangdong-fenghua-advanced-tech-0603b222k500nt_C1604.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">R1〜R4<span class="fn">470Ω</span></td>
+<td><span class="orig">0603 470Ω</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">0603WAF4700T5E</span><span class="brand">UNI-ROYAL(Uniroyal Elec) · <span class="code">C23179</span> · 在庫 5,713,240</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2206010116_UNI-ROYAL-Uniroyal-Elec-0603WAF4700T5E_C23179.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/chip-resistor-surface-mount_uni-royal-uniroyal-elec-0603waf4700t5e_C23179.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">R5, R6<span class="fn">470kΩ</span></td>
+<td><span class="orig">0603 470kΩ</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">0603WAF4703T5E</span><span class="brand">UNI-ROYAL(Uniroyal Elec) · <span class="code">C23178</span> · 在庫 1,321,083</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2206010116_UNI-ROYAL-Uniroyal-Elec-0603WAF4703T5E_C23178.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/chip-resistor-surface-mount_uni-royal-uniroyal-elec-0603waf4703t5e_C23178.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">R7〜R9<span class="fn">LED 電流制限</span></td>
+<td><span class="orig">0603 40Ω</span><span class="badge s-alt">代替</span></td>
+<td><span class="mpn">0603WAF402JT5E</span><span class="brand">UNI-ROYAL(Uniroyal Elec) · <span class="code">C23047</span> · 在庫 24,004</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">40Ω ちょうどの在庫品が JLCPCB にないため 40.2Ω ±1%（差 0.5% で部品の許容差内）</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2206010116_UNI-ROYAL-Uniroyal-Elec-0603WAF402JT5E_C23047.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/chip-resistor-surface-mount_uni-royal-uniroyal-elec-0603waf402jt5e_C23047.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr></tbody></table></div>
+</section>
+
+<section>
+  <div class="sec-head"><h2>カメラ基板 OG19_PC-3</h2><span>全部品 JLCPCB 実装</span></div>
+  <div class="scroll"><table><thead><tr><th>Ref</th><th>元の部品</th><th>今回の部品</th><th>実装</th><th>回路記号の照合</th><th>資料</th></tr></thead><tbody><tr class="jlc">
+<td class="ref">CN1<span class="fn">HDMI Type-A</span></td>
+<td><span class="orig">Amphenol 10029449 系</span><span class="badge s-series">同シリーズ</span></td>
+<td><span class="mpn">10029449-111RLF</span><span class="brand">Amphenol ICC · <span class="code">C427307</span> · 在庫 1,556</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">メイン基板と同じ</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_Amphenol-ICC-10029449-111RLF_C427307.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/hdmi-connectors_amphenol-icc-10029449-111rlf_C427307.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">CN2<span class="fn">カメラ用 FFC 22P</span></td>
+<td><span class="orig">Hirose FH12-22S-0.5SH</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">FH12-22S-0.5SH(55)</span><span class="brand">HRS(Hirose) · <span class="code">C597981</span> · 在庫 684</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-warn">一致・注意あり</span><span class="note">パッド番号が実部品と逆順（元設計どおり）。注意点 5</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2304140030_HRS-Hirose-FH12-22S-0-5SH-55_C597981.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/ffc-fpc-flat-flexible-connector-assemblies_hrs-hirose-fh12-22s-0-5sh-55_C597981.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">SW1<span class="fn">タクトスイッチ</span></td>
+<td><span class="orig">ALPS SKRTLBE010</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">SKRTLBE010</span><span class="brand">ALPSALPINE · <span class="code">C127481</span> · 在庫 2,106</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">端子①③（共通）= GND、②（スイッチ側）= SW1 信号</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_1809041613_ALPSALPINE-SKRTLBE010_C127481.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/tactile-switches_alpsalpine-skrtlbe010_C127481.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">GND（部品名）<span class="fn">表示 LED</span></td>
+<td><span class="orig">0603 チップ LED（色指定なし）</span><span class="badge s-alt">代替</span></td>
+<td><span class="mpn">KT-0603R</span><span class="brand">Hubei KENTO Elec · <span class="code">C2286</span> · 在庫 7,890,022</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span><span class="note">赤を選定。記号 A → JLC 1番（アノード）、C → 2番（カソード）</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_1810231112_Hubei-KENTO-Elec-KT-0603R_C2286.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/led-indication-discrete_hubei-kento-elec-kt-0603r_C2286.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">R1, R2<span class="fn">10kΩ</span></td>
+<td><span class="orig">0603 10kΩ</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">0603WAF1002T5E</span><span class="brand">UNI-ROYAL(Uniroyal Elec) · <span class="code">C25804</span> · 在庫 32,676,170</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2206010045_UNI-ROYAL-Uniroyal-Elec-0603WAF1002T5E_C25804.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/chip-resistor-surface-mount_uni-royal-uniroyal-elec-0603waf1002t5e_C25804.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr>
+<tr class="jlc">
+<td class="ref">R3<span class="fn">1kΩ</span></td>
+<td><span class="orig">0603 1kΩ</span><span class="badge s-same">同一</span></td>
+<td><span class="mpn">0603WAF1001T5E</span><span class="brand">UNI-ROYAL(Uniroyal Elec) · <span class="code">C21190</span> · 在庫 24,612,269</span></td>
+<td><span class="badge m-jlc">JLCPCB 実装</span></td>
+<td><span class="chk c-ok">一致</span></td>
+<td class="links"><a href="https://www.lcsc.com/datasheet/lcsc_datasheet_2206010130_UNI-ROYAL-Uniroyal-Elec-0603WAF1001T5E_C21190.pdf" target="_blank" rel="noopener">データシート</a> <a href="https://www.lcsc.com/product-detail/chip-resistor-surface-mount_uni-royal-uniroyal-elec-0603waf1001t5e_C21190.html" target="_blank" rel="noopener">LCSC</a></td>
+</tr></tbody></table></div>
+</section>
+
+<section class="hand">
+  <h2>手はんだで付ける部品（別途購入）</h2>
+  <p>この7個は JLCPCB の BOM・CPL から外してあり、基板にはパッドと穴だけが用意されます。同じ型番を LCSC などで購入してください。</p>
+  <ul><li><span class="mpn">RK10J12E002L</span> × 1<span class="brand">VR1 — 音量ボリューム（2連） · <a href="https://www.lcsc.com/product-detail/potentiometers-variable-resistors_alpsalpine-rk10j12e002l_C231765.html" target="_blank" rel="noopener">C231765</a></span></li>
+<li><span class="mpn">SKHHLQA010</span> × 3<span class="brand">SW_SUB, SW_UP, SW_DOWN — サイドプッシュスイッチ · <a href="https://www.lcsc.com/product-detail/tactile-switches_alpsalpine-skhhlqa010_C125034.html" target="_blank" rel="noopener">C125034</a></span></li>
+<li><span class="mpn">DTS-63K-V</span> × 1<span class="brand">SW_MAIN — メインスイッチ（裏面） · <a href="https://www.lcsc.com/product-detail/tactile-switches_diptronics-dts-63k-v_C141874.html" target="_blank" rel="noopener">C141874</a></span></li>
+<li><span class="mpn">B2B-XH-A(LF)(SN)</span> × 2<span class="brand">SPK, 5V — 2ピンコネクタ（縦型） · <a href="https://lcsc.com/product-detail/wire-to-board-connector_jst-b2b-xh-a-lf-sn_C158012.html" target="_blank" rel="noopener">C158012</a></span></li></ul>
+</section>
+
+<section>
+  <h2>注意点</h2>
+  <ol class="notes">
+    <li><b>CN1 ヘッドホンジャック</b>：回路図の記号（5ピン）は元のまま変えておらず、実部品の端子への割当だけを変えています。
+      <div class="scroll" style="margin-block:8px"><table class="map"><thead><tr><th>回路図のピン</th><th>つながる回路</th><th>元 Switchcraft</th><th>今回 CUI SJ-43516</th><th>動作</th></tr></thead><tbody>
+        <tr><td class="pin">P$3</td><td>左ch（VR1-A 経由）</td><td>3 Tip</td><td>#2 Tip</td><td>プラグ先端に接触</td></tr>
+        <tr><td class="pin">P$2</td><td>右ch（VR1-B 経由）</td><td>2 Ring</td><td>#3 Ring1</td><td>プラグのリングに接触</td></tr>
+        <tr><td class="pin">P$1</td><td>AGND</td><td>1 Sleeve</td><td>#1 Sleeve ＋ #4 Ring2</td><td>ステレオプラグのスリーブが両方に触れる</td></tr>
+        <tr><td class="pin">P$5</td><td>スピーカーアンプへ（R4）</td><td>5 Tip SW（常時閉）</td><td>#5 Tip SW（常時閉）</td><td>未挿入で Tip とつながり、挿すと開く</td></tr>
+        <tr><td class="pin">P$4</td><td>スピーカーアンプへ（R3）</td><td>4 Ring SW（常時閉）</td><td>#6 Ring SW（常時閉）</td><td>未挿入で Ring とつながり、挿すと開く</td></tr>
+      </tbody></table></div>
+      元は3極（TRS）用、代替品は4極（TRRS）用です。元は3極（TRS）用、代替品は4極（TRRS）用です。
+      <ul>
+        <li>対応付け：元のピン（P$1 スリーブ / P$2 リング / P$3 チップ / P$4 リングSW / P$5 チップSW）を、代替品の <span class="pin">#1 / #3 / #2 / #6 / #5</span> にそれぞれ割り当てています。</li>
+        <li>Ring2（#4）はスリーブと同じ AGND につないでいるので、普通のステレオプラグが元と同じように使えます。</li>
+        <li>チップSW・リングSWは、どちらもプラグを挿すと開く「常時閉」タイプで、元と同じ動作です。</li>
+      </ul></li>
+    <li><b>VR1 ボリューム</b>：
+      <ul>
+        <li>端子の並びは一致しています。データシートの並びは左から「1 共通 / ② R1ワイパー / 2 R2ワイパー / 3 R2端 / ③ R1端」で、Eagle の <span class="pin">1AB / 2B / 2A / 3A / 3B</span> にあたります。</li>
+        <li>抵抗カーブは「3B」（B = 直線型）です。音量調整には一般に A カーブ（対数型）を使います。元の部品が A カーブだった場合は、音量の変わり方が変わります。</li>
+      </ul></li>
+    <li><b>U$3 RGB LED</b>：色の並びが元と違うため、回路図の色の割当を入れ替えました。40ピンヘッダの割当は次のとおりで、ソフト側の変更が必要です。
+      <ul>
+        <li>19番（GPIO10）→ <b>青</b></li>
+        <li>21番（GPIO9）→ <b>赤</b></li>
+        <li>23番（GPIO11）→ <b>緑</b></li>
+      </ul></li>
+    <li><b>SW_SUB / UP / DOWN</b>：元の型番が分からないため、ボタン長さ 8.35mm の SKHHLQA010 を選びました。フットプリントは共通なので、手はんだの際に SKHHLMA010（3.85mm）や SKHHLUA010（5.85mm）に変えても構いません。</li>
+    <li><b>カメラ基板 CN2</b>：Eagle のパッド番号は、実部品のピン番号と逆順になっています（パッド「1」の位置に実部品の22番ピンが来る）。これは元の設計（ファイル名の「reverse」）からのもので、今回は変更していません。部品はパッドの形どおりに載るので、元の基板と同じ実装になります。</li>
+    <li><b>元の Kingbright 製 RGB LED</b> のデータシートは、公式サイトの URL が見つからなかったため掲載していません。</li>
+  </ol>
+</section>
+
+<footer>出典：各メーカーのデータシート、LCSC / JLCPCB の部品データ（EasyEDA のフットプリント・記号）。照合した Eagle データ：<span class="pin">2019-06-27_OG19AWv2_JLC</span>、<span class="pin">2019-05-28_OG19_PC-3_reverse_JLC</span>。</footer>
+</div>
