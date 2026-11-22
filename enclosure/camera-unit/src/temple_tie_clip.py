@@ -1,5 +1,5 @@
-# SPDX-License-Identifier: GPL-3.0-only
-# Copyright (C) 2019-2026 OTON GLASS open hardware contributors
+# SPDX-License-Identifier: CERN-OHL-S-2.0
+# Copyright (C) OTON GLASS Inc.
 """Zip-tie attachment for the OG19 camera unit v6 (body coordinate frame).
 Top: dovetail shoe on the body's rail (rail x 4..42), slid on from the lens end; closed -x end seats on the rail's
 45-deg ramp, a sprung tongue's barb drops behind the rail's +x end.

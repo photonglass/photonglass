@@ -1,5 +1,5 @@
-# SPDX-License-Identifier: GPL-3.0-only
-# Copyright (C) 2019-2026 OTON GLASS open hardware contributors
+# SPDX-License-Identifier: CERN-OHL-S-2.0
+# Copyright (C) OTON GLASS Inc.
 """USB-A plug cover for the PHOTON GLASS power cable (CadQuery).
 
 Covers a board-mount right-angle USB-A plug (Chang Enn USB-4AM103AS, Akizuki 102236) whose pins are
