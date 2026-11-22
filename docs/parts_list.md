@@ -1,5 +1,3 @@
-PHOTON GLASS · OG19 · JLCPCB 発注用
-
 # PHOTON GLASS 部品リスト
 
 メイン基板（OG19AWv2）とカメラ基板（OG19_PC-3）で使う全部品の一覧です。部品ごとに次の内容をまとめています。

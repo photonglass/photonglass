@@ -4,8 +4,8 @@
 Top: dovetail shoe on the body's rail (rail x 4..42), slid on from the lens end; closed -x end seats on the rail's
 45-deg ramp, a sprung tongue's barb drops behind the rail's +x end.
 Bottom: 45-deg V-saddle along x that centres any temple 3..7 mm tall, and two tunnels across (y) for zip ties
-that wrap the temple. Printed as modelled (+z up, saddle face on the bed): no supports.
-usage: tie_clip.py OUTDIR [TIE_W TIE_T]
+that wrap the temple. Printed as modelled (+z up, saddle face on the bed); support only under the sprung tongue (see README).
+usage: python temple_tie_clip.py OUTDIR [TIE_W TIE_T]   (writes OUTDIR/tie_clip.step and OUTDIR/tie_clip.stl)
 """
 import sys, os
 import cadquery as cq

@@ -79,10 +79,24 @@ Bambu Lab A1・Bambu Studio での設定です。ほかのプリンターでも�
 
 ネジは樹脂に自分でねじ山を切るタイプです。止まったところで締めるのをやめてください。
 
+![カメラの取り付け](images/camera_mount.png)
+
+*カメラの取り付け（左：スレッド先端の壁にカメラが貼り付いたところ、右：蓋をかぶせたところ）*
+
+![本体の HDMI の口](images/hdmi_opening.png)
+
+*本体の HDMI の口（中にカメラ基板の HDMI コネクタが見える）*
+
+<img src="images/temple_tie_clip_mounted.png" alt="メガネのつるに取り付けたところ" width="420">
+
+*メガネのつるに取り付けたところ（オレンジがアタッチメント、白が結束バンド）*
+
 ## 設計を変える
-```
+```bash
 pip install cadquery
 python src/camera_case.py out/          # 本体・蓋・キャップ・スレッド
 python src/temple_tie_clip.py out/      # アタッチメント（結束バンドの幅・厚さを指定可：... out/ 2.5 1.0）
 ```
 寸法はスクリプトの先頭の定数（壁の厚さ、すき間など）で変えられます。座標はカメラ基板を部品面を下にして置いた位置が基準（mm）です。
+- `camera_case.py` が出力する STL は、組み立てた位置のまま（`step/` と同じ向き）です。印刷するときは、スライサーで上の「[部品](#部品)」の表の「印刷の向き」に置き直してください（`stl/` のファイルは置き直したものです）。
+- アタッチメントは `tie_clip.step`・`tie_clip.stl` という名前で出力されます（`step/`・`stl/` の `temple_tie_clip.*` にあたります）。STL は印刷する向きのままです。

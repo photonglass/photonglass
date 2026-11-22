@@ -89,7 +89,11 @@ sudo apt install -y python3-gpiozero python3-picamera2 python3-httpx python3-req
 カメラが認識されているかは「[8. 動作テストをする](#8-動作テストをする)」で確かめます。
 
 ## 6. プログラムを Raspberry Pi にコピーする
-PC（Mac）のターミナルで、このリポジトリのフォルダに移動してから実行します。
+PC にまだこのリポジトリがない場合は、GitHub のリポジトリのページで「Code」→「Download ZIP」を選んでダウンロードして展開するか、次のコマンドで取得します。
+```bash
+git clone https://github.com/photonglass/photonglass.git
+```
+PC（Mac）のターミナルで、このリポジトリのフォルダ（`git clone` なら `photonglass`、ZIP なら `photonglass-main`）に移動してから実行します。
 `software` フォルダの中身を、Raspberry Pi の `~/photonglass` にコピーします。
 ```bash
 ssh photonglass@raspberrypi.local "mkdir -p ~/photonglass"
@@ -123,7 +127,8 @@ scp -r software/main_async.py software/main_seq.py software/sound software/test 
 
 プログラムは、自分のファイルと同じフォルダにある `api_key.txt` を読みます。ファイルがない・空のときは、起動時に赤く光って通信エラーの音を鳴らし、終了します。
 
-**`api_key.txt` は、GitHub などで公開しないでください。** 他人に使われて料金が請求されることがあります（このリポジトリでは `.gitignore` で git の管理から外しています）。
+> [!WARNING]
+> `api_key.txt` は、GitHub などで公開しないでください。他人に使われて料金が請求されることがあります（このリポジトリでは `.gitignore` で git の管理から外しています）。
 
 ## 8. 動作テストをする
 `hw_test.py` で、LED → ボタン → スピーカー → カメラ の順に、1つずつ確かめます（Raspberry Pi で実行します）。
