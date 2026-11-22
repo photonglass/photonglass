@@ -1,0 +1,16 @@
+name: 質問
+description: 使い方や仕様についての質問
+title: "[質問] "
+labels: ["question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: 質問の内容
+    validations:
+      required: true
+  - type: textarea
+    id: tried
+    attributes:
+      label: 調べたこと・試したこと
+      description: README やドキュメントで調べたこと、試したことがあれば書いてください
