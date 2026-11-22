@@ -1,0 +1,8 @@
+# Google Cloud の API キー（公開しない）
+api_key.txt
+
+# Python のキャッシュ
+__pycache__/
+
+# macOS が作るファイル
+.DS_Store
