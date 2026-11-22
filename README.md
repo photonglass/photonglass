@@ -12,17 +12,20 @@ PHOTON GLASS は、OTON GLASS ver5 を元にしながら、自作の容易さや
 
 | フォルダ | 内容 | 開けるソフト |
 |---|---|---|
+| [`hardware/`](hardware/README.md) | 基板2枚の概要、ファイルの開き方、元設計からの変更 | — |
 | [`hardware/main-board/`](hardware/main-board) | メイン基板（Raspberry Pi Zero 2 W に載る音声・ボタン基板） | KiCad 9 / Fusion（Eagle形式） |
 | [`hardware/camera-board/`](hardware/camera-board) | カメラ基板（HDMIケーブルでメイン基板とつながる） | KiCad 9 / Fusion（Eagle形式） |
 | [`enclosure/camera-unit/`](enclosure/camera-unit) | カメラユニットの筐体・メガネ用アタッチメント | STEP（Fusion・FreeCAD など）/ STL・3MF（スライサー）/ Python（CadQuery） |
 | [`enclosure/usb-power-cable/`](enclosure/usb-power-cable) | モバイルバッテリーからメイン基板へ給電するケーブルの作り方（配線・部品）と、USB プラグのカバー | STEP / STL / Python（CadQuery） |
 | [`software/`](software) | 本体プログラムと効果音。普段使うのは `main_async.py`、仕組みを学ぶなら流れの読みやすい `main_seq.py`（違いは [`software/README.md`](software/README.md)） | Python 3（Raspberry Pi） |
 | [`software/test/`](software/test) | 組み立て後の動作テスト用スクリプト（Raspberry Pi で実行） | Python 3 |
-| [`docs/`](docs) | 部品リスト（データシート・回路記号の照合結果） | ブラウザ |
+| [`docs/`](docs) | 組み立てガイド（[`BUILD_GUIDE.md`](docs/BUILD_GUIDE.md)）、Raspberry Pi のセットアップ（[`SETUP_RASPBERRY_PI.md`](docs/SETUP_RASPBERRY_PI.md)）、部品リスト（[`parts_list.md`](docs/parts_list.md)：データシート・回路記号の照合結果） | — |
 
 ## はじめての人へ
+- **まず読む**：[`docs/BUILD_GUIDE.md`](docs/BUILD_GUIDE.md) に、発注から動かすまでの作業の順番と、それぞれで読むドキュメントをまとめています。
 - **基板を作る**：[`hardware/JLCPCB_ORDERING.md`](hardware/JLCPCB_ORDERING.md) の手順で、JLCPCB に部品実装まで発注できます（ガーバー・部品表・部品配置ファイル付き）。
 - **筐体を印刷する**：[`enclosure/camera-unit/README.md`](enclosure/camera-unit/README.md) に、印刷設定（Bambu Lab A1 / PETG）と組み立て手順があります。
+- **Raspberry Pi を準備する**：[`docs/SETUP_RASPBERRY_PI.md`](docs/SETUP_RASPBERRY_PI.md) に、OS の書き込みから動作テスト、自動起動までの手順があります。
 - **設計を変える**：基板は KiCad か Fusion で、筐体は `src/` の Python スクリプトの数値を変えるか、STEP を CAD に読み込んで編集します。
 
 ## ライセンス

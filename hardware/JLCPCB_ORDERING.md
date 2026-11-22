@@ -94,7 +94,7 @@ ICは1番ピンの印（○や切り欠き）が、基板のシルクの1番ピ�
 
 ## 届いたら
 1. 手はんだの部品（上の表）を付ける。
-2. Raspberry Pi Zero 2 W に載せ、[`software/test/hw_test.py`](../software/test/hw_test.py) で動作を確認する。
+2. Raspberry Pi Zero 2 W に載せ、[`software/test/hw_test.py`](../software/test/hw_test.py) で動作を確認する（Raspberry Pi の準備は [`docs/SETUP_RASPBERRY_PI.md`](../docs/SETUP_RASPBERRY_PI.md)、全体の流れは [`docs/BUILD_GUIDE.md`](../docs/BUILD_GUIDE.md)）。
 3. スピーカーのコネクタの向きは [`main-board/images/speaker_connector_orientation.png`](main-board/images/speaker_connector_orientation.png) を見る。
 
 ## ガーバーについて

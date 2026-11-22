@@ -25,3 +25,4 @@
 
 ## 組み立て後のテスト
 [`software/test/hw_test.py`](../software/test/hw_test.py) を Raspberry Pi で実行すると、LED → ボタン → スピーカー → カメラの順に確認できます。
+Raspberry Pi の準備とテストの実行方法は [`docs/SETUP_RASPBERRY_PI.md`](../docs/SETUP_RASPBERRY_PI.md) にあります。

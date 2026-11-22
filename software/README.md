@@ -2,6 +2,7 @@
 
 PHOTON GLASS の Raspberry Pi で動かすプログラムです。
 カメラボタンを押すと写真を撮り、写っている文字を Google Cloud で読み取って、スピーカーから読み上げます。
+Raspberry Pi の準備（OS の書き込みから自動起動まで）は [`docs/SETUP_RASPBERRY_PI.md`](../docs/SETUP_RASPBERRY_PI.md) を見てください。
 
 ## ファイル
 | ファイル | 内容 |
