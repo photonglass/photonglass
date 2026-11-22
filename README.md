@@ -80,18 +80,18 @@ CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
 - 部品メーカーや EasyEDA/LCSC が配布している部品の3Dモデル（再配布の条件がはっきりしないため）。基板の3D形状は KiCad や Fusion の3Dビューで確認してください。
 - Google Cloud の API キー（各自で用意して、プログラムと同じフォルダの `api_key.txt` に書く。書き方は [`software/README.md`](software/README.md#動かし方)）。
 
-## クレジット
-PHOTON GLASS（2026年）：
-- 回路・基板設計、ドキュメンテーション：山中将治　Masaharu Yamanaka
-- プロダクトデザイン：小松靖知　Yasutomo Komatsu
-- プログラミング：石塚日向　Hinata Ishizuka
-- アドバイジング：須田拓也　Hiroya Suda、高橋卓久真　Takuma Takahashi、陳冠宇　Chen Kuan-Yu
+### クレジット
+**PHOTON GLASS（2026年）**
+- 回路・基板設計、ドキュメンテーション：山中将治（Masaharu Yamanaka）
+- プロダクトデザイン：小松靖知（Yasutomo Komatsu）
+- プログラミング：石塚日向（Hinata Ishizuka）
+- アドバイジング：須田拓也（Hiroya Suda）、高橋卓久真（Takuma Takahashi）、陳冠宇（Chen Kuan-Yu）
 
-原設計：OTON GLASS ver5（2019年発表。基板・筐体の型番は OG19）：
-- エンジニアリング：宮下恵太　Keita Miyashita
-- サーバーサイドエンジニアリング：鶴岡秀樹　Hideki Tsuruoka
-- プロダクトデザイン：佐野友優　Tomomasa Sano
-- サウンドデザイン：田中堅大　Kenta Tanaka
+**原設計：OTON GLASS ver5（2019年発表。基板・筐体の型番は OG19）**
+- エンジニアリング：宮下恵太（Keita Miyashita）
+- サーバーサイドエンジニアリング：鶴岡秀樹（Hideki Tsuruoka）
+- プロダクトデザイン：佐野友優（Tomomasa Sano）
+- サウンドデザイン：田中堅大（Kenta Tanaka）
 
 ---
 
