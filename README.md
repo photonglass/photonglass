@@ -104,7 +104,7 @@ CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
 
 ## English summary
 Hardware for **PHOTON GLASS**, a glasses-type device that interacts with users via feedback such as sound, based on images captured by a first-person camera.
-PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, with improved ease of self-building and modifiability.
+PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, glasses that read text aloud, with improved ease of self-building and modifiability.
 The program published here is one sample implementation of PHOTON GLASS. It reads aloud text captured by the first-person camera (it recognises the text in the image and speaks it).
 The documentation is written in Japanese.
 - `hardware/` – main board and camera board (KiCad 9 and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
