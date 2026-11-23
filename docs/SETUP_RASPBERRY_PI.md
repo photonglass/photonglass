@@ -47,7 +47,7 @@ Imager の画面や項目の名前は、版によって少し違います。
    初めてつなぐときに `Are you sure you want to continue connecting` と聞かれたら `yes` と入力し、続けてパスワードを入力します（入力しても画面には何も表示されません）。
 
 この後のコマンドは、SSH でつないだ PC のターミナルからでも、Raspberry Pi のデスクトップのターミナルからでも実行できます。
-ただし「3. 音声出力（DAC）を設定する」の最後はデスクトップで操作するので、それまではモニターなどをつないだままにしておきます。
+SSH でつながれば、モニター・キーボード・マウスは外して構いません（このあとの手順は、すべて SSH から行えます）。
 
 ## 3. 音声出力（DAC）を設定する
 メイン基板の音声出力（DAC）を、Raspberry Pi で使えるようにします。
@@ -72,8 +72,8 @@ Imager の画面や項目の名前は、版によって少し違います。
    aplay -l
    ```
    一覧に `hifiberry`（`snd_rpi_hifiberry_dac`）が出れば OK です。
-6. デスクトップのサウンド（スピーカー）のアイコンから、出力先として `snd_rpi_hifiberry_dac` を選ぶ。
-   本体プログラムの音は、この選択を前提にしています。
+
+本体プログラム（`main_async.py`・`main_seq.py`）と動作テスト（`test/hw_test.py`）は、スピーカー基板に直接音を送ります。デスクトップのサウンドの設定で出力先を選ぶ必要はありません。
 
 ## 4. 必要なソフトを入れる
 ```bash
@@ -179,19 +179,23 @@ python3 ~/photonglass/main_async.py
    中身は次のとおりです。
    ```ini
    [Unit]
-   Description=PHOTON GLASS Script
-   After=network-online.target
+   Description=PHOTON GLASS (photonglass)
+   Wants=network-online.target
+   After=network-online.target sound.target
+
    [Service]
-   ExecStart=/usr/bin/python3 /home/photonglass/photonglass/main_async.py
-   WorkingDirectory=/home/photonglass/photonglass
-   StandardOutput=inherit
-   StandardError=inherit
-   Restart=always
    User=photonglass
+   WorkingDirectory=/home/photonglass/photonglass
+   ExecStart=/usr/bin/python3 /home/photonglass/photonglass/main_async.py
+   Environment=PYTHONUNBUFFERED=1
+   # 止まってしまったら（エラーやカメラの抜けなど）、5秒後に自動で動かし直す
+   Restart=always
+   RestartSec=5
+
    [Install]
    WantedBy=multi-user.target
    ```
-   この手順は、「[13. 準備をまとめて行うスクリプト](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` でも自動で行えます。
+   この中身は、「[13. 準備をまとめて行うスクリプト](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` が入れるもの（`software/setup/photonglass.service`）と同じです。この手順は、`setup_pi.sh` でも自動で行えます。
 2. サービスを有効にして、動かす。
    ```bash
    sudo systemctl daemon-reload
@@ -220,7 +224,7 @@ python3 ~/photonglass/main_async.py
 | 起動すると赤く光り、通信エラーの音が鳴って止まる（そのあとボタンに反応しない） | `~/photonglass/api_key.txt` があるか、中身が空でないか（「[7. API キーを用意する](#7-api-キーを用意する)」） |
 | ボタンを押すと、通信エラーの音が鳴る | Wi-Fi につながっているか、API キーが正しいか、Google Cloud の API と課金が有効か |
 | カメラのエラーの音が鳴る | FFC ケーブルの向き・差し込み、HDMI ケーブル、カメラ基板（「[8. 動作テストをする](#8-動作テストをする)」のカメラのテスト） |
-| スピーカーから音が出ない | `aplay -l` に hifiberry が出るか、サウンドのアイコンで `snd_rpi_hifiberry_dac` を選んだか、ボリューム（VR1）、ヘッドホンが挿さっていないか |
+| スピーカーから音が出ない | `aplay -l` に hifiberry が出るか、ボリューム（VR1）、ヘッドホンが挿さっていないか |
 | カメラのエラーの音が鳴ったあと、少しして起動音が鳴る | 使っている途中でカメラから写真が届かなくなったので、プログラムが起動し直した。FFC ケーブルのゆるみ（電源を切ってから挿し直す）か、電源の不足 |
 | SSH の反応が遅い・ときどきつながらなくなる | Wi-Fi の省電力が効いている。「[13.](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` でオフになる |
 | `ホスト名.local` ではつながらず、`ホスト名-2.local` などの番号付きの名前になっている | 名前がぶつかったと判断されている。「[14. 何台も用意するとき](#14-何台も用意するとき)」の avahi の設定を行う |
