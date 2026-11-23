@@ -10,7 +10,7 @@ PHOTON GLASS を一から作るときの、作業の順番をまとめたペー�
 | 0 | 必要なものをそろえる | このページの「[0. 必要なもの](#0-必要なもの)」 |
 | 1 | 基板を発注する | [`hardware/JLCPCB_ORDERING.md`](../hardware/JLCPCB_ORDERING.md) |
 | 2 | 手はんだで部品を付ける | [`hardware/JLCPCB_ORDERING.md` の「実装しない（手はんだで付ける）部品」](../hardware/JLCPCB_ORDERING.md#実装しない手はんだで付ける部品) |
-| 3 | 筐体を印刷する | [`enclosure/camera-unit/README.md` の「印刷設定」](../enclosure/camera-unit/README.md#印刷設定) |
+| 3 | 筐体を印刷する | 本体：[`enclosure/main-body/README.md` の「印刷設定」](../enclosure/main-body/README.md#印刷設定)、カメラユニット：[`enclosure/camera-unit/README.md` の「印刷設定」](../enclosure/camera-unit/README.md#印刷設定) |
 | 4 | 組み立てる | このページの「[4. 組み立てる](#4-組み立てる)」 |
 | 5 | Raspberry Pi をセットアップする | [`SETUP_RASPBERRY_PI.md`](SETUP_RASPBERRY_PI.md) の 1〜7 |
 | 6 | 動作テスト（hw_test） | [`SETUP_RASPBERRY_PI.md` の「8. 動作テストをする」](SETUP_RASPBERRY_PI.md#8-動作テストをする) |
@@ -21,9 +21,10 @@ PHOTON GLASS を一から作るときの、作業の順番をまとめたペー�
 ### 基板・筐体・電源ケーブルの部品
 それぞれのドキュメントの部品表を見てください。
 - 基板（JLCPCB で実装する部品と、手はんだで付ける部品）：[`hardware/JLCPCB_ORDERING.md`](../hardware/JLCPCB_ORDERING.md)。全部品の詳細は [`parts_list.md`](parts_list.md)
+- 本体の筐体（ネジ）：[`enclosure/main-body/README.md` の「必要な部品」](../enclosure/main-body/README.md#必要な部品)
 - カメラユニット（カメラ、ネジ、結束バンド）：[`enclosure/camera-unit/README.md` の「必要な部品」](../enclosure/camera-unit/README.md#必要な部品)
 - 電源ケーブル（USB プラグ、電線、コネクタなど）：[`enclosure/usb-power-cable/README.md` の「部品」](../enclosure/usb-power-cable/README.md#部品)
-- 3D プリンターの材料（PETG）：[`enclosure/camera-unit/README.md` の「印刷設定」](../enclosure/camera-unit/README.md#印刷設定)
+- 3D プリンターの材料（PETG）：[`enclosure/main-body/README.md` の「印刷設定」](../enclosure/main-body/README.md#印刷設定)（本体1台で約 65〜75 g）、[`enclosure/camera-unit/README.md` の「印刷設定」](../enclosure/camera-unit/README.md#印刷設定)
 
 ### そのほかに必要なもの
 
@@ -53,10 +54,12 @@ Raspberry Pi の初期設定では、次のものも使います。
 - スピーカー用コネクタの向き：[`hardware/main-board/images/speaker_connector_orientation.png`](../hardware/main-board/images/speaker_connector_orientation.png)
 
 ## 3. 筐体を印刷する
+- 本体：[`enclosure/main-body/README.md` の「印刷設定」](../enclosure/main-body/README.md#印刷設定)
 - カメラユニット：[`enclosure/camera-unit/README.md` の「印刷設定」](../enclosure/camera-unit/README.md#印刷設定)
 - 電源ケーブルの USB プラグのカバー：[`enclosure/usb-power-cable/README.md` の「1. カバーを印刷する」](../enclosure/usb-power-cable/README.md#1-カバーを印刷する)
 
 ## 4. 組み立てる
+- 本体：[`enclosure/main-body/README.md` の「組み立て」](../enclosure/main-body/README.md#組み立て)（ボディ背面を前面にネジ4本で留める）
 - カメラユニット：[`enclosure/camera-unit/README.md` の「組み立て」](../enclosure/camera-unit/README.md#組み立て)（カメラとカメラ基板の接続、メガネへの取り付けまで）
 - 電源ケーブル：[`enclosure/usb-power-cable/README.md` の「作り方」](../enclosure/usb-power-cable/README.md#作り方)（最後の「6. 確認」まで必ず行う）
 
@@ -85,6 +88,7 @@ LED → ボタン → スピーカー → カメラ の順に、組み立てた�
 
 ## 設計を変えるとき
 - 基板：[`hardware/README.md` の「ファイルの開き方」](../hardware/README.md#ファイルの開き方)、KiCad 版の説明（[メイン基板](../hardware/main-board/kicad/README.md)・[カメラ基板](../hardware/camera-board/kicad/README.md)）
+- 本体の筐体：[`enclosure/main-body/README.md` の「設計を変える」](../enclosure/main-body/README.md#設計を変える)
 - カメラユニットの筐体：[`enclosure/camera-unit/README.md` の「設計を変える」](../enclosure/camera-unit/README.md#設計を変える)
 - 電源ケーブルのカバー：[`enclosure/usb-power-cable/README.md` の「ファイル」](../enclosure/usb-power-cable/README.md#ファイル)
 - プログラム：[`software/README.md`](../software/README.md)

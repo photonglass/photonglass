@@ -2,7 +2,7 @@
 
 一人称のカメラで捉えるイメージから，音などのフィードバックでユーザーにインタラクションする，メガネ型のデバイス〈PHOTON GLASS〉のハードウェアデータです。
 PHOTON GLASS は、文字を読み上げるメガネOTON GLASS ver5 を元にしながら、自作の容易さや改変性を高め、ツールキットとして新しく開発したものです。
-基板2枚（メイン基板・カメラ基板）の設計データ、3Dプリンターで造形できるカメラユニットの筐体と電源ケーブルのカバー、本体のプログラム、組み立てとセットアップの手順を公開しています。
+基板2枚（メイン基板・カメラ基板）の設計データ、3Dプリンターで造形できる本体とカメラユニットの筐体、電源ケーブルのカバー、本体のプログラム、組み立てとセットアップの手順を公開しています。
 ここで公開しているプログラムは、PHOTON GLASS のサンプル実装のひとつです。一人称カメラで捉えた文字を読み上げる（画像から文字を認識し、音声で読み上げる）機能を実行します。
 
 *[English summary](#english-summary) below.*
@@ -16,6 +16,7 @@ PHOTON GLASS は、文字を読み上げるメガネOTON GLASS ver5 を元にし
 | [`hardware/`](hardware/README.md) | 基板2枚の概要、ファイルの開き方、元設計からの変更 | — |
 | [`hardware/main-board/`](hardware/main-board) | メイン基板（Raspberry Pi Zero 2 W に載る音声・ボタン基板） | KiCad 9 以降 / Fusion（Eagle形式） |
 | [`hardware/camera-board/`](hardware/camera-board) | カメラ基板（HDMIケーブルでメイン基板とつながる） | KiCad 9 以降 / Fusion（Eagle形式） |
+| [`enclosure/main-body/`](enclosure/main-body) | 本体の筐体（ボディ前面・背面・側面、シャッターボタン、サブボタン） | STEP（Fusion・FreeCAD など）/ STL・3MF（スライサー） |
 | [`enclosure/camera-unit/`](enclosure/camera-unit) | カメラユニットの筐体・メガネ用アタッチメント | STEP（Fusion・FreeCAD など）/ STL・3MF（スライサー）/ Python（CadQuery） |
 | [`enclosure/usb-power-cable/`](enclosure/usb-power-cable) | モバイルバッテリーからメイン基板へ給電するケーブルの作り方（配線・部品）と、USB プラグのカバー | STEP / STL / Python（CadQuery） |
 | [`software/`](software) | 本体プログラムと効果音。普段使うのは `main_async.py`、仕組みを学ぶなら流れの読みやすい `main_seq.py`（違いは [`software/README.md`](software/README.md)） | Python 3（Raspberry Pi） |
@@ -25,9 +26,9 @@ PHOTON GLASS は、文字を読み上げるメガネOTON GLASS ver5 を元にし
 ## はじめての人へ
 - **まず読む**：[`docs/BUILD_GUIDE.md`](docs/BUILD_GUIDE.md) に、発注から動かすまでの作業の順番と、それぞれで読むドキュメントをまとめています。
 - **基板を作る**：[`hardware/JLCPCB_ORDERING.md`](hardware/JLCPCB_ORDERING.md) の手順で、JLCPCB に部品実装まで発注できます（ガーバー・部品表・部品配置ファイル付き）。
-- **筐体を印刷する**：[`enclosure/camera-unit/README.md`](enclosure/camera-unit/README.md) に、印刷設定（Bambu Lab A1 / PETG）と組み立て手順があります。
+- **筐体を印刷する**：本体は [`enclosure/main-body/README.md`](enclosure/main-body/README.md)、カメラユニットは [`enclosure/camera-unit/README.md`](enclosure/camera-unit/README.md) に、印刷設定（Bambu Lab A1 / PETG）と組み立て手順があります。
 - **Raspberry Pi を準備する**：[`docs/SETUP_RASPBERRY_PI.md`](docs/SETUP_RASPBERRY_PI.md) に、OS の書き込みから動作テスト、自動起動までの手順があります。
-- **設計を変える**：基板は KiCad か Fusion で、筐体は `src/` の Python スクリプトの数値を変えるか、STEP を CAD に読み込んで編集します。
+- **設計を変える**：基板は KiCad か Fusion で、筐体は STEP を CAD に読み込んで編集します（カメラユニットと電源ケーブルのカバーは、`src/` の Python スクリプトの数値を変えて作り直すこともできます）。
 
 ## 質問・不具合の報告
 
@@ -45,7 +46,7 @@ Copyright (C) 株式会社オトングラス
 | 対象 | 含まれるもの | ライセンス | 全文 |
 |---|---|---|---|
 | ソフトウェア | `software/` のプログラム（`main_async.py`・`main_seq.py`・`test/` など） | GNU General Public License v3.0（GPL-3.0-only） | [`LICENSE`](LICENSE) |
-| ハードウェア | `hardware/`（基板の KiCad・Eagle データ、BOM・CPL）、`enclosure/`（筐体の CadQuery スクリプト）と、それらの生成物（ガーバー、STL・STEP・3MF）。**例外**：README・写真・画像と `hardware/JLCPCB_ORDERING.md` は除く（ドキュメント・写真・画像として CC BY-SA 4.0） | CERN Open Hardware Licence Version 2 - Strongly Reciprocal（CERN-OHL-S v2） | [`LICENSE-HARDWARE`](LICENSE-HARDWARE) |
+| ハードウェア | `hardware/`（基板の KiCad・Eagle データ、BOM・CPL）、`enclosure/`（筐体の CadQuery スクリプトと設計データ）と、それらの生成物（ガーバー、STL・STEP・3MF）。**例外**：README・写真・画像と `hardware/JLCPCB_ORDERING.md` は除く（ドキュメント・写真・画像として CC BY-SA 4.0） | CERN Open Hardware Licence Version 2 - Strongly Reciprocal（CERN-OHL-S v2） | [`LICENSE-HARDWARE`](LICENSE-HARDWARE) |
 | ドキュメント・写真・画像 | `docs/`、`CHARTER.md`、`CONTRIBUTING.md`、各フォルダの `README.md`、`hardware/JLCPCB_ORDERING.md`、Issue のテンプレート（`.github/ISSUE_TEMPLATE/`）、写真・画像（各フォルダの `images/` など） | クリエイティブ・コモンズ 表示-継承 4.0 国際（CC BY-SA 4.0） | 公式テキスト：[日本語](https://creativecommons.org/licenses/by-sa/4.0/legalcode.ja)・[English](https://creativecommons.org/licenses/by-sa/4.0/legalcode.en) |
 | サウンド | `software/sound/` の効果音 | CC BY-SA 4.0 | 同上 |
 
@@ -85,7 +86,6 @@ CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
 ### 含まれていないもの
 - 部品メーカーや EasyEDA/LCSC が配布している部品の3Dモデル（再配布の条件がはっきりしないため）。基板の3D形状は KiCad や Fusion の3Dビューで確認してください。
 - Google Cloud の API キー（各自で用意して、プログラムと同じフォルダの `api_key.txt` に書く。書き方は [`software/README.md`](software/README.md#動かし方)）。
-- 本体の筐体（カメラユニットとは別の筐体）の3Dモデルデータ。追加を準備中です。
 
 ### クレジット
 **PHOTON GLASS（2026年）**
