@@ -108,13 +108,14 @@ PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, glasses 
 The program published here is one sample implementation of PHOTON GLASS. It reads aloud text captured by the first-person camera (it recognises the text in the image and speaks it).
 The documentation is written in Japanese.
 - `hardware/` – main board and camera board (KiCad 9 or later and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
+- `enclosure/main-body/` – FDM-printable main body enclosure (front, back and side of the body, shutter button and sub button): STEP designed in Fusion, print-ready STL/3MF, print settings
 - `enclosure/camera-unit/` – FDM-printable camera enclosure: STEP, print-ready STL/3MF, parametric CadQuery source, print settings
 - `enclosure/usb-power-cable/` – power cable from a mobile battery to the main board: wiring, parts and a 3D-printable cover for the USB plug
 - `software/` – Python programs for the Raspberry Pi Zero 2 W (press the camera button to take a photo, recognise its text with Google Cloud Vision and read it aloud with Google Cloud Text-to-Speech), sound effects and a hardware test script
 - `docs/` – build guide, Raspberry Pi setup guide and parts list
 - Licences (Copyright (C) OTON GLASS Inc.):
   - Software (the programs in `software/`, such as `main_async.py`, `main_seq.py` and the script in `test/`; not the sound effects in `software/sound/`, which are CC BY-SA 4.0): **GPL-3.0-only** (see `LICENSE`)
-  - Hardware (`hardware/`, `enclosure/`: board data, CadQuery scripts and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
+  - Hardware (`hardware/`: board data in KiCad and Eagle formats, BOM/CPL; `enclosure/`: CadQuery scripts and design data for the enclosures, including the main body STEP files designed in Fusion; and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
   - Documentation (`docs/`, `CHARTER.md`, `CONTRIBUTING.md`, READMEs, `hardware/JLCPCB_ORDERING.md`, issue templates in `.github/ISSUE_TEMPLATE/`), photos and images, and sounds (`software/sound/`): **CC BY-SA 4.0** (https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)
   - For uses outside these licences, such as embedding in a closed product, a commercial licence is available: https://note.com/keisukeshimakage/n/nef3c9957ae25
 - Charter (in Japanese): `CHARTER.md` – principles and use, the PHOTON GLASS name, and patents
