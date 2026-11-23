@@ -9495,14 +9495,26 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "OTONGLASS\n2019 / PB-3"
-		(at 119.0011 117.0036 0)
+	(gr_text "PHOTON GLASS\n2026 / PB-4"
+		(at 118.0011 117.0036 0)
 		(layer "F.SilkS")
 		(uuid "62e4bf9f-28f5-45dc-ab26-101c339eb9c0")
 		(effects
 			(font
 				(size 0.92 0.92)
 				(thickness 0.08)
+			)
+			(justify left bottom)
+		)
+	)
+	(gr_text "github.com/photonglass/photonglass\nCERN-OHL-S v2"
+		(at 118.0011 113.7536 0)
+		(layer "F.SilkS")
+		(uuid "3cbc4ca2-c761-4c82-9a06-72758702ec49")
+		(effects
+			(font
+				(size 0.828 0.828)
+				(thickness 0.108)
 			)
 			(justify left bottom)
 		)

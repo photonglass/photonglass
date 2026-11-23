@@ -25,6 +25,14 @@ Eagle・KiCad の部品ライブラリのうち、jst-xh（メイン基板の `5
 - メイン基板：上辺の段差をなくした、左右の角を対称な面取りにした、HDMI とヘッドホンジャックの前面をそろえた、ボタンを基板の端まで出した、不足していたビアを追加した、など。
 - **RGB LED の色と GPIO の対応が変わっています**：GPIO9 = 赤、GPIO11 = 緑、GPIO10 = 青。
 
+## 版の履歴
+| 版（シルクの表記） | 変更 |
+|---|---|
+| メイン基板 `2026 / PB-4`、カメラ基板 `2026 / PC-4` | シルクの名前を「PHOTON GLASS」に変更（前の版はメイン基板「OTONGLASS」、カメラ基板「OTON GLASS」）。メイン基板の表面に、リポジトリの URL（`github.com/photonglass/photonglass`）とライセンス（`CERN-OHL-S v2`）を追加。**銅箔・穴・レジスト・メタルマスク・外形は前の版と同じ**で、変わったのは表面のシルク（`.GTO`）だけ。設計データに残っていた、手はんだ部品（VR1・SW_MAIN・SW_SUB／UP／DOWN）の旧部品の LCSC 番号を外し、実際に使う部品の型番（`MPN`）と購入先（`SUPPLIER`）に置き換え |
+| メイン基板 `2019 / PB-3`、カメラ基板 `2019 / PC-3` | 元設計を JLCPCB 向けに直した最初の版（上の「元設計からの変更」） |
+
+カメラ基板は小さく、裏面にも GND のビアが並んでいて URL を入れる場所がないため、URL とライセンスはメイン基板にだけ入れています。
+
 ## 組み立て後のテスト
 [`software/test/hw_test.py`](../software/test/hw_test.py) を Raspberry Pi で実行すると、LED → ボタン → スピーカー → カメラの順に確認できます。
 Raspberry Pi の準備とテストの実行方法は [`docs/SETUP_RASPBERRY_PI.md`](../docs/SETUP_RASPBERRY_PI.md) にあります。

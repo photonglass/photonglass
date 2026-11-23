@@ -98,5 +98,11 @@ ICは1番ピンの印（○や切り欠き）が、基板のシルクの1番ピ�
 3. スピーカーのコネクタの向きは [`main-board/images/speaker_connector_orientation.png`](main-board/images/speaker_connector_orientation.png) を見る。
 
 ## ガーバーについて
-ガーバーは、Eagle のデータ（`eagle/*.brd`）からスクリプトで作ったものです。ベタGNDは Eagle の設定どおりに計算し、ネット間の間隔違反 0件・未接続 0件を確認しています。
-基板データを直した場合は、KiCad（`kicad/`）または Fusion / Eagle の CAM 出力でガーバーを作り直してください。KiCad では「ファイル → 製造用ファイル出力 → ガーバー」と「ドリルファイル」で出力し、1つの zip にまとめます。
+ガーバーは、Eagle のデータ（`eagle/*.brd`）から、スクリプト [`tools/gerbgen.py`](tools/gerbgen.py) で作ったものです。ベタGNDは Eagle の設定どおりに計算し、ネット間の間隔違反 0件・未接続 0件を確認しています。
+Eagle のデータを直した場合は、同じスクリプトで作り直せます（Python 3 と `pip install shapely Hershey-Fonts` が必要）。
+```bash
+python hardware/tools/gerbgen.py hardware/main-board/eagle/OG19AWv2_main.brd out/main/files OG19AWv2_main
+python hardware/tools/gerbgen.py hardware/camera-board/eagle/OG19_PC-3_camera.brd out/camera/files OG19_PC-3_camera
+```
+`out/main/OG19AWv2_main_gerber.zip` のように、zip ができます。
+KiCad（`kicad/`）や Fusion / Eagle の CAM 出力でも作れますが、ベタGNDの広がり方（基板の端や穴からの間隔）やシルクの文字の形が、このスクリプトのものと少し変わります。その場合は、発注前に JLCPCB のガーバービューアで中身を確かめてください。

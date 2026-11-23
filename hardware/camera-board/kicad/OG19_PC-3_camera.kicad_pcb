@@ -1859,8 +1859,8 @@
 			(justify left bottom)
 		)
 	)
-	(gr_text "2019 / PC-3"
-		(at 159.660244 99.0822 0)
+	(gr_text "2026 / PC-4"
+		(at 164.5511 99.0822 0)
 		(layer "F.SilkS")
 		(uuid "d41eb526-2087-467e-85fd-ed7e81e3cc7c")
 		(effects
@@ -1868,11 +1868,11 @@
 				(size 0.46 0.46)
 				(thickness 0.04)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 	)
-	(gr_text "OTON GLASS"
-		(at 160.273576 98.0822 0)
+	(gr_text "PHOTON GLASS"
+		(at 164.5511 98.0822 0)
 		(layer "F.SilkS")
 		(uuid "b3bb57b6-fc49-46fa-aeef-473ba70d31af")
 		(effects
@@ -1880,7 +1880,7 @@
 				(size 0.46 0.46)
 				(thickness 0.04)
 			)
-			(justify left bottom)
+			(justify right bottom)
 		)
 	)
 	(segment
