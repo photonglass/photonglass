@@ -99,7 +99,7 @@ PC（Mac）のターミナルで、このリポジトリのフォルダ（`git c
 ssh photonglass@raspberrypi.local "mkdir -p ~/photonglass"
 ```
 ```bash
-scp -r software/main_async.py software/main_seq.py software/sound software/test photonglass@raspberrypi.local:photonglass/
+scp -r software/main_async.py software/main_seq.py software/sound software/test software/setup software/check_setup.sh photonglass@raspberrypi.local:photonglass/
 ```
 コピーしたあとの Raspberry Pi の中は、次のようになります（`api_key.txt` は次の手順で置きます）。
 ```
@@ -108,6 +108,8 @@ scp -r software/main_async.py software/main_seq.py software/sound software/test 
 ├── main_seq.py       本体プログラム（流れの読みやすい版）
 ├── sound/            効果音
 ├── test/hw_test.py   動作テスト
+├── setup/            準備をまとめて行うスクリプト（「13.」で使う）
+├── check_setup.sh    準備ができているかを確認するスクリプト
 └── api_key.txt       Google Cloud の API キー
 ```
 プログラムを書き換えたときも、同じ `scp` のコマンドでコピーし直します。
@@ -125,7 +127,7 @@ scp -r software/main_async.py software/main_seq.py software/sound software/test 
    scp software/api_key.txt photonglass@raspberrypi.local:photonglass/
    ```
 
-プログラムは、自分のファイルと同じフォルダにある `api_key.txt` を読みます。ファイルがない・空のときは、起動時に赤く光って通信エラーの音を鳴らし、終了します。
+プログラムは、自分のファイルと同じフォルダにある `api_key.txt` を読みます。ファイルがない・空のときは、起動時に赤く光って通信エラーの音を鳴らし、止まります。
 
 > [!WARNING]
 > `api_key.txt` は、GitHub などで公開しないでください。他人に使われて料金が請求されることがあります（このリポジトリでは `.gitignore` で git の管理から外しています）。
@@ -155,13 +157,10 @@ scp photonglass@raspberrypi.local:test.jpg .
 
 ## 9. プログラムを動かす
 ```bash
-cd ~/photonglass
-```
-```bash
-python3 main_async.py
+python3 ~/photonglass/main_async.py
 ```
 起動音が鳴り、LED が緑になったら準備完了です。カメラボタンを押すと、写真を撮って文字を読み上げます。止めるときは Ctrl+C を押します。
-`cd ~/photonglass` を忘れないでください。効果音のファイルを「実行したフォルダ」から探すため、別のフォルダから実行すると音が出ません。
+効果音や `api_key.txt` は、プログラムのファイルがあるフォルダから探すので、どのフォルダから実行しても動きます。
 
 | LED の色 | 状態 |
 |---|---|
@@ -192,7 +191,7 @@ python3 main_async.py
    [Install]
    WantedBy=multi-user.target
    ```
-   `WorkingDirectory` は、効果音のファイルを探す場所（実行したフォルダ）を `~/photonglass` にするために必要です。
+   この手順は、「[13. 準備をまとめて行うスクリプト](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` でも自動で行えます。
 2. サービスを有効にして、動かす。
    ```bash
    sudo systemctl daemon-reload
@@ -218,14 +217,56 @@ python3 main_async.py
 |---|---|
 | PC から `raspberrypi.local` につながらない | Raspberry Pi の電源が入っているか、PC と同じ Wi-Fi につながっているか。起動が終わるまで少し待つ |
 | SSH で `REMOTE HOST IDENTIFICATION HAS CHANGED` と出る（OS を書き込み直したときなど） | PC で `ssh-keygen -R raspberrypi.local` を実行してから、つなぎ直す |
-| 起動すると赤く光り、通信エラーの音が鳴って止まる | `~/photonglass/api_key.txt` があるか、中身が空でないか（「[7. API キーを用意する](#7-api-キーを用意する)」） |
+| 起動すると赤く光り、通信エラーの音が鳴って止まる（そのあとボタンに反応しない） | `~/photonglass/api_key.txt` があるか、中身が空でないか（「[7. API キーを用意する](#7-api-キーを用意する)」） |
 | ボタンを押すと、通信エラーの音が鳴る | Wi-Fi につながっているか、API キーが正しいか、Google Cloud の API と課金が有効か |
 | カメラのエラーの音が鳴る | FFC ケーブルの向き・差し込み、HDMI ケーブル、カメラ基板（「[8. 動作テストをする](#8-動作テストをする)」のカメラのテスト） |
 | スピーカーから音が出ない | `aplay -l` に hifiberry が出るか、サウンドのアイコンで `snd_rpi_hifiberry_dac` を選んだか、ボリューム（VR1）、ヘッドホンが挿さっていないか |
-| 自動で動いているプログラムのメッセージを見たい | `sudo systemctl stop photonglass` で止めてから、`cd ~/photonglass` → `python3 main_async.py` で動かすと、ターミナルに表示される |
+| カメラのエラーの音が鳴ったあと、少しして起動音が鳴る | 使っている途中でカメラから写真が届かなくなったので、プログラムが起動し直した。FFC ケーブルのゆるみ（電源を切ってから挿し直す）か、電源の不足 |
+| SSH の反応が遅い・ときどきつながらなくなる | Wi-Fi の省電力が効いている。「[13.](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` でオフになる |
+| `ホスト名.local` ではつながらず、`ホスト名-2.local` などの番号付きの名前になっている | 名前がぶつかったと判断されている。「[14. 何台も用意するとき](#14-何台も用意するとき)」の avahi の設定を行う |
+| 自動で動いているプログラムのメッセージを見たい | `journalctl -u photonglass -n 30` で、最近のメッセージを見られる。`sudo systemctl stop photonglass` で止めてから `python3 ~/photonglass/main_async.py` で動かすと、ターミナルに表示される |
 
 ## 12. 電源を切る
 ```bash
 sudo poweroff
 ```
 Raspberry Pi が止まるまで少し待ってから、バッテリーの電源ボタンを押して給電を止めます。いきなり給電を止めると、microSD カードが壊れることがあります。
+
+## 13. 準備をまとめて行うスクリプト
+「3. 音声出力（DAC）を設定する」「4. 必要なソフトを入れる」「10. 電源を入れたら自動で動くようにする」を、`setup_pi.sh` でまとめて行えます。何度実行しても大丈夫です。
+「6. プログラムを Raspberry Pi にコピーする」で `setup/` もコピーしてから、Raspberry Pi で実行します。
+```bash
+sudo bash ~/photonglass/setup/setup_pi.sh photon01
+```
+`photon01` は、この Raspberry Pi の名前（ホスト名）です。省略すると名前は変えません。終わったら `sudo reboot` で再起動します。
+
+`setup_pi.sh` がすること：
+- 必要なソフトを入れる（`python3-gpiozero`・`python3-picamera2`・`python3-httpx`・`python3-requests`・`alsa-utils`）
+- `config.txt` に `dtoverlay=hifiberry-dac` を足し、HDMI の音声をオフにする
+- Wi-Fi の省電力をオフにする（SSH が遅くなる・つながらなくなるのを防ぐ）、登録済みの Wi-Fi に自動でつなぐ
+- デスクトップ画面を起動しない（Raspberry Pi Zero 2 W はメモリが少ないため。SSH での操作には影響しない）
+- 名前が番号付き（例 `photon01-2.local`）にならないようにする（「[14.](#14-何台も用意するとき)」）
+- 名前を変える（引数を付けたとき）
+- 電源を入れたら `main_async.py` が自動で動く設定（`photonglass.service`）
+- 今のプログラムを「元の状態」として保存し、元に戻すコマンド `photonglass-reset` を入れる。書き換えて動かなくなったら `photonglass-reset` で戻せます（書き換えた方は `~/photonglass/backup_日時/` に残ります）
+
+準備ができているかは、PC から `check_setup.sh` で確かめられます（見るだけで、何も書き換えません。API キーや Wi-Fi のパスワードは表示しません）。`[NG]` の行があれば、そこに書かれている直し方を行います。
+```bash
+ssh photonglass@photon01.local 'bash -s' < software/check_setup.sh
+```
+
+使う場所の Wi-Fi は、その場所にいなくても先に登録できます。パスワードは実行したあとに聞かれます（画面にもコマンドの履歴にも残りません）。数字は優先度で、大きいほど先につなぎます。
+```bash
+sudo bash ~/photonglass/setup/add_wifi.sh "Wi-Fiの名前" 20
+```
+
+## 14. 何台も用意するとき
+1台目を完成させてから、その microSD カードを複製すると、残りを早く用意できます。
+- **名前を1台ずつ変える。** 複製したカードは、どれも1台目と同じ名前で起動します。1台ずつ起動して、`sudo raspi-config nonint do_hostname photon02` のように名前を変え、再起動します（同じ名前の Raspberry Pi を同時に起動すると、どれにつながるかわからなくなります）。
+- **名前が番号付きになるとき。** `photon02.local` が見つからず、`photon02-2.local` のような名前になることがあります。Raspberry Pi が自分の名前を複数の口（IPv4 と IPv6 など）で知らせて、自分どうしで「名前がぶつかった」と判断するためです。`setup_pi.sh` を実行していれば起きません。手で直すときは、次を実行してから再起動します。
+  ```bash
+  sudo sed -i -e "s/^#*use-ipv6=.*/use-ipv6=no/" -e "s/^#*allow-interfaces=.*/allow-interfaces=wlan0/" /etc/avahi/avahi-daemon.conf
+  ```
+  名前で見つからないときは、Wi-Fi ルーターの管理画面などで IP アドレスを調べ、`ssh photonglass@192.168.x.x` のように IP アドレスでつなぎます。
+- **SSH の警告。** 名前を変えたり、カードを書き直したりすると、PC で `REMOTE HOST IDENTIFICATION HAS CHANGED` と出ることがあります。`ssh-keygen -R photon02.local` を実行してから、つなぎ直します。
+- **API キーと Wi-Fi のパスワード。** 複製したカードには、`api_key.txt` と Wi-Fi のパスワードも入っています。カードやイメージファイルを人に渡したり、公開したりしないでください。

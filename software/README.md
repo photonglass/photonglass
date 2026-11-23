@@ -13,6 +13,11 @@ Raspberry Pi の準備（OS の書き込みから自動起動まで）は [`docs
 | `sound/` | 効果音（起動・シャッター・通信中・読み上げ前後・エラー） |
 | `test/hw_test.py` | 組み立て後の動作テスト（LED → ボタン → スピーカー → カメラ） |
 | `api_key.txt.example` | API キーを書くファイル `api_key.txt` の見本（`api_key.txt` は自分で作る。公開しない） |
+| `setup/setup_pi.sh` | Raspberry Pi の準備をまとめて行うスクリプト（ソフトのインストール、音声出力、自動起動、名前の変更など）。使い方は [`docs/SETUP_RASPBERRY_PI.md` の「13.」](../docs/SETUP_RASPBERRY_PI.md#13-準備をまとめて行うスクリプト) |
+| `setup/photonglass.service` | 電源を入れたら `main_async.py` を自動で動かす設定（`setup_pi.sh` が使う） |
+| `setup/photonglass-reset` | 書き換えて動かなくなったプログラムを、元の状態に戻すコマンド（`setup_pi.sh` が入れる） |
+| `setup/add_wifi.sh` | Wi-Fi を登録するスクリプト（その場所にいなくても、先に登録しておける） |
+| `check_setup.sh` | 準備がどこまでできているかを確認するスクリプト（見るだけで、何も書き換えない） |
 
 ## どちらを使えばいい？
 **普段使うのは `main_async.py`、仕組みを知りたいときに読むのは `main_seq.py`** です。
@@ -52,16 +57,15 @@ Raspberry Pi の準備（OS の書き込みから自動起動まで）は [`docs
    - キーには「使える API の制限」（この2つだけ）を付けておくと安全です。
 2. キーはプログラムには書かず、`api_key.txt` というファイルに1行で書く。
    - このフォルダの `api_key.txt.example` をコピーして `api_key.txt` という名前にし、中身を自分のキーに書き換えます。
-   - プログラムは、自分のファイルと同じフォルダにある `api_key.txt` を読みます。ファイルがない・空のときは、赤く光って通信エラーの音を鳴らし、理由を表示して終了します。
+   - プログラムは、自分のファイルと同じフォルダにある `api_key.txt` を読みます。ファイルがない・空のときは、赤く光って通信エラーの音を鳴らし、理由を表示して止まります（自動起動のときにエラー音がくり返し鳴らないように、終了せずに待ちます）。
    - **`api_key.txt` は、GitHub などで公開しないでください。** 他人に使われて料金が請求されることがあります（このリポジトリでは `.gitignore` で git の管理から外しています）。
 3. 必要なライブラリを入れる。
    ```bash
    sudo apt install -y python3-gpiozero python3-picamera2 python3-httpx python3-requests
    ```
-4. この `software` フォルダに移動してから実行する（効果音の場所を、今いるフォルダから数えているため）。
+4. 実行する。効果音や `api_key.txt` はプログラムのファイルがあるフォルダから探すので、どのフォルダから実行しても動きます。
    ```bash
-   cd software
-   python3 main_async.py
+   python3 software/main_async.py
    ```
 
 ## LED の色の意味

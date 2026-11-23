@@ -37,11 +37,12 @@ LED の色の意味
 
 動かし方
 --------
-このファイルと sound フォルダがある場所に移動してから実行します。
-    cd software          # リポジトリの場合
-    cd ~/photonglass     # docs/SETUP_RASPBERRY_PI.md の手順で Raspberry Pi にコピーした場合
-    python3 main_seq.py
-（音声ファイルの場所を「今いるフォルダから数えて」指定しているため、別の場所から実行すると音が出ません）
+    python3 ~/photonglass/main_seq.py
+（どのフォルダから実行しても動きます。音声ファイルや api_key.txt は、このファイルがあるフォルダから探します）
+電源を入れると自動で動く設定にしている場合は、先にそちらを止めてから実行します
+（同時に2つ動かすと、カメラが「使用中」になって動きません）。
+    sudo systemctl stop photonglass     … 自動で動いている方を止める
+    sudo systemctl start photonglass    … 試し終わったら、自動の方を動かし直す
 """
 
 ##### APIキーの設定 #####
@@ -63,18 +64,36 @@ import subprocess                 # 別のプログラム（aplay）を動かす
 import base64                     # 画像や音声を、通信で送れる文字列に変換するため
 import time                       # 待ち時間を作るため
 import asyncio                    # このプログラムでは使っていない（非同期版の名残）
-import os                         # ファイルの場所を調べるため（api_key.txt を探す）
+import os                         # ファイルの場所を調べるため（api_key.txt や音声ファイルを探す）
 import sys                        # エラーのときにプログラムを終了するため
 
-# 音声ファイルの場所（このプログラムを実行したフォルダから数えた場所）
-START_SOUND = "sound/start.wav"                  # 起動したとき
-TRIGGER_SOUND = "sound/trigger.wav"              # カメラボタンを押したとき（シャッター音）
-CONNECT_SOUND = "sound/connect.wav"              # 通信中
-OK_SOUND = "sound/ok.wav"                        # 文字が読み取れて、これから読み上げるとき
-NO_SOUND = "sound/no.wav"                        # 写真に文字が見つからなかったとき
-FINISH_SOUND = "sound/finish.wav"                # 読み上げが終わったとき
-CAMERA_ERROR_SOUND = "sound/camera_error.wav"    # カメラのエラー
-NETWORK_ERROR_SOUND = "sound/network_error.wav"  # 通信のエラー（Wi-Fi が切れた、API キーが無効など）
+# このプログラムがあるフォルダ。音声ファイル・写真・読み上げ音声は、ここを基準にする
+# （どのフォルダから実行しても、同じ場所を使うようにするため）
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# 音声ファイルの場所（このプログラムがあるフォルダの中の sound フォルダ）
+SOUND_DIR = os.path.join(BASE_DIR, "sound")
+START_SOUND = os.path.join(SOUND_DIR, "start.wav")                  # 起動したとき
+TRIGGER_SOUND = os.path.join(SOUND_DIR, "trigger.wav")              # カメラボタンを押したとき（シャッター音）
+CONNECT_SOUND = os.path.join(SOUND_DIR, "connect.wav")              # 通信中
+OK_SOUND = os.path.join(SOUND_DIR, "ok.wav")                        # 文字が読み取れて、これから読み上げるとき
+NO_SOUND = os.path.join(SOUND_DIR, "no.wav")                        # 写真に文字が見つからなかったとき
+FINISH_SOUND = os.path.join(SOUND_DIR, "finish.wav")                # 読み上げが終わったとき
+CAMERA_ERROR_SOUND = os.path.join(SOUND_DIR, "camera_error.wav")    # カメラのエラー
+NETWORK_ERROR_SOUND = os.path.join(SOUND_DIR, "network_error.wav")  # 通信のエラー（Wi-Fi が切れた、API キーが無効など）
+
+IMAGE_FILE = os.path.join(BASE_DIR, "image.jpg")    # 撮った写真の保存先
+SPEECH_FILE = os.path.join(BASE_DIR, "speech.wav")  # 読み上げ音声の保存先
+
+# 音を出す先：スピーカー基板（hifiberry-dac）に直接送る。
+# デスクトップの音声設定（右上のアイコン）に関係なく、SSH から実行しても同じスピーカーから鳴る。
+# スピーカー基板が見つからないときは、Raspberry Pi の標準の出力を使う。
+try:
+    with open("/proc/asound/cards") as cards:
+        has_speaker = "sndrpihifiberry" in cards.read()
+except OSError:
+    has_speaker = False
+AUDIO_DEVICE = ["-D", "plughw:CARD=sndrpihifiberry"] if has_speaker else []
 
 # GPIO（ピン）の設定
 # 数字は GPIO の番号です（40ピンヘッダの「ピン番号」とは違うので注意）。
@@ -122,7 +141,7 @@ def play_wav(path):
     """音声ファイル（.wav）の再生を始める（終わるのは待たない）。"""
     global wavplayer_proc
     wavplayer_proc = subprocess.Popen(
-        ["aplay", "-q", path],        # -q：余計なメッセージを表示しない
+        ["aplay", "-q"] + AUDIO_DEVICE + [path],  # -q：余計なメッセージを表示しない
         stdout=subprocess.DEVNULL,    # 画面への出力は捨てる
         stderr=subprocess.DEVNULL
     )
@@ -138,8 +157,7 @@ def load_api_key():
     ファイルの中の空白・改行は取り除きます。
     読み込めなかったとき（ファイルがない・中身が空）は、理由を表示して None を返します。
     """
-    folder = os.path.dirname(os.path.abspath(__file__))  # このプログラムのファイルがあるフォルダ
-    path = os.path.join(folder, API_KEY_FILE)
+    path = os.path.join(BASE_DIR, API_KEY_FILE)
 
     if not os.path.isfile(path):
         print(f"エラー：API キーのファイルが見つかりません（{path}）")
@@ -218,9 +236,8 @@ def text_to_speech(text):
     """文字を Text-to-Speech API に送り、読み上げ音声のファイルを作る。
 
     text: 読み上げる文字
-    戻り値: 作った音声ファイルの場所（speech.wav）
+    戻り値: 作った音声ファイルの場所（SPEECH_FILE）
     """
-    SPEECH_SOUND = "speech.wav"
     url = "https://texttospeech.googleapis.com/v1/text:synthesize?key=" + api_key
     headers = {
         "Content-Type": "application/json"
@@ -248,10 +265,10 @@ def text_to_speech(text):
     response_data = response.json()
     audio_content = response_data["audioContent"]
 
-    with open(SPEECH_SOUND, "wb") as audio_file:
+    with open(SPEECH_FILE, "wb") as audio_file:
         audio_file.write(base64.b64decode(audio_content))
 
-    return SPEECH_SOUND
+    return SPEECH_FILE
 
 
 ##### LED #####
@@ -337,7 +354,7 @@ while True:
 
         # 撮影
         try:
-            camera.capture_file("image.jpg")
+            camera.capture_file(IMAGE_FILE)
 
         except Exception:
             errorLed()
@@ -352,7 +369,7 @@ while True:
         connectLed()
 
         try:
-            text = vision_api("image.jpg")    # 文字を読み取る
+            text = vision_api(IMAGE_FILE)    # 文字を読み取る
             speech = text_to_speech(text)     # 読み上げ音声を作る
 
             # 読み上げ：「OK」の音 → 読み上げ音声 → 「終わり」の音

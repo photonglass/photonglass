@@ -1,0 +1,18 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-3.0-only
+# Copyright (C) OTON GLASS Inc.
+# PHOTON GLASS: プログラムを元の状態に戻す（書き換えて動かなくなったとき用）
+# 使い方:  photonglass-reset
+#   setup_pi.sh を実行したときの main_async.py・main_seq.py・sound/ に戻し、自動起動のプログラムを動かし直します。
+#   API キー（api_key.txt）はそのまま残します。書き換えた方は ~/photonglass/backup_日時/ に残します。
+set -e
+ORIG=/opt/photonglass/original
+APP_DIR=$(cat /opt/photonglass/app_dir)
+[ -d "$ORIG" ] || { echo "元のプログラム（$ORIG）がありません"; exit 1; }
+BK="$APP_DIR/backup_$(date +%Y%m%d_%H%M%S)"
+mkdir -p "$BK"
+for f in main_async.py main_seq.py; do [ -f "$APP_DIR/$f" ] && cp "$APP_DIR/$f" "$BK/"; done
+cp "$ORIG"/main_async.py "$ORIG"/main_seq.py "$APP_DIR/"
+rm -rf "$APP_DIR/sound" && cp -r "$ORIG/sound" "$APP_DIR/"
+echo "元に戻しました（書き換えていたものは $BK に保存）"
+sudo systemctl restart photonglass && echo "自動起動のプログラムを動かし直しました"

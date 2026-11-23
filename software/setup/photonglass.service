@@ -1,0 +1,20 @@
+# SPDX-License-Identifier: GPL-3.0-only
+# Copyright (C) OTON GLASS Inc.
+# PHOTON GLASS: 電源を入れたら自動でプログラムを動かす設定（systemd）
+# setup_pi.sh が USER と APP_DIR を書き換えて /etc/systemd/system/photonglass.service に置きます。
+[Unit]
+Description=PHOTON GLASS (photonglass)
+Wants=network-online.target
+After=network-online.target sound.target
+
+[Service]
+User=USER
+WorkingDirectory=APP_DIR
+ExecStart=/usr/bin/python3 APP_DIR/main_async.py
+Environment=PYTHONUNBUFFERED=1
+# 止まってしまったら（エラーやカメラの抜けなど）、5秒後に自動で動かし直す
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
