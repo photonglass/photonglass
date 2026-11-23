@@ -16,7 +16,7 @@ PHOTON GLASS は、文字を読み上げるメガネOTON GLASS ver5 を元にし
 | [`hardware/`](hardware/README.md) | 基板2枚の概要、ファイルの開き方、元設計からの変更 | — |
 | [`hardware/main-board/`](hardware/main-board) | メイン基板（Raspberry Pi Zero 2 W に載る音声・ボタン基板） | KiCad 9 以降 / Fusion（Eagle形式） |
 | [`hardware/camera-board/`](hardware/camera-board) | カメラ基板（HDMIケーブルでメイン基板とつながる） | KiCad 9 以降 / Fusion（Eagle形式） |
-| [`enclosure/main-body/`](enclosure/main-body) | 本体の筐体（ボディ前面・背面・側面、シャッターボタン、サブボタン） | STEP（Fusion・FreeCAD など）/ STL・3MF（スライサー） |
+| [`enclosure/main-body/`](enclosure/main-body) | 本体の筐体（ボディ前面・背面・側面、メインボタン、サブボタン） | STEP（Fusion・FreeCAD など）/ STL・3MF（スライサー） |
 | [`enclosure/camera-unit/`](enclosure/camera-unit) | カメラユニットの筐体・メガネ用アタッチメント | STEP（Fusion・FreeCAD など）/ STL・3MF（スライサー）/ Python（CadQuery） |
 | [`enclosure/usb-power-cable/`](enclosure/usb-power-cable) | モバイルバッテリーからメイン基板へ給電するケーブルの作り方（配線・部品）と、USB プラグのカバー | STEP / STL / Python（CadQuery） |
 | [`software/`](software) | 本体プログラムと効果音。普段使うのは `main_async.py`、仕組みを学ぶなら流れの読みやすい `main_seq.py`（違いは [`software/README.md`](software/README.md)） | Python 3（Raspberry Pi） |
@@ -108,7 +108,7 @@ PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, glasses 
 The program published here is one sample implementation of PHOTON GLASS. It reads aloud text captured by the first-person camera (it recognises the text in the image and speaks it).
 The documentation is written in Japanese.
 - `hardware/` – main board and camera board (KiCad 9 or later and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
-- `enclosure/main-body/` – FDM-printable main body enclosure (front, back and side of the body, shutter button and sub button): STEP designed in Fusion, print-ready STL/3MF, print settings
+- `enclosure/main-body/` – FDM-printable main body enclosure (front, back and side of the body, main button and sub button): STEP designed in Fusion, print-ready STL/3MF, print settings
 - `enclosure/camera-unit/` – FDM-printable camera enclosure: STEP, print-ready STL/3MF, parametric CadQuery source, print settings
 - `enclosure/usb-power-cable/` – power cable from a mobile battery to the main board: wiring, parts and a 3D-printable cover for the USB plug
 - `software/` – Python programs for the Raspberry Pi Zero 2 W (press the camera button to take a photo, recognise its text with Google Cloud Vision and read it aloud with Google Cloud Text-to-Speech), sound effects and a hardware test script
