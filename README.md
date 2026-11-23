@@ -113,7 +113,7 @@ The documentation is written in Japanese.
 - `software/` – Python programs for the Raspberry Pi Zero 2 W (press the camera button to take a photo, recognise its text with Google Cloud Vision and read it aloud with Google Cloud Text-to-Speech), sound effects and a hardware test script
 - `docs/` – build guide, Raspberry Pi setup guide and parts list
 - Licences (Copyright (C) OTON GLASS Inc.):
-  - Software (`software/`): **GPL-3.0-only** (see `LICENSE`)
+  - Software (the programs in `software/`, such as `main_async.py`, `main_seq.py` and the script in `test/`; not the sound effects in `software/sound/`, which are CC BY-SA 4.0): **GPL-3.0-only** (see `LICENSE`)
   - Hardware (`hardware/`, `enclosure/`: board data, CadQuery scripts and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
   - Documentation (`docs/`, `CHARTER.md`, `CONTRIBUTING.md`, READMEs, `hardware/JLCPCB_ORDERING.md`, issue templates in `.github/ISSUE_TEMPLATE/`), photos and images, and sounds (`software/sound/`): **CC BY-SA 4.0** (https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)
   - For uses outside these licences, such as embedding in a closed product, a commercial licence is available: https://note.com/keisukeshimakage/n/nef3c9957ae25
