@@ -8952,7 +8952,7 @@ Source:
 <part name="C4" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="C-EU" device="C0603" package3d_urn="urn:adsk.eagle:package:23616/2" value="0.1μF"><attribute name="LCSC" value="C14663"/></part>
 <part name="R1" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="470"><attribute name="LCSC" value="C23179"/></part>
 <part name="R2" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="470"><attribute name="LCSC" value="C23179"/></part>
-<part name="VR1" library="raspberry_pi_lib" deviceset="ALPS_RK10J" device=""><attribute name="LCSC" value="C231765"/></part>
+<part name="VR1" library="raspberry_pi_lib" deviceset="ALPS_RK10J" device=""><attribute name="MPN" value="R1001G16T2B-B10K"/><attribute name="SUPPLIER" value="aitendo"/></part>
 <part name="GND2" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device="" value="AGND"/>
 <part name="CN1" library="raspberry_pi_lib" deviceset="SWICHCRAFT_3.5MM_PHONE_JACK" device=""><attribute name="LCSC" value="C4992780"/></part>
 <part name="GND5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device="" value="AGND"/>
@@ -8974,12 +8974,12 @@ Source:
 <part name="+3V5" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="+3V6" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="+3V3" device=""/>
 <part name="GND8" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device="" value="DGND"/>
-<part name="SW_SUB" library="raspberry_pi_lib" deviceset="ALPS_SKHH_TACT_SWITCH" device="" value=""><attribute name="LCSC" value="C125034"/></part>
-<part name="SW_UP" library="raspberry_pi_lib" deviceset="ALPS_SKHH_TACT_SWITCH" device="" value=""><attribute name="LCSC" value="C125034"/></part>
-<part name="SW_DOWN" library="raspberry_pi_lib" deviceset="ALPS_SKHH_TACT_SWITCH" device="" value=""><attribute name="LCSC" value="C125034"/></part>
+<part name="SW_SUB" library="raspberry_pi_lib" deviceset="ALPS_SKHH_TACT_SWITCH" device="" value=""><attribute name="MPN" value="Alps SKHHLPA010"/><attribute name="SUPPLIER" value="Akizuki 107193"/></part>
+<part name="SW_UP" library="raspberry_pi_lib" deviceset="ALPS_SKHH_TACT_SWITCH" device="" value=""><attribute name="MPN" value="Alps SKHHLPA010"/><attribute name="SUPPLIER" value="Akizuki 107193"/></part>
+<part name="SW_DOWN" library="raspberry_pi_lib" deviceset="ALPS_SKHH_TACT_SWITCH" device="" value=""><attribute name="MPN" value="Alps SKHHLPA010"/><attribute name="SUPPLIER" value="Akizuki 107193"/></part>
 <part name="GND9" library="supply1" library_urn="urn:adsk.eagle:library:371" deviceset="GND" device="" value="DGND"/>
 <part name="5V" library="jst-xh" deviceset="S2B-XH-A" device=""><attribute name="LCSC" value="C158012"/></part>
-<part name="SW_MAIN" library="Akizuki" deviceset="P-03647_SW" device=""><attribute name="LCSC" value="C141874"/></part>
+<part name="SW_MAIN" library="Akizuki" deviceset="P-03647_SW" device=""><attribute name="MPN" value="Cosland TS-0606-F-N-RED"/><attribute name="SUPPLIER" value="Akizuki P-03646"/></part>
 <part name="U$3" library="Akizuki" deviceset="KPF-3236SURKMGKPBC" device=""><attribute name="LCSC" value="C2843672"/></part>
 <part name="R7" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="40Ω"><attribute name="LCSC" value="C23047"/></part>
 <part name="R8" library="rcl" library_urn="urn:adsk.eagle:library:334" deviceset="R-US_" device="R0603" package3d_urn="urn:adsk.eagle:package:23555/3" value="40Ω"><attribute name="LCSC" value="C23047"/></part>

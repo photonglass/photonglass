@@ -11315,12 +11315,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C125034"
+		(property "MPN" "Alps SKHHLPA010"
 			(at 231.14 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki 107193"
+			(at 231.14 71.12 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P$1"
@@ -11398,12 +11408,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C125034"
+		(property "MPN" "Alps SKHHLPA010"
 			(at 231.14 45.72 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki 107193"
+			(at 231.14 45.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P$1"
@@ -12463,12 +12483,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C125034"
+		(property "MPN" "Alps SKHHLPA010"
 			(at 225.806 64.008 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki 107193"
+			(at 225.806 64.008 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P$1"
@@ -13199,12 +13229,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C141874"
+		(property "MPN" "Cosland TS-0606-F-N-RED"
 			(at 236.22 30.48 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki P-03646"
+			(at 236.22 30.48 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P1"
@@ -13743,12 +13783,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C231765"
+		(property "MPN" "R1001G16T2B-B10K"
 			(at 88.9 215.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "aitendo"
+			(at 88.9 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "2A"
@@ -14316,12 +14366,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C125034"
+		(property "MPN" "Alps SKHHLPA010"
 			(at 225.806 51.308 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki 107193"
+			(at 225.806 51.308 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P$1"
@@ -15129,12 +15189,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C125034"
+		(property "MPN" "Alps SKHHLPA010"
 			(at 231.14 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki 107193"
+			(at 231.14 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P$1"
@@ -15692,12 +15762,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C125034"
+		(property "MPN" "Alps SKHHLPA010"
 			(at 225.806 76.708 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki 107193"
+			(at 225.806 76.708 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P$1"
@@ -17627,12 +17707,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C125034"
+		(property "MPN" "Alps SKHHLPA010"
 			(at 225.806 61.976 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki 107193"
+			(at 225.806 61.976 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P$1"
@@ -17991,12 +18081,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C231765"
+		(property "MPN" "R1001G16T2B-B10K"
 			(at 78.74 215.9 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "aitendo"
+			(at 78.74 215.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "2A"
@@ -18277,12 +18377,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C125034"
+		(property "MPN" "Alps SKHHLPA010"
 			(at 225.806 74.676 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki 107193"
+			(at 225.806 74.676 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P$1"
@@ -18360,12 +18470,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C231765"
+		(property "MPN" "R1001G16T2B-B10K"
 			(at 78.74 218.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "aitendo"
+			(at 78.74 218.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "2A"
@@ -20284,12 +20404,22 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC" "C125034"
+		(property "MPN" "Alps SKHHLPA010"
 			(at 225.806 49.276 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
+				(hide yes)
+			)
+		)
+		(property "Supplier" "Akizuki 107193"
+			(at 225.806 49.276 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "P$1"
