@@ -107,7 +107,7 @@ Hardware for **PHOTON GLASS**, a glasses-type device that interacts with users v
 PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, glasses that read text aloud, with improved ease of self-building and modifiability.
 The program published here is one sample implementation of PHOTON GLASS. It reads aloud text captured by the first-person camera (it recognises the text in the image and speaks it).
 The documentation is written in Japanese.
-- `hardware/` – main board and camera board (KiCad 9 and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
+- `hardware/` – main board and camera board (KiCad 9 or later and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
 - `enclosure/camera-unit/` – FDM-printable camera enclosure: STEP, print-ready STL/3MF, parametric CadQuery source, print settings
 - `enclosure/usb-power-cable/` – power cable from a mobile battery to the main board: wiring, parts and a 3D-printable cover for the USB plug
 - `software/` – Python programs for the Raspberry Pi Zero 2 W (press the camera button to take a photo, recognise its text with Google Cloud Vision and read it aloud with Google Cloud Text-to-Speech), sound effects and a hardware test script
