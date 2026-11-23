@@ -15,7 +15,7 @@ Raspberry Pi の準備（OS の書き込みから自動起動まで）は [`docs
 | `api_key.txt.example` | API キーを書くファイル `api_key.txt` の見本（`api_key.txt` は自分で作る。公開しない） |
 | `setup/setup_pi.sh` | Raspberry Pi の準備をまとめて行うスクリプト（ソフトのインストール、音声出力、自動起動、名前の変更など）。使い方は [`docs/SETUP_RASPBERRY_PI.md` の「13.」](../docs/SETUP_RASPBERRY_PI.md#13-準備をまとめて行うスクリプト) |
 | `setup/photonglass.service` | 電源を入れたら `main_async.py` を自動で動かす設定（`setup_pi.sh` が使う） |
-| `setup/photonglass-reset` | 書き換えて動かなくなったプログラムを、元の状態に戻すコマンド（`setup_pi.sh` が入れる） |
+| `setup/photonglass-reset` | 書き換えて動かなくなったプログラムを、元の状態に戻すコマンド（`setup_pi.sh` が入れる。手作業で入れる方法は [`docs/SETUP_RASPBERRY_PI.md` の「6.」](../docs/SETUP_RASPBERRY_PI.md#元のプログラムを保存し元に戻すコマンドを入れる)） |
 | `setup/add_wifi.sh` | Wi-Fi を登録するスクリプト（その場所にいなくても、先に登録しておける） |
 | `check_setup.sh` | 準備がどこまでできているかを確認するスクリプト（見るだけで、何も書き換えない） |
 

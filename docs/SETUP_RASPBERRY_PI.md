@@ -114,6 +114,27 @@ scp -r software/main_async.py software/main_seq.py software/sound software/test 
 ```
 プログラムを書き換えたときも、同じ `scp` のコマンドでコピーし直します。
 
+### 元のプログラムを保存し、元に戻すコマンドを入れる
+プログラムを書き換え始める前に、コピーしたばかりのプログラムを「元の状態」として保存し、元に戻すコマンド `photonglass-reset` を入れます。「[13. 準備をまとめて行うスクリプト](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` が行うのと同じ作業です。ここからは Raspberry Pi で（SSH でつないで）実行します。
+1. 保存先のフォルダを作る。
+   ```bash
+   sudo mkdir -p /opt/photonglass/original
+   ```
+2. プログラムと効果音を保存する。
+   ```bash
+   sudo cp -r ~/photonglass/main_async.py ~/photonglass/main_seq.py ~/photonglass/sound /opt/photonglass/original/
+   ```
+3. プログラムのフォルダの場所を書いておく（`photonglass-reset` が使います）。
+   ```bash
+   echo "$HOME/photonglass" | sudo tee /opt/photonglass/app_dir
+   ```
+4. `photonglass-reset` を入れる。
+   ```bash
+   sudo install -m 755 ~/photonglass/setup/photonglass-reset /usr/local/bin/photonglass-reset
+   ```
+
+書き換えて動かなくなったときは、`photonglass-reset` を実行すると、ここで保存した状態に戻ります。API キー（`api_key.txt`）はそのまま残り、書き換えた方は `~/photonglass/backup_日時/` に残ります。「10.」の自動起動を設定する前に使うと、最後の「動かし直し」でエラーが表示されますが、元に戻す作業は済んでいます。
+
 ## 7. API キーを用意する
 1. Google Cloud で API キーを作り、**Cloud Vision API** と **Cloud Text-to-Speech API** を有効にする。
    - キーには「使える API の制限」（この2つだけ）を付けておくと安全です。
@@ -233,7 +254,7 @@ sudo poweroff
 Raspberry Pi が止まるまで少し待ってから、バッテリーの電源ボタンを押して給電を止めます。いきなり給電を止めると、microSD カードが壊れることがあります。
 
 ## 13. 準備をまとめて行うスクリプト
-「3. 音声出力（DAC）を設定する」「4. 必要なソフトを入れる」「10. 電源を入れたら自動で動くようにする」を、`setup_pi.sh` でまとめて行えます。何度実行しても大丈夫です。
+「3. 音声出力（DAC）を設定する」「4. 必要なソフトを入れる」、「6.」の「[元のプログラムを保存し、元に戻すコマンドを入れる](#元のプログラムを保存し元に戻すコマンドを入れる)」、「10. 電源を入れたら自動で動くようにする」を、`setup_pi.sh` でまとめて行えます。何度実行しても大丈夫です。
 「6. プログラムを Raspberry Pi にコピーする」で `setup/` もコピーしてから、Raspberry Pi で実行します。
 ```bash
 sudo bash ~/photonglass/setup/setup_pi.sh photon01
