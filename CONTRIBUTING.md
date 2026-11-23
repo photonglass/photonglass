@@ -8,7 +8,7 @@ PHOTON GLASS への貢献を歓迎します。
 GitHub の Issues で受け付けています。
 https://github.com/photonglass/photonglass/issues
 
-Issue を作るときは、「不具合の報告」か「質問」のテンプレートを選んでください。
+Issue を作るときは、「不具合を報告する」か「質問する」のテンプレートを選んでください。
 
 ## 変更の提案（プルリクエスト）
 
