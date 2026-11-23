@@ -12,6 +12,8 @@
 | **Fusion**（旧 Eagle） | `eagle/*.sch` / `*.brd` | Fusion の「ファイル → 開く」で `.sch` を選ぶと、回路図と基板がセットで電子設計として開く |
 | Eagle 9.x | `eagle/*.sch` / `*.brd` | そのまま開く（Eagle は 2026年6月に販売とサポートが終了しているので、これから使うなら KiCad か Fusion） |
 
+Eagle・KiCad の部品ライブラリのうち、jst-xh（メイン基板の `5V`・`SPK` のコネクタ）は、yuhki50 氏の [eagle-pcb-library](https://github.com/yuhki50/eagle-pcb-library)（MIT ライセンス）に由来します。
+
 ## JLCPCB で作る
 各基板のフォルダに、発注に必要なファイル（ガーバー・BOM・CPL）がそろっています。
 発注の手順は **[`JLCPCB_ORDERING.md`](JLCPCB_ORDERING.md)** を見てください（基板製造の設定、部品実装の設定、部品の向きの確認、手はんだで付ける部品）。
