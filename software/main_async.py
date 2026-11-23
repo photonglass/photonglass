@@ -38,17 +38,18 @@ LED の色の意味
 
 動かし方
 --------
-このファイルと sound フォルダがある場所に移動してから実行します。
-    cd software          # リポジトリの場合
-    cd ~/photonglass     # docs/SETUP_RASPBERRY_PI.md の手順で Raspberry Pi にコピーした場合
-    python3 main_async.py
-（音声ファイルの場所を「今いるフォルダから数えて」指定しているため、別の場所から実行すると音が出ません）
+    python3 ~/photonglass/main_async.py
+（どのフォルダから実行しても動きます。音声ファイルや api_key.txt は、このファイルがあるフォルダから探します）
+電源を入れると自動で動く設定にしている場合は、先にそちらを止めてから実行します
+（同時に2つ動かすと、カメラが「使用中」になって動きません）。
+    sudo systemctl stop photonglass     … 自動で動いている方を止める
+    sudo systemctl start photonglass    … 試し終わったら、自動の方を動かし直す
 """
 
 ##### APIキーの設定 #####
 # Google Cloud で作った API キーは、プログラムには書きません。
 # このファイルと同じフォルダにある api_key.txt に、キーを1行で書きます（見本：api_key.txt.example）。
-# 起動したときに読み込み、ファイルがない・空のときは、エラーを知らせて終了します。
+# 起動したときに読み込み、ファイルがない・空のときは、エラーを知らせて止まります。
 # 注意：api_key.txt を GitHub などで公開しないでください。
 #       他人に使われて、利用料金が請求されることがあります。
 API_KEY_FILE = "api_key.txt"  # API キーを書くファイルの名前
@@ -63,18 +64,35 @@ import base64                     # 画像や音声を、通信で送れる文�
 import time                       # 経過時間を測るため
 import asyncio                    # 複数の処理を同時に進めるため（非同期処理）
 import httpx                      # インターネット経由で API と通信するため（非同期に対応）
-import os                         # ファイルの場所を調べるため（api_key.txt を探す）
-import sys                        # エラーのときにプログラムを終了するため
+import os                         # ファイルの場所を調べるため（api_key.txt や音声ファイルを探す）
 
-# 音声ファイルの場所（このプログラムを実行したフォルダから数えた場所）
-START_SOUND = "sound/start.wav"                  # 起動したとき
-TRIGGER_SOUND = "sound/trigger.wav"              # カメラボタンを押したとき（シャッター音）
-CONNECT_SOUND = "sound/connect.wav"              # 通信中（終わるまでくり返し流す）
-OK_SOUND = "sound/ok.wav"                        # 文字が読み取れて、これから読み上げるとき
-NO_SOUND = "sound/no.wav"                        # 写真に文字が見つからなかったとき
-FINISH_SOUND = "sound/finish.wav"                # 読み上げが終わったとき
-CAMERA_ERROR_SOUND = "sound/camera_error.wav"    # カメラのエラー
-NETWORK_ERROR_SOUND = "sound/network_error.wav"  # 通信のエラー（Wi-Fi が切れた、API キーが無効など）
+# このプログラムがあるフォルダ。音声ファイル・写真・読み上げ音声は、ここを基準にする
+# （どのフォルダから実行しても、自動起動でも、同じ場所を使うようにするため）
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# 音声ファイルの場所（このプログラムがあるフォルダの中の sound フォルダ）
+SOUND_DIR = os.path.join(BASE_DIR, "sound")
+START_SOUND = os.path.join(SOUND_DIR, "start.wav")                  # 起動したとき
+TRIGGER_SOUND = os.path.join(SOUND_DIR, "trigger.wav")              # カメラボタンを押したとき（シャッター音）
+CONNECT_SOUND = os.path.join(SOUND_DIR, "connect.wav")              # 通信中（終わるまでくり返し流す）
+OK_SOUND = os.path.join(SOUND_DIR, "ok.wav")                        # 文字が読み取れて、これから読み上げるとき
+NO_SOUND = os.path.join(SOUND_DIR, "no.wav")                        # 写真に文字が見つからなかったとき
+FINISH_SOUND = os.path.join(SOUND_DIR, "finish.wav")                # 読み上げが終わったとき
+CAMERA_ERROR_SOUND = os.path.join(SOUND_DIR, "camera_error.wav")    # カメラのエラー
+NETWORK_ERROR_SOUND = os.path.join(SOUND_DIR, "network_error.wav")  # 通信のエラー（Wi-Fi が切れた、API キーが無効など）
+
+IMAGE_FILE = os.path.join(BASE_DIR, "image.jpg")    # 撮った写真の保存先
+SPEECH_FILE = os.path.join(BASE_DIR, "speech.wav")  # 読み上げ音声の保存先
+
+# 音を出す先：スピーカー基板（hifiberry-dac）に直接送る。
+# デスクトップの音声設定（右上のアイコン）に関係なく、自動起動でも SSH から実行しても同じスピーカーから鳴る。
+# スピーカー基板が見つからないときは、Raspberry Pi の標準の出力を使う。
+try:
+    with open("/proc/asound/cards") as cards:
+        has_speaker = "sndrpihifiberry" in cards.read()
+except OSError:
+    has_speaker = False
+AUDIO_DEVICE = ["-D", "plughw:CARD=sndrpihifiberry"] if has_speaker else []
 
 # GPIO（ピン）の設定
 # 数字は GPIO の番号です（40ピンヘッダの「ピン番号」とは違うので注意）。
@@ -149,7 +167,7 @@ async def play_wav(path):
     戻り値に対して await proc.wait() を呼びます。
     """
     proc = await asyncio.create_subprocess_exec(
-        "aplay", "-q", path,          # -q：余計なメッセージを表示しない
+        "aplay", "-q", *AUDIO_DEVICE, path,  # -q：余計なメッセージを表示しない
         stdout=subprocess.DEVNULL,    # 画面への出力は捨てる
         stderr=subprocess.DEVNULL
     )
@@ -166,8 +184,7 @@ def load_api_key():
     ファイルの中の空白・改行は取り除きます。
     読み込めなかったとき（ファイルがない・中身が空）は、理由を表示して None を返します。
     """
-    folder = os.path.dirname(os.path.abspath(__file__))  # このプログラムのファイルがあるフォルダ
-    path = os.path.join(folder, API_KEY_FILE)
+    path = os.path.join(BASE_DIR, API_KEY_FILE)
 
     if not os.path.isfile(path):
         print(f"エラー：API キーのファイルが見つかりません（{path}）")
@@ -249,10 +266,8 @@ async def text_to_speech(text):
     """文字を Text-to-Speech API に送り、読み上げ音声のファイルを作る。
 
     text: 読み上げる文字
-    戻り値: 作った音声ファイルの場所（speech.wav）
+    戻り値: 作った音声ファイルの場所（SPEECH_FILE）
     """
-    SPEECH_SOUND = "speech.wav"
-
     url = "https://texttospeech.googleapis.com/v1/text:synthesize?key=" + api_key
     headers = {
         "Content-Type": "application/json"
@@ -282,10 +297,10 @@ async def text_to_speech(text):
     response_data = response.json()
     audio_content = response_data["audioContent"]
 
-    with open(SPEECH_SOUND, "wb") as audio_file:
+    with open(SPEECH_FILE, "wb") as audio_file:
         audio_file.write(base64.b64decode(audio_content))
 
-    return SPEECH_SOUND
+    return SPEECH_FILE
 
 
 ##### その他の関数 #####
@@ -297,7 +312,38 @@ async def cancel_task(task):
     """
     if task is not None and not task.done():
         task.cancel()
-        await task
+        try:
+            await task
+        except asyncio.CancelledError:
+            # まだ一度も動き出していないタスクを止めると、ここでエラーが届く。止まったので問題なし
+            pass
+
+
+async def take_photo(camera):
+    """写真を1枚撮る。カメラが止まって返事がないときは、エラー音を鳴らしてプログラムを終える。
+
+    カメラのケーブルがゆるい・電源が足りないなどで、カメラが途中で写真を送らなくなることがある。
+    そのまま待つとボタンに反応しなくなるので、5秒で見切りをつける。
+    終了すると自動起動（photonglass.service）がカメラを準備し直して、また使えるようになる。
+    """
+    try:
+        await asyncio.wait_for(asyncio.to_thread(camera.capture_file, IMAGE_FILE), timeout=5.0)
+    except Exception:
+        print("カメラから写真が届かない（ケーブルの差し込み・電源を確認）。起動し直します")
+        error_LED()
+        proc = await play_wav(CAMERA_ERROR_SOUND)
+        await proc.wait()
+        os._exit(1)  # 止まったカメラの処理が残っていても、確実に終了する
+
+
+async def wait_forever():
+    """何もせずに待ち続ける（エラーで止まったとき用）。
+
+    すぐ終了すると、自動起動（Restart=always）がすぐ起動し直して、エラー音が何度も鳴ってしまうため。
+    直したら、電源を入れ直すか sudo systemctl restart photonglass で起動し直す。
+    """
+    while True:
+        await asyncio.sleep(1)
 
 
 ##### 時間がかかる処理（タスク） #####
@@ -397,13 +443,13 @@ async def main():
     global api_key  # 関数の外の api_key に、読み込んだキーを入れるため
     print("起動！")
 
-    # API キーを読み込む。読み込めないとき（ファイルがない・空）は、エラーを知らせて終了する
+    # API キーを読み込む。読み込めないとき（ファイルがない・空）は、エラーを知らせて止まる
     api_key = load_api_key()
     if api_key is None:
         error_LED()
         proc = await play_wav(NETWORK_ERROR_SOUND)  # 通信のエラーの音（API キーが無効なときと同じ）
         await proc.wait()
-        sys.exit(1)
+        await wait_forever()
 
     # OS が落ち着くまで少し待った方がよいかもしれない
 
@@ -422,18 +468,17 @@ async def main():
         camera.configure(camera_config)
         camera.options["quality"] = 90   # JPEG の画質（0〜100）
         camera.start()
-        camera.capture_file("image.jpg")  # 試しに1枚撮って、カメラが使えるか確かめる
+        camera.capture_file(IMAGE_FILE)  # 試しに1枚撮って、カメラが使えるか確かめる
         print("カメラOK！")
 
     except Exception:
-        # カメラが見つからない（ケーブルの抜けなど）：エラーを知らせて終了する
+        # カメラが見つからない（ケーブルの抜けなど）：エラーを知らせて止まる
         print("カメラNG...")
         error_LED()
         await cancel_task(start_sound_task)
         proc = await play_wav(CAMERA_ERROR_SOUND)
         await proc.wait()
-
-        return
+        await wait_forever()
 
     ready_LED()
 
@@ -456,8 +501,8 @@ async def main():
         if camera_pressed and not camera_was_pressed:
             await cancel_task(start_sound_task)
             await cancel_task(curr_task)
-            camera.capture_file("image.jpg")  # 撮影
-            curr_task = asyncio.create_task(API_and_speech("image.jpg"))
+            await take_photo(camera)  # 撮影
+            curr_task = asyncio.create_task(API_and_speech(IMAGE_FILE))
 
         # サブボタンを押した瞬間：今の処理（読み上げなど）を止めて待機に戻る
         if sub_pressed and not sub_was_pressed:
