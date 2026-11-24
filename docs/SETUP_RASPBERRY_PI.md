@@ -108,14 +108,14 @@ scp -r software/main_async.py software/main_seq.py software/sound software/test 
 ├── main_seq.py       本体プログラム（流れの読みやすい版）
 ├── sound/            効果音
 ├── test/hw_test.py   動作テスト
-├── setup/            準備をまとめて行うスクリプト（「13.」で使う）
+├── setup/            準備をまとめて行うスクリプトと photonglass-reset（「6.」の最後と「13.」で使う）
 ├── check_setup.sh    準備ができているかを確認するスクリプト
 └── api_key.txt       Google Cloud の API キー
 ```
 プログラムを書き換えたときも、同じ `scp` のコマンドでコピーし直します。
 
 ### 元のプログラムを保存し、元に戻すコマンドを入れる
-プログラムを書き換え始める前に、コピーしたばかりのプログラムを「元の状態」として保存し、元に戻すコマンド `photonglass-reset` を入れます。「[13. 準備をまとめて行うスクリプト](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` が行うのと同じ作業です。ここからは Raspberry Pi で（SSH でつないで）実行します。
+プログラムを書き換え始める前に、コピーしたばかりのプログラムを「元の状態」として保存し、元に戻すコマンド `photonglass-reset` を入れます。「[13. 準備をまとめて行うスクリプト](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` が行うのと同じ作業です。次の1〜4は、Raspberry Pi で（SSH でつないで）実行します。
 1. 保存先のフォルダを作る。
    ```bash
    sudo mkdir -p /opt/photonglass/original

@@ -46,7 +46,7 @@ Copyright (C) 株式会社オトングラス
 | 対象 | 含まれるもの | ライセンス | 全文 |
 |---|---|---|---|
 | ソフトウェア | `software/` のプログラム（`main_async.py`・`main_seq.py`・`test/` など） | GNU General Public License v3.0（GPL-3.0-only） | [`LICENSE`](LICENSE) |
-| ハードウェア | `hardware/`（基板の KiCad・Eagle データ、BOM・CPL）、`enclosure/`（筐体の CadQuery スクリプトと設計データ）と、それらの生成物（ガーバー、STL・STEP・3MF）。**例外**：README・写真・画像と `hardware/JLCPCB_ORDERING.md` は除く（ドキュメント・写真・画像として CC BY-SA 4.0） | CERN Open Hardware Licence Version 2 - Strongly Reciprocal（CERN-OHL-S v2） | [`LICENSE-HARDWARE`](LICENSE-HARDWARE) |
+| ハードウェア | `hardware/`（基板の KiCad・Eagle データ、BOM・CPL、ガーバーを作るスクリプト `hardware/tools/gerbgen.py`）、`enclosure/`（筐体の CadQuery スクリプトと設計データ）と、それらの生成物（ガーバー、STL・STEP・3MF）。**例外**：README・写真・画像と `hardware/JLCPCB_ORDERING.md` は除く（ドキュメント・写真・画像として CC BY-SA 4.0） | CERN Open Hardware Licence Version 2 - Strongly Reciprocal（CERN-OHL-S v2） | [`LICENSE-HARDWARE`](LICENSE-HARDWARE) |
 | ドキュメント・写真・画像 | `docs/`、`CHARTER.md`、`CONTRIBUTING.md`、各フォルダの `README.md`、`hardware/JLCPCB_ORDERING.md`、Issue のテンプレート（`.github/ISSUE_TEMPLATE/`）、写真・画像（各フォルダの `images/` など） | クリエイティブ・コモンズ 表示-継承 4.0 国際（CC BY-SA 4.0） | 公式テキスト：[日本語](https://creativecommons.org/licenses/by-sa/4.0/legalcode.ja)・[English](https://creativecommons.org/licenses/by-sa/4.0/legalcode.en) |
 | サウンド | `software/sound/` の効果音 | CC BY-SA 4.0 | 同上 |
 
@@ -115,7 +115,7 @@ The documentation is written in Japanese.
 - `docs/` – build guide, Raspberry Pi setup guide and parts list
 - Licences (Copyright (C) OTON GLASS Inc.):
   - Software (the programs in `software/`, such as `main_async.py`, `main_seq.py` and the script in `test/`; not the sound effects in `software/sound/`, which are CC BY-SA 4.0): **GPL-3.0-only** (see `LICENSE`)
-  - Hardware (`hardware/`: board data in KiCad and Eagle formats, BOM/CPL; `enclosure/`: CadQuery scripts and design data for the enclosures, including the main body STEP files designed in Fusion; and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
+  - Hardware (`hardware/`: board data in KiCad and Eagle formats, BOM/CPL and the script that makes the Gerbers (`hardware/tools/gerbgen.py`); `enclosure/`: CadQuery scripts and design data for the enclosures, including the main body STEP files designed in Fusion; and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
   - Documentation (`docs/`, `CHARTER.md`, `CONTRIBUTING.md`, READMEs, `hardware/JLCPCB_ORDERING.md`, issue templates in `.github/ISSUE_TEMPLATE/`), photos and images, and sounds (`software/sound/`): **CC BY-SA 4.0** (https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)
   - For uses outside these licences, such as embedding in a closed product, a commercial licence is available: https://note.com/keisukeshimakage/n/nef3c9957ae25
 - Charter (in Japanese): `CHARTER.md` – principles and use, the PHOTON GLASS name, and patents
