@@ -35,6 +35,17 @@ A=/etc/avahi/avahi-daemon.conf
 grep -q '^use-ipv6=no' "$A" 2>/dev/null && grep -q '^allow-interfaces=wlan0' "$A" 2>/dev/null \
   && ok "名前（$(hostname).local）が番号付きにならない設定" \
   || ng "avahi の設定がない（名前が $(hostname)-2.local のようになることがある。setup/setup_pi.sh で直る）"
+systemctl is-enabled photonglass-fixname >/dev/null 2>&1 && ok "名前に番号が付いたら自動で戻す設定（photonglass-fixname）" \
+  || ng "名前を自動で戻す設定がない（setup/setup_pi.sh で入る）"
+ip4=$(ip -4 -o addr show wlan0 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -1)
+now=$([ -n "$ip4" ] && avahi-resolve -a "$ip4" 2>/dev/null | awk '{print $2}')
+if [ -z "$now" ]; then
+  info "今の名前（.local）を確かめられなかった（avahi-utils がない、または起動した直後）"
+elif [ "$now" = "$(hostname).local" ]; then
+  ok "今の名前は $now"
+else
+  ng "今の名前が $now になっている（起動した直後なら1分ほど待って、もう一度確かめる）"
+fi
 
 echo "== 2. SSH =="
 systemctl is-enabled ssh >/dev/null 2>&1 && ok "SSH が有効" || ng "SSH が無効"

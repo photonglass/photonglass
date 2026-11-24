@@ -14,6 +14,7 @@
 #      Wi-Fi の省電力をオフ・登録済みの Wi-Fi に自動でつなぐ（SSH が遅い・つながらないのを防ぐ）
 #      デスクトップ画面を起動しない（Pi Zero 2 W はメモリが 512 MB しかないため）
 #      名前（ホスト名.local）が「photon01-2.local」のように番号付きにならないようにする（avahi の設定）
+#      それでも番号付きになったら自動で元に戻す（photonglass-fixname.service）
 #   3. Pi の名前を変える（引数を付けたとき）
 #   4. 電源を入れたら main_async.py が自動で動く設定（photonglass.service）
 #   5. 今のプログラムを /opt/photonglass/original に保存し、元に戻すコマンド photonglass-reset を入れる
@@ -34,7 +35,7 @@ echo "== 1. ソフトを入れる =="
 dpkg --configure -a
 apt-get update -q
 apt-get install -y -q -f
-apt-get install -y -q python3-gpiozero python3-picamera2 python3-httpx python3-requests alsa-utils
+apt-get install -y -q python3-gpiozero python3-picamera2 python3-httpx python3-requests alsa-utils avahi-utils
 
 echo "== 2. スピーカー基板の設定 =="
 cp -n "$CFG" "$CFG.orig" || true               # 最初の1回だけ、元の config.txt を残す
@@ -66,6 +67,12 @@ if [ -f "$AVAHI" ]; then
   sed -i -e 's/^#*use-ipv6=.*/use-ipv6=no/' -e 's/^#*allow-interfaces=.*/allow-interfaces=wlan0/' "$AVAHI"
   grep -E '^(use-ipv6|allow-interfaces)=' "$AVAHI"
 fi
+# それでも、Wi-Fi ルーターが通知を送り返すと番号付きになることがある（何台も同時に起動したときなど）。
+# 起動後に名前を確かめて、番号付きなら元に戻すサービスを入れる
+install -m 755 "$HERE/photonglass-fixname" /usr/local/bin/photonglass-fixname
+install -m 644 "$HERE/photonglass-fixname.service" /etc/systemd/system/photonglass-fixname.service
+systemctl daemon-reload
+systemctl enable photonglass-fixname.service
 
 if [ -n "$NAME" ]; then
   echo "== 3. 名前を $NAME にする（再起動後に $NAME.local でつながる） =="
