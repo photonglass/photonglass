@@ -49,6 +49,25 @@ Imager の画面や項目の名前は、版によって少し違います。
 この後のコマンドは、SSH でつないだ PC のターミナルからでも、Raspberry Pi のデスクトップのターミナルからでも実行できます。
 SSH でつながれば、モニター・キーボード・マウスは外して構いません（このあとの手順は、すべて SSH から行えます）。
 
+### SSH を安定させる設定
+SSH の反応が遅くなったり、`raspberrypi.local` の名前でつながらなくなったりするのを防ぐ設定です。「[13.](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` が行うのと同じ設定です。
+1. Wi-Fi の省電力をオフにする。
+   ```bash
+   sudo mkdir -p /etc/NetworkManager/conf.d
+   ```
+   ```bash
+   printf '[connection]\n# 2 = Wi-Fi power saving off\nwifi.powersave = 2\n' | sudo tee /etc/NetworkManager/conf.d/99-photonglass-wifi-powersave.conf > /dev/null
+   ```
+   ```bash
+   sudo iw dev wlan0 set power_save off
+   ```
+2. 名前が `raspberrypi-2.local` のような番号付きにならないように、名前を Wi-Fi の IPv4 だけで知らせる設定にする（avahi の設定）。
+   ```bash
+   sudo sed -i -e "s/^#*use-ipv6=.*/use-ipv6=no/" -e "s/^#*allow-interfaces=.*/allow-interfaces=wlan0/" /etc/avahi/avahi-daemon.conf
+   ```
+
+1 の最後のコマンドで、省電力はすぐにオフになります。ほかの設定は、「3.」の最後の再起動から反映されます。
+
 ## 3. 音声出力（DAC）を設定する
 メイン基板の音声出力（DAC）を、Raspberry Pi で使えるようにします。
 1. 設定ファイルを開く。
@@ -247,8 +266,8 @@ python3 ~/photonglass/main_async.py
 | カメラのエラーの音が鳴る | FFC ケーブルの向き・差し込み、HDMI ケーブル、カメラ基板（「[8. 動作テストをする](#8-動作テストをする)」のカメラのテスト） |
 | スピーカーから音が出ない | `aplay -l` に hifiberry が出るか、ボリューム（VR1）、ヘッドホンが挿さっていないか |
 | カメラのエラーの音が鳴ったあと、少しして起動音が鳴る | 使っている途中でカメラから写真が届かなくなったので、プログラムが起動し直した。FFC ケーブルのゆるみ（電源を切ってから挿し直す）か、電源の不足 |
-| SSH の反応が遅い・ときどきつながらなくなる | Wi-Fi の省電力が効いている。「[13.](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` でオフになる |
-| `ホスト名.local` ではつながらず、`ホスト名-2.local` などの番号付きの名前になっている | 名前がぶつかったと判断されている。「[14. 何台も用意するとき](#14-何台も用意するとき)」の avahi の設定を行う |
+| SSH の反応が遅い・ときどきつながらなくなる | Wi-Fi の省電力が効いている。「2.」の「[SSH を安定させる設定](#ssh-を安定させる設定)」か、「[13.](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` でオフになる |
+| `ホスト名.local` ではつながらず、`ホスト名-2.local` などの番号付きの名前になっている | 名前がぶつかったと判断されている。「2.」の「[SSH を安定させる設定](#ssh-を安定させる設定)」の avahi の設定を行う（くわしくは「[14. 何台も用意するとき](#14-何台も用意するとき)」） |
 | 自動で動いているプログラムのメッセージを見たい | `journalctl -u photonglass -n 30` で、最近のメッセージを見られる。`sudo systemctl stop photonglass` で止めてから `python3 ~/photonglass/main_async.py` で動かすと、ターミナルに表示される |
 
 ## 12. 電源を切る
@@ -258,7 +277,7 @@ sudo poweroff
 Raspberry Pi が止まるまで少し待ってから、バッテリーの電源ボタンを押して給電を止めます。いきなり給電を止めると、microSD カードが壊れることがあります。
 
 ## 13. 準備をまとめて行うスクリプト
-「3. 音声出力（DAC）を設定する」「4. 必要なソフトを入れる」、「6.」の「[元のプログラムを保存し、元に戻すコマンドを入れる](#元のプログラムを保存し元に戻すコマンドを入れる)」、「10. 電源を入れたら自動で動くようにする」を、`setup_pi.sh` でまとめて行えます。何度実行しても大丈夫です。
+「2.」の「[SSH を安定させる設定](#ssh-を安定させる設定)」、「3. 音声出力（DAC）を設定する」「4. 必要なソフトを入れる」、「6.」の「[元のプログラムを保存し、元に戻すコマンドを入れる](#元のプログラムを保存し元に戻すコマンドを入れる)」、「10. 電源を入れたら自動で動くようにする」を、`setup_pi.sh` でまとめて行えます。何度実行しても大丈夫です。
 「6. プログラムを Raspberry Pi にコピーする」で `setup/` もコピーしてから、Raspberry Pi で実行します。
 ```bash
 sudo bash ~/photonglass/setup/setup_pi.sh photon01
@@ -288,7 +307,7 @@ sudo bash ~/photonglass/setup/add_wifi.sh "Wi-Fiの名前" 20
 ## 14. 何台も用意するとき
 1台目を完成させてから、その microSD カードを複製すると、残りを早く用意できます。
 - **名前を1台ずつ変える。** 複製したカードは、どれも1台目と同じ名前で起動します。1台ずつ起動して、`sudo raspi-config nonint do_hostname photon02` のように名前を変え、再起動します（同じ名前の Raspberry Pi を同時に起動すると、どれにつながるかわからなくなります）。
-- **名前が番号付きになるとき。** `photon02.local` が見つからず、`photon02-2.local` のような名前になることがあります。Raspberry Pi が自分の名前を複数の口（IPv4 と IPv6 など）で知らせて、自分どうしで「名前がぶつかった」と判断するためです。`setup_pi.sh` を実行していれば起きません。手で直すときは、次を実行してから再起動します。
+- **名前が番号付きになるとき。** `photon02.local` が見つからず、`photon02-2.local` のような名前になることがあります。Raspberry Pi が自分の名前を複数の口（IPv4 と IPv6 など）で知らせて、自分どうしで「名前がぶつかった」と判断するためです。「2.」の「[SSH を安定させる設定](#ssh-を安定させる設定)」か `setup_pi.sh` を済ませていれば起きません。まだ設定していないときは、次を実行してから再起動します。
   ```bash
   sudo sed -i -e "s/^#*use-ipv6=.*/use-ipv6=no/" -e "s/^#*allow-interfaces=.*/allow-interfaces=wlan0/" /etc/avahi/avahi-daemon.conf
   ```
