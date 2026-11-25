@@ -16,7 +16,7 @@ PHOTON GLASS は、文字を読み上げるメガネOTON GLASS ver5 を元にし
 | [`hardware/`](hardware/README.md) | 基板2枚の概要、ファイルの開き方、元設計からの変更 | — |
 | [`hardware/main-board/`](hardware/main-board) | メイン基板（Raspberry Pi Zero 2 W に載る音声・ボタン基板） | KiCad 9 以降 / Fusion（Eagle形式） |
 | [`hardware/camera-board/`](hardware/camera-board) | カメラ基板（HDMIケーブルでメイン基板とつながる） | KiCad 9 以降 / Fusion（Eagle形式） |
-| [`enclosure/main-body/`](enclosure/main-body) | 本体の筐体（ボディ前面・背面・側面、メインボタン、サブボタン） | STEP（Fusion・FreeCAD など）/ STL・3MF（スライサー） |
+| [`enclosure/main-body/`](enclosure/main-body) | 本体の筐体（ボディ前面・背面・側面、メインボタン、サブボタン、状態ランプのレンズ） | F3D（Fusion）/ STEP（FreeCAD など）/ STL・3MF（スライサー） |
 | [`enclosure/camera-unit/`](enclosure/camera-unit) | カメラユニットの筐体・メガネ用アタッチメント | STEP（Fusion・FreeCAD など）/ STL・3MF（スライサー）/ Python（CadQuery） |
 | [`enclosure/usb-power-cable/`](enclosure/usb-power-cable) | モバイルバッテリーからメイン基板へ給電するケーブルの作り方（配線・部品）と、USB プラグのカバー | STEP / STL / Python（CadQuery） |
 | [`software/`](software) | 本体プログラムと効果音。普段使うのは `main_async.py`、仕組みを学ぶなら流れの読みやすい `main_seq.py`（違いは [`software/README.md`](software/README.md)） | Python 3（Raspberry Pi） |
@@ -28,7 +28,7 @@ PHOTON GLASS は、文字を読み上げるメガネOTON GLASS ver5 を元にし
 - **基板を作る**：[`hardware/JLCPCB_ORDERING.md`](hardware/JLCPCB_ORDERING.md) の手順で、JLCPCB に部品実装まで発注できます（ガーバー・部品表・部品配置ファイル付き）。
 - **筐体を印刷する**：本体は [`enclosure/main-body/README.md`](enclosure/main-body/README.md)、カメラユニットは [`enclosure/camera-unit/README.md`](enclosure/camera-unit/README.md) に、印刷設定（Bambu Lab A1 / PETG）と組み立て手順があります。
 - **Raspberry Pi を準備する**：[`docs/SETUP_RASPBERRY_PI.md`](docs/SETUP_RASPBERRY_PI.md) に、OS の書き込みから動作テスト、自動起動までの手順があります。
-- **設計を変える**：基板は KiCad か Fusion で、筐体は STEP を CAD に読み込んで編集します（カメラユニットと電源ケーブルのカバーは、`src/` の Python スクリプトの数値を変えて作り直すこともできます）。
+- **設計を変える**：基板は KiCad か Fusion で、筐体は STEP を CAD に読み込んで編集します（本体は Fusion の元データ `.f3d` もあります。カメラユニットと電源ケーブルのカバーは、`src/` の Python スクリプトの数値を変えて作り直すこともできます）。
 
 ## 質問・不具合の報告
 
@@ -46,7 +46,7 @@ Copyright (C) 株式会社オトングラス
 | 対象 | 含まれるもの | ライセンス | 全文 |
 |---|---|---|---|
 | ソフトウェア | `software/` のプログラム（`main_async.py`・`main_seq.py`・`test/` など） | GNU General Public License v3.0（GPL-3.0-only） | [`LICENSE`](LICENSE) |
-| ハードウェア | `hardware/`（基板の KiCad・Eagle データ、BOM・CPL、ガーバーを作るスクリプト `hardware/tools/gerbgen.py`）、`enclosure/`（筐体の CadQuery スクリプトと設計データ）と、それらの生成物（ガーバー、STL・STEP・3MF）。**例外**：README・写真・画像と `hardware/JLCPCB_ORDERING.md` は除く（ドキュメント・写真・画像として CC BY-SA 4.0） | CERN Open Hardware Licence Version 2 - Strongly Reciprocal（CERN-OHL-S v2） | [`LICENSE-HARDWARE`](LICENSE-HARDWARE) |
+| ハードウェア | `hardware/`（基板の KiCad・Eagle データ、BOM・CPL、ガーバーを作るスクリプト `hardware/tools/gerbgen.py`）、`enclosure/`（筐体の CadQuery スクリプトと設計データ。本体の Fusion の元データ `.f3d` を含む）と、それらの生成物（ガーバー、STL・STEP・3MF）。**例外**：README・写真・画像と `hardware/JLCPCB_ORDERING.md` は除く（ドキュメント・写真・画像として CC BY-SA 4.0） | CERN Open Hardware Licence Version 2 - Strongly Reciprocal（CERN-OHL-S v2） | [`LICENSE-HARDWARE`](LICENSE-HARDWARE) |
 | ドキュメント・写真・画像 | `docs/`、`CHARTER.md`、`CONTRIBUTING.md`、各フォルダの `README.md`、`hardware/JLCPCB_ORDERING.md`、Issue のテンプレート（`.github/ISSUE_TEMPLATE/`）、写真・画像（各フォルダの `images/` など） | クリエイティブ・コモンズ 表示-継承 4.0 国際（CC BY-SA 4.0） | 公式テキスト：[日本語](https://creativecommons.org/licenses/by-sa/4.0/legalcode.ja)・[English](https://creativecommons.org/licenses/by-sa/4.0/legalcode.en) |
 | サウンド | `software/sound/` の効果音 | CC BY-SA 4.0 | 同上 |
 
@@ -108,14 +108,14 @@ PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, glasses 
 The program published here is one sample implementation of PHOTON GLASS. It reads aloud text captured by the first-person camera (it recognises the text in the image and speaks it).
 The documentation is written in Japanese.
 - `hardware/` – main board and camera board (KiCad 9 or later and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
-- `enclosure/main-body/` – FDM-printable main body enclosure (front, back and side of the body, main button and sub button): STEP designed in Fusion, print-ready STL/3MF, print settings
+- `enclosure/main-body/` – FDM-printable main body enclosure (front, back and side of the body, main button, sub button and a clear status-lamp lens): the Fusion source (.f3d) and STEP exported from it, print-ready STL/3MF, print settings
 - `enclosure/camera-unit/` – FDM-printable camera enclosure: STEP, print-ready STL/3MF, parametric CadQuery source, print settings
 - `enclosure/usb-power-cable/` – power cable from a mobile battery to the main board: wiring, parts and a 3D-printable cover for the USB plug
 - `software/` – Python programs for the Raspberry Pi Zero 2 W (press the camera button to take a photo, recognise its text with Google Cloud Vision and read it aloud with Google Cloud Text-to-Speech), sound effects and a hardware test script
 - `docs/` – build guide, Raspberry Pi setup guide and parts list
 - Licences (Copyright (C) OTON GLASS Inc.):
   - Software (the programs in `software/`, such as `main_async.py`, `main_seq.py` and the script in `test/`; not the sound effects in `software/sound/`, which are CC BY-SA 4.0): **GPL-3.0-only** (see `LICENSE`)
-  - Hardware (`hardware/`: board data in KiCad and Eagle formats, BOM/CPL and the script that makes the Gerbers (`hardware/tools/gerbgen.py`); `enclosure/`: CadQuery scripts and design data for the enclosures, including the main body STEP files designed in Fusion; and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
+  - Hardware (`hardware/`: board data in KiCad and Eagle formats, BOM/CPL and the script that makes the Gerbers (`hardware/tools/gerbgen.py`); `enclosure/`: CadQuery scripts and design data for the enclosures, including the Fusion source (.f3d) and STEP files of the main body; and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
   - Documentation (`docs/`, `CHARTER.md`, `CONTRIBUTING.md`, READMEs, `hardware/JLCPCB_ORDERING.md`, issue templates in `.github/ISSUE_TEMPLATE/`), photos and images, and sounds (`software/sound/`): **CC BY-SA 4.0** (https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)
   - For uses outside these licences, such as embedding in a closed product, a commercial licence is available: https://note.com/keisukeshimakage/n/nef3c9957ae25
 - Charter (in Japanese): `CHARTER.md` – principles and use, the PHOTON GLASS name, and patents
