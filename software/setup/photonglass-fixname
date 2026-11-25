@@ -1,0 +1,43 @@
+#!/bin/bash
+# SPDX-License-Identifier: GPL-3.0-only
+# Copyright (C) OTON GLASS Inc.
+# PHOTON GLASS: 名前（ホスト名.local）に番号が付いていたら、元の名前に戻す
+#
+# setup_pi.sh が /usr/local/bin/photonglass-fixname に入れ、photonglass-fixname.service で起動時から動かします。
+# Wi-Fi ルーターによっては、Raspberry Pi が「この名前を使います」と知らせた通知をそのまま送り返すことがあり、
+# avahi（名前を知らせる仕組み）が「名前がぶつかった」と判断して photon01-2.local のように番号を付けてしまう。
+# 何台も同時に電源を入れたときに起きやすい。avahi にはこの動きを止める設定がないので、
+# 起動して落ち着いてから名前を確かめ、番号付きになっていれば元の名前で知らせ直す（その後も1分ごとに確かめる）。
+#
+# 様子を見る:  journalctl -u photonglass-fixname
+FIRST_WAIT=20    # 起動してから最初に確かめるまでの秒数（起動直後の騒がしさがおさまるのを待つ）
+INTERVAL=60      # ふだん確かめる間隔（秒）
+RETRY_WAIT=15    # 知らせ直したあと、もう一度確かめるまでの秒数
+MAX_RETRY=5      # 続けて知らせ直す回数の上限（本当に同じ名前の機器があるときに、何度も繰り返さないため）
+GIVEUP_WAIT=600  # 上限まで戻せなかったとき、次に試すまでの秒数
+
+sleep "$FIRST_WAIT"
+tries=0
+while true; do
+  want="$(hostname).local"
+  ip=$(ip -4 -o addr show wlan0 2>/dev/null | awk '{print $4}' | cut -d/ -f1 | head -1)
+  now=""
+  [ -n "$ip" ] && now=$(avahi-resolve -a "$ip" 2>/dev/null | awk '{print $2}')
+  if [ -n "$now" ] && [ "$now" != "$want" ] && [ "$tries" -lt "$MAX_RETRY" ]; then
+    tries=$((tries + 1))
+    echo "名前が $now になっていたので、$want に戻します（$tries 回目）"
+    avahi-set-host-name "$(hostname)" || echo "戻せませんでした"
+    sleep "$RETRY_WAIT"
+    continue
+  fi
+  if [ -n "$now" ] && [ "$now" = "$want" ]; then
+    [ "$tries" -gt 0 ] && echo "$want に戻りました"
+    tries=0
+  elif [ -n "$now" ] && [ "$tries" -ge "$MAX_RETRY" ]; then
+    echo "$MAX_RETRY 回続けて戻せませんでした。同じ名前の機器がほかにないか確かめてください（$((GIVEUP_WAIT / 60)) 分後に、もう一度試します）"
+    tries=0
+    sleep "$GIVEUP_WAIT"
+    continue
+  fi
+  sleep "$INTERVAL"
+done

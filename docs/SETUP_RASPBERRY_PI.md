@@ -127,7 +127,7 @@ scp -r software/main_async.py software/main_seq.py software/sound software/test 
 ├── main_seq.py       本体プログラム（流れの読みやすい版）
 ├── sound/            効果音
 ├── test/hw_test.py   動作テスト
-├── setup/            準備をまとめて行うスクリプトと photonglass-reset（「6.」の最後と「13.」で使う）
+├── setup/            準備をまとめて行うスクリプト、photonglass-reset、photonglass-fixname（「6.」の最後・「13.」・「14.」で使う）
 ├── check_setup.sh    準備ができているかを確認するスクリプト
 └── api_key.txt       Google Cloud の API キー
 ```
@@ -267,7 +267,7 @@ python3 ~/photonglass/main_async.py
 | スピーカーから音が出ない | `aplay -l` に hifiberry が出るか、ボリューム（VR1）、ヘッドホンが挿さっていないか |
 | カメラのエラーの音が鳴ったあと、少しして起動音が鳴る | 使っている途中でカメラから写真が届かなくなったので、プログラムが起動し直した。FFC ケーブルのゆるみ（電源を切ってから挿し直す）か、電源の不足 |
 | SSH の反応が遅い・ときどきつながらなくなる | Wi-Fi の省電力が効いている。「2.」の「[SSH を安定させる設定](#ssh-を安定させる設定)」か、「[13.](#13-準備をまとめて行うスクリプト)」の `setup_pi.sh` でオフになる |
-| `ホスト名.local` ではつながらず、`ホスト名-2.local` などの番号付きの名前になっている | 名前がぶつかったと判断されている。「2.」の「[SSH を安定させる設定](#ssh-を安定させる設定)」の avahi の設定を行う（くわしくは「[14. 何台も用意するとき](#14-何台も用意するとき)」） |
+| `ホスト名.local` ではつながらず、`ホスト名-2.local` などの番号付きの名前になっている | 名前がぶつかったと判断されている。電源を入れてから1分ほど待つ（`photonglass-fixname` を入れていれば元に戻る）。直らないときは「2.」の「[SSH を安定させる設定](#ssh-を安定させる設定)」の avahi の設定を行う（くわしくは「[14. 何台も用意するとき](#14-何台も用意するとき)」） |
 | 自動で動いているプログラムのメッセージを見たい | `journalctl -u photonglass -n 30` で、最近のメッセージを見られる。`sudo systemctl stop photonglass` で止めてから `python3 ~/photonglass/main_async.py` で動かすと、ターミナルに表示される |
 
 ## 12. 電源を切る
@@ -289,7 +289,7 @@ sudo bash ~/photonglass/setup/setup_pi.sh photon01
 - `config.txt` に `dtoverlay=hifiberry-dac` を足し、HDMI の音声をオフにする
 - Wi-Fi の省電力をオフにする（SSH が遅くなる・つながらなくなるのを防ぐ）、登録済みの Wi-Fi に自動でつなぐ
 - デスクトップ画面を起動しない（Raspberry Pi Zero 2 W はメモリが少ないため。SSH での操作には影響しない）
-- 名前が番号付き（例 `photon01-2.local`）にならないようにする（「[14.](#14-何台も用意するとき)」）
+- 名前が番号付き（例 `photon01-2.local`）にならないようにする。それでも番号付きになったら、自動で元に戻す（`photonglass-fixname`。「[14.](#14-何台も用意するとき)」）
 - 名前を変える（引数を付けたとき）
 - 電源を入れたら `main_async.py` が自動で動く設定（`photonglass.service`）
 - 今のプログラムを「元の状態」として保存し、元に戻すコマンド `photonglass-reset` を入れる。書き換えて動かなくなったら `photonglass-reset` で戻せます（書き換えた方は `~/photonglass/backup_日時/` に残ります）
@@ -307,10 +307,24 @@ sudo bash ~/photonglass/setup/add_wifi.sh "Wi-Fiの名前" 20
 ## 14. 何台も用意するとき
 1台目を完成させてから、その microSD カードを複製すると、残りを早く用意できます。
 - **名前を1台ずつ変える。** 複製したカードは、どれも1台目と同じ名前で起動します。1台ずつ起動して、`sudo raspi-config nonint do_hostname photon02` のように名前を変え、再起動します（同じ名前の Raspberry Pi を同時に起動すると、どれにつながるかわからなくなります）。
-- **名前が番号付きになるとき。** `photon02.local` が見つからず、`photon02-2.local` のような名前になることがあります。Raspberry Pi が自分の名前を複数の口（IPv4 と IPv6 など）で知らせて、自分どうしで「名前がぶつかった」と判断するためです。「2.」の「[SSH を安定させる設定](#ssh-を安定させる設定)」か `setup_pi.sh` を済ませていれば起きません。まだ設定していないときは、次を実行してから再起動します。
-  ```bash
-  sudo sed -i -e "s/^#*use-ipv6=.*/use-ipv6=no/" -e "s/^#*allow-interfaces=.*/allow-interfaces=wlan0/" /etc/avahi/avahi-daemon.conf
-  ```
+- **名前が番号付きになるとき。** `photon02.local` が見つからず、`photon02-2.local` のような名前になることがあります。原因は2つあります。
+  - Raspberry Pi が自分の名前を複数の口（IPv4 と IPv6 など）で知らせて、自分どうしで「名前がぶつかった」と判断する。「2.」の「[SSH を安定させる設定](#ssh-を安定させる設定)」か `setup_pi.sh` の avahi の設定で防げます。まだ設定していないときは、次を実行してから再起動します。
+    ```bash
+    sudo sed -i -e "s/^#*use-ipv6=.*/use-ipv6=no/" -e "s/^#*allow-interfaces=.*/allow-interfaces=wlan0/" /etc/avahi/avahi-daemon.conf
+    ```
+  - Wi-Fi ルーターが、Raspberry Pi の「この名前を使います」という通知をそのまま送り返し、それを「ほかの機器の返事」と取り違える。何台も同時に電源を入れたときに起きやすく、avahi の設定では防げません。`setup_pi.sh` が入れる `photonglass-fixname` が、起動して20秒ほどたってから名前を確かめ、番号付きなら元の名前に戻します（その後も1分ごとに確かめます）。電源を入れてから1分ほど待てば、`photon02.local` でつながります。何をしたかは `journalctl -u photonglass-fixname` で見られます。`setup_pi.sh` を使わずに入れるときは、`setup/` をコピーしたあと次を実行します。
+    ```bash
+    sudo apt install -y avahi-utils
+    ```
+    ```bash
+    sudo install -m 755 ~/photonglass/setup/photonglass-fixname /usr/local/bin/photonglass-fixname
+    ```
+    ```bash
+    sudo install -m 644 ~/photonglass/setup/photonglass-fixname.service /etc/systemd/system/photonglass-fixname.service
+    ```
+    ```bash
+    sudo systemctl daemon-reload && sudo systemctl enable --now photonglass-fixname
+    ```
   名前で見つからないときは、Wi-Fi ルーターの管理画面などで IP アドレスを調べ、`ssh photonglass@192.168.x.x` のように IP アドレスでつなぎます。
 - **SSH の警告。** 名前を変えたり、カードを書き直したりすると、PC で `REMOTE HOST IDENTIFICATION HAS CHANGED` と出ることがあります。`ssh-keygen -R photon02.local` を実行してから、つなぎ直します。
 - **API キーと Wi-Fi のパスワード。** 複製したカードには、`api_key.txt` と Wi-Fi のパスワードも入っています。カードやイメージファイルを人に渡したり、公開したりしないでください。
