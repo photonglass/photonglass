@@ -206,9 +206,9 @@
 <wire x1="-39" y1="6.8" x2="39" y2="6.8" width="0" layer="21"/>
 <wire x1="-32.5" y1="30" x2="25.5" y2="30" width="0.1524" layer="21"/>
 <text x="-37.9" y="25.9" size="1" layer="25">LED1</text>
-<text x="-30" y="2" size="1" layer="21">PHOTON GLASS
+<text x="-30" y="2" size="1" layer="21" ratio="16">PHOTON GLASS
 2026 / PB-4</text>
-<text x="-30" y="5.25" size="0.9" layer="21" ratio="12">github.com/photonglass/photonglass
+<text x="-30" y="5.25" size="1" layer="21" ratio="16">github.com/photonglass/photonglass
 CERN-OHL-S v2</text>
 </plain>
 <libraries>
