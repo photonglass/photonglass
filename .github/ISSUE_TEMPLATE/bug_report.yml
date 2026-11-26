@@ -1,48 +1,48 @@
-name: 不具合を報告する
-description: 動作しない、エラーが出るなどの報告
+name: 不具合を報告する / Report a bug
+description: 動作しない、エラーが出るなどの報告 / Report something that does not work, an error, etc.
 title: "[不具合] "
 labels: ["bug"]
 body:
   - type: dropdown
     id: target
     attributes:
-      label: 対象
+      label: 対象 / Area
       options:
-        - ソフトウェア
-        - ハードウェア（基板・筐体）
-        - ドキュメント
+        - ソフトウェア / Software
+        - ハードウェア（基板・筐体） / Hardware (boards, enclosures)
+        - ドキュメント / Documentation
     validations:
       required: true
   - type: input
     id: version
     attributes:
-      label: 基板・データの版
-      description: 基板のリビジョンや、使ったリリースのタグ（例：v1.0.0）が分かれば書いてください
-      placeholder: 例：v1.0.0
+      label: 基板・データの版 / Board or data version
+      description: 基板のリビジョンや、使ったリリースのタグ（例：v1.0.0）が分かれば書いてください / If you know the board revision or the tag of the release you used (e.g. v1.0.0), please enter it
+      placeholder: 例：v1.0.0 / e.g. v1.0.0
   - type: input
     id: os
     attributes:
-      label: Raspberry Pi OS のバージョン
-      description: ソフトウェアの不具合の場合に書いてください
+      label: Raspberry Pi OS のバージョン / Raspberry Pi OS version
+      description: ソフトウェアの不具合の場合に書いてください / Please fill this in for software bugs
   - type: textarea
     id: hw_test
     attributes:
-      label: hw_test.py の結果
-      description: hw_test.py を実行した結果を貼ってください（未実施なら「未実施」と書いてください）
+      label: hw_test.py の結果 / Result of hw_test.py
+      description: hw_test.py を実行した結果を貼ってください（未実施なら「未実施」と書いてください） / Paste the output of hw_test.py (if you have not run it, write "not run")
   - type: textarea
     id: symptom
     attributes:
-      label: 症状
-      description: 何が起きたかを書いてください
+      label: 症状 / Symptoms
+      description: 何が起きたかを書いてください / Describe what happened
     validations:
       required: true
   - type: textarea
     id: steps
     attributes:
-      label: 再現の手順
-      description: もう一度起こすための手順を、順番に書いてください
+      label: 再現の手順 / Steps to reproduce
+      description: もう一度起こすための手順を、順番に書いてください / List, in order, the steps that make it happen again
   - type: textarea
     id: expected
     attributes:
-      label: 本来の動作
-      description: 本来どう動くはずだったかを書いてください
+      label: 本来の動作 / Expected behaviour
+      description: 本来どう動くはずだったかを書いてください / Describe how it should have worked

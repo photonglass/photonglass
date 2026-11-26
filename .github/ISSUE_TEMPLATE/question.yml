@@ -1,16 +1,16 @@
-name: 質問する
-description: 使い方や仕様についての質問
+name: 質問する / Ask a question
+description: 使い方や仕様についての質問 / Questions about how to use it or its specifications
 title: "[質問] "
 labels: ["question"]
 body:
   - type: textarea
     id: question
     attributes:
-      label: 質問の内容
+      label: 質問の内容 / Your question
     validations:
       required: true
   - type: textarea
     id: tried
     attributes:
-      label: 調べたこと・試したこと
-      description: README やドキュメントで調べたこと、試したことがあれば書いてください
+      label: 調べたこと・試したこと / What you have looked up or tried
+      description: README やドキュメントで調べたこと、試したことがあれば書いてください / If you have looked anything up in the README or other documentation, or tried anything, please describe it
