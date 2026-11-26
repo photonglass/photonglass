@@ -1,11 +1,11 @@
+日本語 | [English](README.en.md)
+
 # PHOTON GLASS
 
 一人称のカメラで捉えるイメージから，音などのフィードバックでユーザーにインタラクションする，メガネ型のデバイス〈PHOTON GLASS〉のハードウェアデータです。
 PHOTON GLASS は、文字を読み上げるメガネOTON GLASS ver5 を元にしながら、自作の容易さや改変性を高め、ツールキットとして新しく開発したものです。
 基板2枚（メイン基板・カメラ基板）の設計データ、3Dプリンターで造形できる本体とカメラユニットの筐体、電源ケーブルのカバー、本体のプログラム、組み立てとセットアップの手順を公開しています。
 ここで公開しているプログラムは、PHOTON GLASS のサンプル実装のひとつです。一人称カメラで捉えた文字を読み上げる（画像から文字を認識し、音声で読み上げる）機能を実行します。
-
-*[English summary](#english-summary) below.*
 
 ![PHOTON GLASS：カメラユニットを付けたメガネと本体](images/photon_glass.jpg)
 
@@ -51,6 +51,7 @@ Copyright (C) 株式会社オトングラス
 | サウンド | `software/sound/` の効果音 | CC BY-SA 4.0 | 同上 |
 
 - 各 README、写真・画像、`hardware/JLCPCB_ORDERING.md` は、`hardware/`・`enclosure/`・`software/` の中にあっても CC BY-SA 4.0 です。`software/sound/` も、`software/` の中にありますが CC BY-SA 4.0 です。
+- 文書の英語版（`README.en.md`・`CHARTER.en.md`・`hardware/JLCPCB_ORDERING.en.md` など、名前の末尾が `.en.md` のファイル）も、日本語版と同じく CC BY-SA 4.0 です。
 
 ### CC BY-SA 4.0 のクレジット表記
 ドキュメント・写真・画像・サウンドは、株式会社オトングラスが CC BY-SA 4.0 で提供しています。全文のファイルはこのリポジトリに入れていないので、公式テキスト（[日本語](https://creativecommons.org/licenses/by-sa/4.0/legalcode.ja)・[English](https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)）を見てください。
@@ -99,24 +100,3 @@ CC BY-SA 4.0 https://creativecommons.org/licenses/by-sa/4.0/
 - サーバーサイドエンジニアリング：鶴岡秀樹（Hideki Tsuruoka）
 - プロダクトデザイン：佐野友優（Tomomasa Sano）
 - サウンドデザイン：田中堅大（Kenta Tanaka）
-
----
-
-## English summary
-Hardware for **PHOTON GLASS**, a glasses-type device that interacts with users via feedback such as sound, based on images captured by a first-person camera.
-PHOTON GLASS was newly developed as a toolkit based on OTON GLASS ver5, glasses that read text aloud, with improved ease of self-building and modifiability.
-The program published here is one sample implementation of PHOTON GLASS. It reads aloud text captured by the first-person camera (it recognises the text in the image and speaks it).
-The documentation is written in Japanese.
-- `hardware/` – main board and camera board (KiCad 9 or later and Eagle/Fusion formats, Gerbers, JLCPCB BOM/CPL)
-- `enclosure/main-body/` – FDM-printable main body enclosure (front, back and side of the body, main button, sub button and a clear status-lamp lens): the Fusion source (.f3d) and STEP exported from it, print-ready STL/3MF, print settings
-- `enclosure/camera-unit/` – FDM-printable camera enclosure: STEP, print-ready STL/3MF, parametric CadQuery source, print settings
-- `enclosure/usb-power-cable/` – power cable from a mobile battery to the main board: wiring, parts and a 3D-printable cover for the USB plug
-- `software/` – Python programs for the Raspberry Pi Zero 2 W (press the camera button to take a photo, recognise its text with Google Cloud Vision and read it aloud with Google Cloud Text-to-Speech), sound effects and a hardware test script
-- `docs/` – build guide, Raspberry Pi setup guide and parts list
-- Licences (Copyright (C) OTON GLASS Inc.):
-  - Software (the programs in `software/`, such as `main_async.py`, `main_seq.py` and the script in `test/`; not the sound effects in `software/sound/`, which are CC BY-SA 4.0): **GPL-3.0-only** (see `LICENSE`)
-  - Hardware (`hardware/`: board data in KiCad and Eagle formats, BOM/CPL and the script that makes the Gerbers (`hardware/tools/gerbgen.py`); `enclosure/`: CadQuery scripts and design data for the enclosures, including the Fusion source (.f3d) and STEP files of the main body; and their outputs such as Gerbers and STL/STEP/3MF; except READMEs, images and `hardware/JLCPCB_ORDERING.md`): **CERN-OHL-S-2.0** (see `LICENSE-HARDWARE`)
-  - Documentation (`docs/`, `CHARTER.md`, `CONTRIBUTING.md`, READMEs, `hardware/JLCPCB_ORDERING.md`, issue templates in `.github/ISSUE_TEMPLATE/`), photos and images, and sounds (`software/sound/`): **CC BY-SA 4.0** (https://creativecommons.org/licenses/by-sa/4.0/legalcode.en)
-  - For uses outside these licences, such as embedding in a closed product, a commercial licence is available: https://note.com/keisukeshimakage/n/nef3c9957ae25
-- Charter (in Japanese): `CHARTER.md` – principles and use, the PHOTON GLASS name, and patents
-- Questions and bug reports: GitHub Issues (https://github.com/photonglass/photonglass/issues)
