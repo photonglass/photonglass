@@ -29,7 +29,7 @@ These settings are for the Bambu Lab A1 with Bambu Studio. For other printers, a
 | Item | Setting | Reason |
 |---|---|---|
 | Nozzle | 0.4 mm | |
-| Material | **PETG** (Bambu PETG HF, etc.) | The shutter spring and the catches of the rear cap are less likely to crack. PLA is fine for checking the shape |
+| Material | **PETG** (the order list uses Bambu Lab PETG Basic, black; Bambu PETG HF and others can also be used) | The shutter spring and the catches of the rear cap are less likely to crack. PLA is fine for checking the shape |
 | Process preset | 0.16mm Optimal @BBL A1 | |
 | Wall loops | **3** | The walls are designed to be 1.2 mm, so three loops make them solid all the way through |
 | Top / bottom shell layers | 5 / 4 | |
@@ -60,13 +60,15 @@ These settings are for the Bambu Lab A1 with Bambu Studio. For other printers, a
 - The caps are tight overall → set "X-Y contour compensation" to −0.05 mm for that object only.
 
 ## Required parts
-| Part | Qty |
-|---|---|
-| Camera board ([`hardware/camera-board`](../../hardware/camera-board)) | 1 |
-| Camera: Zero Spy Camera for Raspberry Pi Zero (8.6 × 8.6 × 5.2 mm, with double-sided tape on the back) | 1 |
-| Screws: WILCO (ウィルコ) FXB-1430EB (M1.4 × 3.0 low-head B-tite): 2 for the lid, 2 for the board, 2 for the back of the body | 6 |
-| Screws: WILCO (ウィルコ) FBP-0208EB: not used in the camera unit (they are for the main body enclosure; see [`../main-body`](../main-body/README.en.md#required-parts)) | — |
-| Cable ties (2.5 mm wide × 1.0 mm thick, about 100 mm long) | 2 |
+| Part | Where to buy | Qty |
+|---|---|---|
+| Camera board ([`hardware/camera-board`](../../hardware/camera-board)) | JLCPCB ([`hardware/JLCPCB_ORDERING.en.md`](../../hardware/JLCPCB_ORDERING.en.md)) | 1 |
+| Camera: Adafruit 3508 "Zero Spy Camera for Raspberry Pi Zero", standard-lens version (8.6 × 8.6 × 5.2 mm, with double-sided tape on the back). The fisheye version cannot be used (see the note below) | Mouser | 1 |
+| Screws: WILCO (ウィルコ) FXB-1430EB (M1.4 × 3.0 low-head B-tite, black): 2 for the lid, 2 for the board, 2 for the back of the body | WILCO | 6 |
+| Screws: WILCO (ウィルコ) FBP-0208EB: not used in the camera unit (they are for the main body enclosure; see [`../main-body`](../main-body/README.en.md#required-parts)) | — | — |
+| Cable ties (2.5 mm wide × 1.0 mm thick, about 100 mm long) | Generic | 2 |
+
+- **Use the Adafruit 3508 camera (the standard-lens version).** The version with a 120° fisheye lens (Adafruit 5389) is a different product. Its image is distorted, so it cannot be used for reading text aloud. Check the product number 3508 when you buy it.
 
 ## Assembly
 1. Place the board on the sled with its component side down, and fix it with two screws through the two holes in the board.

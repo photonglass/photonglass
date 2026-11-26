@@ -15,22 +15,23 @@ The cover is **L-shaped (cable exits to the right)**. The cable leaves the plug 
 
 ## Mobile battery to use
 cheero Canvas 3200mAh IoT機器対応【USB-C Ver.】 (CHE-061-BK-IOT2; "IoT機器対応" means "for IoT devices")
+- Where to buy: cheero's official online store.
 - "USB-C Ver." refers to the input port used to charge the battery itself. The power output is USB-A, so it can be used with this cable (USB-A plug).
 - Output: USB-A 5V / 2.1A max.
 - It is the "for IoT devices" model, which does not cut the power even when the current is small. An ordinary mobile battery may decide that charging is complete and cut the power when the Raspberry Pi is idle and drawing little current.
 - Usage: connect the cable and press the battery's power button to start supplying power. Press it again to stop (always stop it when you have finished).
 
 ## Parts
-| Part | Part number | Akizuki product code | Qty |
+| Part | Part number | Where to buy (with the Akizuki product code) | Qty |
 |---|---|---|---|
-| USB-A plug (board mount, L-shaped) | USB-4AM103AS | 102236 | 1 |
-| Wire, red (AWG24, 1.04 mm outer diameter) | 0.2sq (7/0.18) AWG24-R | 111090 | Length of the cable |
-| Wire, black (as above) | 0.2sq (7/0.18) AWG24-BK | 111091 | Length of the cable |
-| XH housing, 2-pin | XHP-2 | 112255 | 1 |
-| **XH contacts (crimp terminals)** | **SXH-001T-P0.6** | **112264** (pack of 10) | 2 |
+| USB-A plug (board mount, L-shaped) | USB-4AM103AS | Akizuki Denshi 102236 | 1 |
+| Wire, red (AWG24, 1.04 mm outer diameter) | 0.2sq (7/0.18) AWG24-R | Akizuki Denshi 111090 | Length of the cable |
+| Wire, black (as above) | 0.2sq (7/0.18) AWG24-BK | Akizuki Denshi 111091 | Length of the cable |
+| XH housing, 2-pin | JST XHP-2 | Akizuki Denshi 112255 | 1 |
+| **XH contacts (crimp terminals)** | **JST SXH-001T-P0.6** | **Akizuki Denshi 112265** | 2 |
 | Heat-shrink tubing (1.5–2 mm inner diameter) | | | About 2 cm |
 | Heat-shrink tubing (about 2.5 mm inner diameter, to bundle the red and black wires) | | | About 3 cm |
-| Screw | WILCO (ウィルコ) FXB-1430EB (M1.4×3.0 low-head B-tite) | | 1 |
+| Screw | WILCO (ウィルコ) FXB-1430EB (M1.4×3.0 low-head B-tite, black) | WILCO | 1 |
 | 3D-printed parts | `stl/usb_cover_L_right_base.stl`, `stl/usb_cover_L_right_lid.stl` | | 1 each |
 | **Two-part epoxy adhesive** (a 30-minute type is recommended, e.g. Konishi Bond Quick 30) | | | A little |
 | Sandpaper (around #240), rubbing alcohol | | | |
@@ -75,7 +76,7 @@ Labels in the diagram: USB-A プラグ = USB-A plug; XH ハウジング = XH hou
   - If you put the plug into the cover upside down, the cable will point the other way when the plug is in the battery (because a USB plug only goes in one way round). To be sure, before assembling, plug just the plug into the battery, hold the cover against it, and decide which way up the plug should go for the cable to come out on the side you want.
 
 #### Print settings (Bambu Lab A1 / PETG)
-The presets, plate and temperatures are the same as for the [main body enclosure](../main-body/README.en.md#print-settings) (Bambu PETG HF, textured PEI). The cover is small and has fine features (0.25 mm crush ribs, a 1.2 mm pilot hole for the screw), so change the following.
+The presets, plate and temperatures are the same as for the [main body enclosure](../main-body/README.en.md#print-settings) (Bambu PETG Basic, textured PEI). The cover is small and has fine features (0.25 mm crush ribs, a 1.2 mm pilot hole for the screw), so change the following.
 
 | Item | Setting | Reason |
 |---|---|---|

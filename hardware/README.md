@@ -5,7 +5,7 @@
 | 基板 | 役割 | 大きさ |
 |---|---|---|
 | [`main-board/`](main-board) OG19AWv2 | Raspberry Pi Zero 2 W の40ピンに挿す。音声出力（PCM5102A + PAM8304）、スピーカー用コネクタ、ボタン4個、RGB LED、ヘッドホンジャック、電源用コネクタ（5V）、カメラ基板へのHDMI | 79 × 42 mm、2層 |
-| [`camera-board/`](camera-board) OG19 PC-3 | カメラユニットの中の基板。カメラ（Zero Spy Camera）をつなぎ、カメラボタン（シャッター）とLEDを載せる。HDMIケーブルでメイン基板へ | 39.3 × 17.2 mm、2層 |
+| [`camera-board/`](camera-board) OG19 PC-3 | カメラユニットの中の基板。カメラ（Adafruit 3508 Zero Spy Camera、標準レンズ版。[`enclosure/camera-unit` の「必要な部品」](../enclosure/camera-unit/README.md#必要な部品)）をつなぎ、カメラボタン（シャッター）とLEDを載せる。HDMIケーブルでメイン基板へ | 39.3 × 17.2 mm、2層 |
 
 ## ファイルの開き方
 | ソフト | 開くファイル | 方法 |

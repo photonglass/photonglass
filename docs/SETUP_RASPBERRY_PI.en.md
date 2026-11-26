@@ -10,7 +10,7 @@ It assumes that you have finished the assembly (steps 1–4 of [`BUILD_GUIDE.en.
 
 ## What you need
 - Raspberry Pi Zero 2 WH (with the main board mounted and the camera unit, speaker and power cable connected)
-- microSD card (we use a SanDisk Ultra 32GB)
+- microSD card (we use a SanDisk Ultra 32GB, bought from Yodobashi Camera)
 - A PC (Mac) and a device for reading and writing microSD cards
 - Wi-Fi (used to communicate with Google Cloud)
 - A monitor, keyboard and mouse for the initial setup (["0. What you need" in `BUILD_GUIDE.en.md`](BUILD_GUIDE.en.md#0-what-you-need))

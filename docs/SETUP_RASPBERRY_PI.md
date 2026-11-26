@@ -7,7 +7,7 @@ PHOTON GLASS の Raspberry Pi を、OS のインストールから、動作テ�
 
 ## 必要なもの
 - Raspberry Pi Zero 2 WH（メイン基板を載せ、カメラユニット・スピーカー・電源ケーブルをつないだもの）
-- microSD カード（SanDisk Ultra 32GB を使っています）
+- microSD カード（SanDisk Ultra 32GB を使っています。購入先：ヨドバシカメラ）
 - PC（Mac）と、microSD カードを読み書きする機器
 - Wi-Fi（Google Cloud と通信するために使います）
 - 初期設定に使う、モニター・キーボード・マウス（[`BUILD_GUIDE.md` の「0. 必要なもの」](BUILD_GUIDE.md#0-必要なもの)）

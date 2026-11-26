@@ -26,23 +26,23 @@ See the parts list in each document.
 - Main body enclosure (screws): ["Required parts" in `enclosure/main-body/README.en.md`](../enclosure/main-body/README.en.md#required-parts)
 - Camera unit (camera, screws, cable ties): ["Required parts" in `enclosure/camera-unit/README.en.md`](../enclosure/camera-unit/README.en.md#required-parts)
 - Power cable (USB plug, wires, connector, etc.): ["Parts" in `enclosure/usb-power-cable/README.en.md`](../enclosure/usb-power-cable/README.en.md#parts)
-- 3D printer filament (PETG): ["Print settings" in `enclosure/main-body/README.en.md`](../enclosure/main-body/README.en.md#print-settings) (about 65–75 g per main body), ["Print settings" in `enclosure/camera-unit/README.en.md`](../enclosure/camera-unit/README.en.md#print-settings)
+- 3D printer filament (PETG): ["Print settings" in `enclosure/main-body/README.en.md`](../enclosure/main-body/README.en.md#print-settings) (about 65–75 g per main body), ["Print settings" in `enclosure/camera-unit/README.en.md`](../enclosure/camera-unit/README.en.md#print-settings). The order list uses Bambu Lab PETG Basic (black), bought from the official Bambu Lab store.
 
 ### Other things you need
 
-| Item | Model, etc. | Used for |
-|---|---|---|
-| Raspberry Pi Zero 2 WH | With the pin header already fitted | Plugs into the 40-pin socket on the main board |
-| microSD card | SanDisk Ultra 32GB | Holds the Raspberry Pi OS |
-| FFC cable | Würth Elektronik 6876 series 687622100002 (100 mm, 0.5 mm pitch) | Connects the main board and the Raspberry Pi |
-| HDMI cable | CAC-HD14US07BK (0.7 m) | Connects the main board and the camera unit (camera board) |
-| Speaker | MSI28-12R (Akizuki Denshi) | Connects to the `SPK` connector on the main board |
-| Mobile battery | cheero Canvas 3200mAh IoT機器対応 (for IoT devices) CHE-061-BK-IOT2 | Power supply (["Mobile battery to use" in `enclosure/usb-power-cable/README.en.md`](../enclosure/usb-power-cable/README.en.md#mobile-battery-to-use)) |
-| Glasses | — | The camera unit is attached to them |
+| Item | Model, etc. | Where to buy | Used for |
+|---|---|---|---|
+| Raspberry Pi Zero 2 WH | With the pin header already fitted | KSY | Plugs into the 40-pin socket on the main board |
+| microSD card | SanDisk Ultra 32GB | Yodobashi Camera | Holds the Raspberry Pi OS |
+| FFC cable | Würth Elektronik 6876 series 687622100002 (100 mm, 0.5 mm pitch) | RS (RS Components) | Connects the main board and the Raspberry Pi |
+| HDMI cable | CAC-HD14US07BK (High Speed HDMI cable, ultra-slim, with Ethernet, 0.7 m) | Yodobashi Camera | Connects the main board and the camera unit (camera board) |
+| Speaker | MSI28-12R (dynamic speaker for breadboards) | Akizuki Denshi (112587) | Connects to the `SPK` connector on the main board |
+| Mobile battery | cheero Canvas 3200mAh IoT機器対応【USB-C Ver.】 (for IoT devices, USB-C version) CHE-061-BK-IOT2 | cheero's official online store | Power supply (["Mobile battery to use" in `enclosure/usb-power-cable/README.en.md`](../enclosure/usb-power-cable/README.en.md#mobile-battery-to-use)) |
+| Glasses | Non-prescription (fashion) glasses. The temples (arms) should be 3–7 mm from top to bottom (the range that the V-groove of the camera unit's attachment can centre) | A 100-yen shop (Can★Do). The order list uses "ダテメガネ スクエア" (square non-prescription glasses) | The camera unit is attached to them |
 
 For the initial setup of the Raspberry Pi, you will also use the following.
 - A monitor, and a mini HDMI to HDMI cable (or adapter). The video output of the Raspberry Pi Zero 2 W is a mini HDMI port.
-- A keyboard and mouse, and a micro USB (male) to USB-A (female) adapter cable (OTG cable). The Raspberry Pi Zero 2 W has only one micro USB port for data, so to connect both a keyboard and a mouse, use a USB hub, or a wireless keyboard and mouse that share a single receiver. During development we used the AFSSLCBL L-shaped micro USB cable and the USB-4AF203AS USB-A female connector.
+- A keyboard and mouse, and a micro USB (male) to USB-A (female) adapter cable (OTG cable). The Raspberry Pi Zero 2 W has only one micro USB port for data, so to connect both a keyboard and a mouse, use a USB hub, or a wireless keyboard and mouse that share a single receiver. During development we used the AFSSLCBL L-shaped micro USB cable (brand: オーディオファン; about 12 cm, bought from Amazon) and the USB-4AF203AS board-mount USB connector (type A, female, two-tier) from Akizuki Denshi (103238).
 
 ## 1. Order the boards
 Order the main board and the camera board from JLCPCB with "PCB fabrication + parts assembly".
@@ -52,7 +52,7 @@ Order the main board and the camera board from JLCPCB with "PCB fabrication + pa
 ## 2. Hand-solder the remaining parts
 When the main board arrives, solder on the parts that you did not have assembled.
 - Parts to fit: ["Parts not to be assembled (hand-soldered)" in `hardware/JLCPCB_ORDERING.en.md`](../hardware/JLCPCB_ORDERING.en.md#parts-not-to-be-assembled-hand-soldered)
-- If you did not have the 40-pin socket (`U$1`) assembled, fit it as well (["3. Checking the parts (BOM screen)" in `hardware/JLCPCB_ORDERING.en.md`](../hardware/JLCPCB_ORDERING.en.md#3-checking-the-parts-bom-screen)).
+- If you did not have the 40-pin socket (`U$1`) assembled, fit it as well. The order list uses the FH-2x20SG female pin socket, 2×20 (40 pins), from Akizuki Denshi (100085) (["3. Checking the parts (BOM screen)" in `hardware/JLCPCB_ORDERING.en.md`](../hardware/JLCPCB_ORDERING.en.md#3-checking-the-parts-bom-screen)).
 - Orientation of the speaker connector: [`hardware/main-board/images/speaker_connector_orientation.png`](../hardware/main-board/images/speaker_connector_orientation.png)
 
 ## 3. Print the enclosures

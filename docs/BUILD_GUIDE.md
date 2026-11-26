@@ -26,23 +26,23 @@ PHOTON GLASS を一から作るときの、作業の順番をまとめたペー�
 - 本体の筐体（ネジ）：[`enclosure/main-body/README.md` の「必要な部品」](../enclosure/main-body/README.md#必要な部品)
 - カメラユニット（カメラ、ネジ、結束バンド）：[`enclosure/camera-unit/README.md` の「必要な部品」](../enclosure/camera-unit/README.md#必要な部品)
 - 電源ケーブル（USB プラグ、電線、コネクタなど）：[`enclosure/usb-power-cable/README.md` の「部品」](../enclosure/usb-power-cable/README.md#部品)
-- 3D プリンターの材料（PETG）：[`enclosure/main-body/README.md` の「印刷設定」](../enclosure/main-body/README.md#印刷設定)（本体1台で約 65〜75 g）、[`enclosure/camera-unit/README.md` の「印刷設定」](../enclosure/camera-unit/README.md#印刷設定)
+- 3D プリンターの材料（PETG）：[`enclosure/main-body/README.md` の「印刷設定」](../enclosure/main-body/README.md#印刷設定)（本体1台で約 65〜75 g）、[`enclosure/camera-unit/README.md` の「印刷設定」](../enclosure/camera-unit/README.md#印刷設定)。発注リストでは、Bambu Lab の PETG Basic（黒）を Bambu Lab 公式ストアで買っています。
 
 ### そのほかに必要なもの
 
-| もの | 型番など | 使うところ |
-|---|---|---|
-| Raspberry Pi Zero 2 WH | ピンヘッダ実装済みのもの | メイン基板の40ピンソケットに挿す |
-| microSD カード | SanDisk Ultra 32GB | Raspberry Pi の OS を入れる |
-| FFC ケーブル | Würth Elektronik 6876 シリーズ 687622100002（100 mm、ピッチ 0.5 mm） | メイン基板と Raspberry Pi をつなぐ |
-| HDMI ケーブル | CAC-HD14US07BK（0.7 m） | メイン基板とカメラユニット（カメラ基板）をつなぐ |
-| スピーカー | MSI28-12R（秋月電子） | メイン基板の `SPK` コネクタにつなぐ |
-| モバイルバッテリー | cheero Canvas 3200mAh IoT機器対応 CHE-061-BK-IOT2 | 電源（[`enclosure/usb-power-cable/README.md` の「使うモバイルバッテリー」](../enclosure/usb-power-cable/README.md#使うモバイルバッテリー)） |
-| メガネ | — | カメラユニットを取り付ける |
+| もの | 型番など | 購入先 | 使うところ |
+|---|---|---|---|
+| Raspberry Pi Zero 2 WH | ピンヘッダ実装済みのもの | KSY | メイン基板の40ピンソケットに挿す |
+| microSD カード | SanDisk Ultra 32GB | ヨドバシカメラ | Raspberry Pi の OS を入れる |
+| FFC ケーブル | Würth Elektronik 6876 シリーズ 687622100002（100 mm、ピッチ 0.5 mm） | RS（RS コンポーネンツ） | メイン基板と Raspberry Pi をつなぐ |
+| HDMI ケーブル | CAC-HD14US07BK（HIGH SPEED HDMI ケーブル、ウルトラスリム、イーサネット対応、0.7 m） | ヨドバシカメラ | メイン基板とカメラユニット（カメラ基板）をつなぐ |
+| スピーカー | MSI28-12R（ブレッドボード用ダイナミックスピーカー） | 秋月電子（112587） | メイン基板の `SPK` コネクタにつなぐ |
+| モバイルバッテリー | cheero Canvas 3200mAh IoT機器対応【USB-C Ver.】 CHE-061-BK-IOT2 | cheero 公式オンラインストア | 電源（[`enclosure/usb-power-cable/README.md` の「使うモバイルバッテリー」](../enclosure/usb-power-cable/README.md#使うモバイルバッテリー)） |
+| メガネ | 伊達メガネ（度なし）。つる（テンプル）の上下の幅が 3〜7 mm のもの（カメラユニットのアタッチメントの V字の溝で、中央に合わせられる範囲） | 100円ショップ（キャンドゥ）。発注リストでは「ダテメガネ スクエア」 | カメラユニットを取り付ける |
 
 Raspberry Pi の初期設定では、次のものも使います。
 - モニターと、mini HDMI → HDMI の変換ケーブル（またはアダプター）。Raspberry Pi Zero 2 W の映像出力は mini HDMI 端子です。
-- キーボードとマウスと、micro USB（オス）→ USB-A（メス）の変換ケーブル（OTG ケーブル）。Raspberry Pi Zero 2 W のデータ用の USB 端子は micro USB が1つだけなので、キーボードとマウスを両方つなぐときは、USB ハブを使うか、1つのレシーバーで使えるワイヤレスのキーボードとマウスを使います。開発では、microUSB L字ケーブル AFSSLCBL と、USB-A メスのコネクタ USB-4AF203AS を使っています。
+- キーボードとマウスと、micro USB（オス）→ USB-A（メス）の変換ケーブル（OTG ケーブル）。Raspberry Pi Zero 2 W のデータ用の USB 端子は micro USB が1つだけなので、キーボードとマウスを両方つなぐときは、USB ハブを使うか、1つのレシーバーで使えるワイヤレスのキーボードとマウスを使います。開発では、オーディオファンの microUSB L字ケーブル AFSSLCBL（約 12 cm。Amazon で購入）と、秋月電子の基板取付用 USB コネクター（A タイプ、メス×2段）USB-4AF203AS（103238）を使っています。
 
 ## 1. 基板を発注する
 メイン基板とカメラ基板を、JLCPCB に「基板製造＋部品実装」で発注します。
@@ -52,7 +52,7 @@ Raspberry Pi の初期設定では、次のものも使います。
 ## 2. 手はんだで部品を付ける
 届いたメイン基板に、実装を頼まなかった部品をはんだ付けします。
 - 付ける部品：[`hardware/JLCPCB_ORDERING.md` の「実装しない（手はんだで付ける）部品」](../hardware/JLCPCB_ORDERING.md#実装しない手はんだで付ける部品)
-- 40ピンソケット（`U$1`）の実装を頼まなかった場合は、これも付けます（[`hardware/JLCPCB_ORDERING.md` の「3. 部品の確認（BOM 画面）」](../hardware/JLCPCB_ORDERING.md#3-部品の確認bom-画面)）。
+- 40ピンソケット（`U$1`）の実装を頼まなかった場合は、これも付けます。発注リストでは、秋月電子のピンソケット（メス）2×20（40P）FH-2x20SG（100085）を使っています（[`hardware/JLCPCB_ORDERING.md` の「3. 部品の確認（BOM 画面）」](../hardware/JLCPCB_ORDERING.md#3-部品の確認bom-画面)）。
 - スピーカー用コネクタの向き：[`hardware/main-board/images/speaker_connector_orientation.png`](../hardware/main-board/images/speaker_connector_orientation.png)
 
 ## 3. 筐体を印刷する

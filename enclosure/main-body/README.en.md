@@ -41,10 +41,11 @@ These settings are for the Bambu Lab A1 with Bambu Studio. For other printers, a
 | Item | Setting |
 |---|---|
 | Printer | Bambu Lab A1 (0.4 mm nozzle) |
-| Filament | **Bambu PETG HF** (or PETG Basic; for other makers' filament, Generic PETG) |
+| Filament | **Bambu PETG Basic** (the material on the order list; if you use PETG HF, Bambu PETG HF; for other makers' filament, Generic PETG) |
 | Process | **0.20mm Standard @BBL A1** |
 | Build plate | **Textured PEI**. On a smooth PEI plate, apply a thin layer of glue stick (this stops the PETG sticking so strongly that it tears the PEI) |
 
+The order list uses Bambu Lab PETG Basic (black) for the black parts, bought from the official Bambu Lab store.
 The temperatures (nozzle around 250 °C, bed 70 °C) and the fan can be left as they are in the filament preset.
 
 ### Changes from the presets
@@ -107,10 +108,10 @@ FDM cannot make it transparent like glass, so that you can see through it. Even 
 - Screw holes or button holes are too small → set "X-Y hole compensation" to +0.05 to +0.1 mm for that part only.
 
 ## Required parts
-| Part | Qty |
-|---|---|
-| Printed parts (body front, back and side, main button, sub button, status lamp lens) | 1 each |
-| Screws: WILCO (ウィルコ) FBP-0208EB, to fix the body back to the body front | 4 |
+| Part | Where to buy | Qty |
+|---|---|---|
+| Printed parts (body front, back and side, main button, sub button, status lamp lens) | Print them on a 3D printer (for the material, see "[Print settings](#print-settings)") | 1 each |
+| Screws: WILCO (ウィルコ) FBP-0208EB (black), to fix the body back to the body front | WILCO | 4 |
 
 ## Assembly
 Left/right and front/back here are as seen with the body front laid outer face down and its stepped corner at the back right. In this orientation, the left wall has the hole for the sub button and the window for the status lamp, the right wall has the holes for the HDMI connector and the headphones, and the body side fits at the front.

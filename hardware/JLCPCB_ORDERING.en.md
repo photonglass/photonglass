@@ -54,7 +54,7 @@ Every part has a JLCPCB part number (LCSC number), so the parts are matched auto
 | What to check | Details |
 |---|---|
 | Out-of-stock parts (shown in red) | Search for another part with the same value and the same footprint and substitute it. For resistors and capacitors, anything with the same value and size (0603) will do |
-| U$1 on the main board (40-pin socket) | A through-hole part. **Having it assembled adds a THT (manual assembly) charge.** To keep the cost down, untick its row and solder it yourself when the boards arrive |
+| U$1 on the main board (40-pin socket) | A through-hole part. **Having it assembled adds a THT (manual assembly) charge.** To keep the cost down, untick its row and solder it yourself when the boards arrive (buy the socket separately; the order list uses FH-2x20SG from Akizuki Denshi, 100085) |
 | "Extended" parts | Each type incurs an extra charge (a setup fee for the part). None of these parts has an alternative, so leave them as they are |
 
 ### Parts not to be assembled (hand-soldered)
@@ -63,11 +63,13 @@ The following parts of the main board affect the feel of the controls and the ou
 | Part | Part number | Where to buy |
 |---|---|---|
 | VR1 volume control | R1001G16T2B-B10K | aitendo |
-| SW_SUB / SW_UP / SW_DOWN | SKHHLPA010 | Akizuki Denshi (107193) |
+| SW_SUB / SW_UP / SW_DOWN | ALPS SKHHLPA010 | Akizuki Denshi (107193) |
 | SW_MAIN | P-03646 (Cosland TS-0606-F-N-RED) | Akizuki Denshi |
-| SPK / 5V connectors (vertical) | JST B2B-XH-A(LF)(SN) | LCSC (C158012) |
+| SPK / 5V connectors (vertical) | JST B2B-XH-A(LF)(SN) | Akizuki Denshi (112247) |
 
-The part numbers and where to buy them follow the order list (2026-10-20 version). LCSC parts can also be bought "parts only" within the same order (JLCPCB's Parts → Order Parts, or LCSC.com).
+The part numbers and where to buy them follow the order list (2026-10-20 version). LCSC also stocks the same JST B2B-XH-A(LF)(SN) (C158012), and it can be bought "parts only" together with the JLCPCB order (JLCPCB's Parts → Order Parts, or LCSC.com).
+
+If you did not have U$1 (the 40-pin socket) assembled, also buy the FH-2x20SG female pin socket (2×20, 40 pins; Akizuki Denshi, 100085) and fit it in the same way ("3. Checking the parts (BOM screen)" above).
 
 ## 4. Checking part orientation (preview screen)
 Clicking "NEXT" shows a preview with the parts placed on the board. **This is the most important step.** If the orientation or position of a part is wrong, click the part and rotate or move it to correct it.
@@ -95,7 +97,7 @@ If you are unsure about a part, you can also ask on this screen for a JLCPCB eng
 3. In the cart, choose a shipping method and pay. Delivery usually takes about 1–3 weeks.
 
 ## When the boards arrive
-1. Fit the hand-soldered parts (the table above).
+1. Fit the hand-soldered parts (the table above, plus FH-2x20SG if you did not have U$1 assembled).
 2. Mount the main board on the Raspberry Pi Zero 2 W and check that it works with [`software/test/hw_test.py`](../software/test/hw_test.py) (for preparing the Raspberry Pi, see [`docs/SETUP_RASPBERRY_PI.en.md`](../docs/SETUP_RASPBERRY_PI.en.md); for the overall flow, see [`docs/BUILD_GUIDE.en.md`](../docs/BUILD_GUIDE.en.md)).
 3. For the orientation of the speaker connector, see [`main-board/images/speaker_connector_orientation.png`](main-board/images/speaker_connector_orientation.png).
 

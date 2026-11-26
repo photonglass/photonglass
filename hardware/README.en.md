@@ -5,7 +5,7 @@
 | Board | Role | Size |
 |---|---|---|
 | [`main-board/`](main-board) OG19AWv2 | Plugs into the 40-pin header of the Raspberry Pi Zero 2 W. Audio output (PCM5102A + PAM8304), speaker connector, four buttons, RGB LED, headphone jack, power connector (5V), HDMI to the camera board | 79 × 42 mm, 2 layers |
-| [`camera-board/`](camera-board) OG19 PC-3 | The board inside the camera unit. Connects the camera (Zero Spy Camera) and carries the camera button (shutter) and an LED. Connects to the main board with an HDMI cable | 39.3 × 17.2 mm, 2 layers |
+| [`camera-board/`](camera-board) OG19 PC-3 | The board inside the camera unit. Connects the camera (Adafruit 3508 Zero Spy Camera, standard-lens version; see ["Required parts" in `enclosure/camera-unit`](../enclosure/camera-unit/README.en.md#required-parts)) and carries the camera button (shutter) and an LED. Connects to the main board with an HDMI cable | 39.3 × 17.2 mm, 2 layers |
 
 ## Opening the files
 | Software | File to open | How |

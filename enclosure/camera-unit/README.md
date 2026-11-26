@@ -29,7 +29,7 @@ Bambu Lab A1・Bambu Studio での設定です。ほかのプリンターでも�
 | 項目 | 設定 | 理由 |
 |---|---|---|
 | ノズル | 0.4 mm | |
-| 材料 | **PETG**（Bambu PETG HF など） | シャッターのばねと後ろキャップの爪が割れにくい。PLA でも形は確認できる |
+| 材料 | **PETG**（発注リストでは Bambu Lab の PETG Basic・黒。Bambu PETG HF なども使える） | シャッターのばねと後ろキャップの爪が割れにくい。PLA でも形は確認できる |
 | プロセスのプリセット | 0.16mm Optimal @BBL A1 | |
 | 壁のループ数 | **3** | 壁は 1.2 mm で設計しているので、3周で中まで詰まる |
 | 上面 / 底面シェル層 | 5 / 4 | |
@@ -60,13 +60,15 @@ Bambu Lab A1・Bambu Studio での設定です。ほかのプリンターでも�
 - キャップ類が全体にきつい → そのオブジェクトだけ「X-Y輪郭補正」を −0.05 mm にする。
 
 ## 必要な部品
-| 部品 | 数 |
-|---|---|
-| カメラ基板（[`hardware/camera-board`](../../hardware/camera-board)） | 1 |
-| カメラ Zero Spy Camera for Raspberry Pi Zero（8.6 × 8.6 × 5.2 mm、裏に両面テープ付き） | 1 |
-| ネジ ウィルコ FXB-1430EB（M1.4 × 3.0 低頭Bタイト）：蓋2・基板2・本体背面2 | 6 |
-| ネジ ウィルコ FBP-0208EB：カメラユニットでは使わない（本体の筐体用。[`../main-body`](../main-body/README.md#必要な部品) を参照） | — |
-| 結束バンド（幅 2.5 mm × 厚さ 1.0 mm、長さ 100 mm 程度） | 2 |
+| 部品 | 購入先 | 数 |
+|---|---|---|
+| カメラ基板（[`hardware/camera-board`](../../hardware/camera-board)） | JLCPCB（[`hardware/JLCPCB_ORDERING.md`](../../hardware/JLCPCB_ORDERING.md)） | 1 |
+| カメラ Adafruit 3508「Zero Spy Camera for Raspberry Pi Zero」、標準レンズ版（8.6 × 8.6 × 5.2 mm、裏に両面テープ付き）。魚眼レンズ版は使えない（下の注意） | Mouser | 1 |
+| ネジ ウィルコ FXB-1430EB（M1.4 × 3.0 低頭Bタイト、黒）：蓋2・基板2・本体背面2 | ウィルコ | 6 |
+| ネジ ウィルコ FBP-0208EB：カメラユニットでは使わない（本体の筐体用。[`../main-body`](../main-body/README.md#必要な部品) を参照） | — | — |
+| 結束バンド（幅 2.5 mm × 厚さ 1.0 mm、長さ 100 mm 程度） | 汎用品 | 2 |
+
+- **カメラは Adafruit 3508（標準レンズ版）を使います。** 画角 120° の魚眼レンズ版（Adafruit 5389）は別の製品です。映像が歪むため、文字の読み上げには使えません。買うときは品番 3508 を確かめてください。
 
 ## 組み立て
 1. 基板の部品面を下にしてスレッドに載せ、基板の穴2つからネジ2本で留める。
