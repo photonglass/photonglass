@@ -7,7 +7,7 @@ PHOTON GLASS は、文字を読み上げるメガネOTON GLASS ver5 を元にし
 
 *[English summary](#english-summary) below.*
 
-![カメラユニット](enclosure/camera-unit/images/overview.png)
+![PHOTON GLASS：カメラユニットを付けたメガネと本体](images/photon_glass.jpg)
 
 ## 中身
 
