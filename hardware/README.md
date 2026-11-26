@@ -1,3 +1,5 @@
+日本語 | [English](README.en.md)
+
 # 基板 / Boards
 
 | 基板 | 役割 | 大きさ |

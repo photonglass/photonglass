@@ -1,3 +1,5 @@
+日本語 | [English](README.en.md)
+
 # KiCad 9 プロジェクト（メイン基板）
 
 `OG19AWv2_main.kicad_pro` をダブルクリックすると、回路図と基板が開きます。
