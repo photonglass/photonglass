@@ -1,3 +1,5 @@
+日本語 | [English](CHARTER.en.md)
+
 # 憲法
 
 ## 1. 理念と利用について
