@@ -1,3 +1,5 @@
+日本語 | [English](BUILD_GUIDE.en.md)
+
 # PHOTON GLASS 組み立てガイド
 
 PHOTON GLASS を一から作るときの、作業の順番をまとめたページです。
