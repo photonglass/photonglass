@@ -1,3 +1,5 @@
+日本語 | [English](SETUP_RASPBERRY_PI.en.md)
+
 # Raspberry Pi のセットアップ
 
 PHOTON GLASS の Raspberry Pi を、OS のインストールから、動作テスト、プログラムの自動起動まで準備する手順です。
