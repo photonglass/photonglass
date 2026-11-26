@@ -1,3 +1,5 @@
+日本語 | [English](JLCPCB_ORDERING.en.md)
+
 # JLCPCB での発注方法
 
 基板2枚を、[JLCPCB](https://jlcpcb.com/) で「基板製造＋部品実装（PCBA）」まで発注する手順です。

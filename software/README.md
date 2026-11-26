@@ -1,3 +1,5 @@
+日本語 | [English](README.en.md)
+
 # ソフトウェア
 
 PHOTON GLASS の Raspberry Pi で動かすプログラムです。

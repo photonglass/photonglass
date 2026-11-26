@@ -1,3 +1,5 @@
+日本語 | [English](README.en.md)
+
 # KiCad 9 プロジェクト（カメラ基板）
 
 `OG19_PC-3_camera.kicad_pro` をダブルクリックすると、回路図と基板が開きます。

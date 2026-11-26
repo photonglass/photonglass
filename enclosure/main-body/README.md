@@ -1,3 +1,5 @@
+日本語 | [English](README.en.md)
+
 # 本体の筐体 / Main body enclosure
 
 PHOTON GLASS の本体（メインボタン・サブボタン付き）の筐体です。カメラユニット（[`../camera-unit`](../camera-unit)）とは別の筐体です。
