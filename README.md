@@ -9,6 +9,8 @@ PHOTON GLASS は、文字を読み上げるメガネOTON GLASS ver5 を元にし
 
 ![PHOTON GLASS：カメラユニットを付けたメガネと本体](images/photon_glass.jpg)
 
+<img src="images/photon_glass_wearing.jpg" alt="PHOTON GLASS を身に着けて使っているところ：メガネにカメラユニットを付け、本体を首から下げている" width="420">
+
 ## 中身
 
 | フォルダ | 内容 | 開けるソフト |
