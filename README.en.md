@@ -9,6 +9,8 @@ The program published here is one sample implementation of PHOTON GLASS. It read
 
 ![PHOTON GLASS: glasses with the camera unit attached, and the main body](images/photon_glass.jpg)
 
+![Wearing PHOTON GLASS: the camera unit on the glasses and the main body hanging from the neck](images/photon_glass_wearing.jpg)
+
 ## Contents
 
 | Folder | Contents | Software to open it |
